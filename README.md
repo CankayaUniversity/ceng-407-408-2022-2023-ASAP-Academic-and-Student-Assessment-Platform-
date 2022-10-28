@@ -5,4 +5,4 @@ ASAP (Academic and Student Assessment Platform)
 -> Esat YENER<br>
 -> Alperen SÜTÇÜ<br>
 -> Emre HASER<br>
--> Aziz CEYHAN<br>
+-> Aziz Murat CEYHAN<br>
