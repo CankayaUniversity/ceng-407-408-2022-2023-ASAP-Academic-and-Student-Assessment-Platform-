@@ -12,7 +12,11 @@ ASAP (Academic and Student Assessment Platform)
  
  
 <a href = "https://github.com/CankayaUniversity/ceng-407-408-2022-2023-ASAP-Academic-and-Student-Assessment-Platform-/wiki/Work-Plan">​Work Plan</a>
+<br>
 <a href = "https://esatyener.wixsite.com/asap">​Web Page</a>
+<br>
 <a href = "https://github.com/CankayaUniversity/ceng-407-408-2022-2023-ASAP-Academic-and-Student-Assessment-Platform-/wiki/Software-Requirement-Specification-(SRS)">SRS</a>
+<br>
 <a href = "https://github.com/CankayaUniversity/ceng-407-408-2022-2023-ASAP-Academic-and-Student-Assessment-Platform-/wiki/Literature-Review">​Literature Review</a>
+<br>
 <a href = "https://github.com/CankayaUniversity/ceng-407-408-2022-2023-ASAP-Academic-and-Student-Assessment-Platform-/wiki/Excel-Templates">Excel Templates</a>
