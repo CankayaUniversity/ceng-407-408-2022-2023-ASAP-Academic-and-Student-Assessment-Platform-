@@ -33,7 +33,7 @@ namespace ASAP_Project
 
         private void button_login_Click(object sender, EventArgs e)
         {
-            Form1 form = new Form1();
+            MainPage form = new MainPage();
             form.Show();
         }
     }
