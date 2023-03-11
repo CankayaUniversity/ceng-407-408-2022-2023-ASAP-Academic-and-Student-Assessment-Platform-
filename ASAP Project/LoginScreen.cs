@@ -15,6 +15,16 @@ namespace ASAP_Project
         public LoginScreen()
         {
             InitializeComponent();
+            panel1.BackColor = Color.FromArgb(25, Color.Black);
+            panel2.BackColor = Color.FromArgb(25, Color.Black);
+            panel3.BackColor = Color.FromArgb(25, Color.Black);
+            panel4.BackColor = Color.FromArgb(25, Color.Black);
+            panel5.BackColor = Color.FromArgb(25, Color.Black);
+            pictureBox1.BackColor = Color.FromArgb(25, Color.Black);
+            label_username.BackColor = Color.Transparent;
+            label_password.BackColor = Color.Transparent;
+            pictureBox1.BackColor = Color.Transparent;
         }
+
     }
 }
