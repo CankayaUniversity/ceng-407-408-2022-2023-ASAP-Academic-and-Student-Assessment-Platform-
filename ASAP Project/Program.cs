@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 namespace ASAP_Project
 {
     internal static class Program
@@ -12,6 +14,7 @@ namespace ASAP_Project
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             Application.Run(new LoginScreen());
+            
         }
     }
 }
