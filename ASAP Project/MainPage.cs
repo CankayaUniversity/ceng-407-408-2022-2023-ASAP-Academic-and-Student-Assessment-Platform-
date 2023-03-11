@@ -6,5 +6,10 @@ namespace ASAP_Project
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ASAP_Project.GoogleDrive.UploadFile();
+        }
     }
 }

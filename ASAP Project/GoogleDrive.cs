@@ -13,9 +13,9 @@ using static Google.Apis.Drive.v3.DriveService;
 
 namespace ASAP_Project
 {
-    internal class GoogleDrive
+    public class GoogleDrive
     {
-        public void UploadFile()
+        public static void UploadFile()
         {
             string oSelectedFile = "";
             System.Windows.Forms.OpenFileDialog oDlg = new System.Windows.Forms.OpenFileDialog();
