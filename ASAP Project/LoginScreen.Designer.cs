@@ -181,8 +181,8 @@
         private Panel panel4;
         private Panel panel1;
         private PictureBox pictureBox1;
-        private Label label_username;
-        private Label label_password;
+        private Label label_username ;
+        private Label label_password ;
         private TextBox textBox_username;
         private TextBox textBox_password;
         private Button button_login;
