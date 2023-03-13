@@ -16,6 +16,7 @@ namespace ASAP_Project
             panel_userpanel.Enabled = true;
             panel_userpanel.Visible = true;
             panel_userpanel.BringToFront();
+
         }
 
         private void button_adminpanel_Click(object sender, EventArgs e)
