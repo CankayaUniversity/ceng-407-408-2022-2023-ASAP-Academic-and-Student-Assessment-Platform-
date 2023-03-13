@@ -42,6 +42,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.button_testdrive = new System.Windows.Forms.Button();
             this.treeView_adminpanel = new System.Windows.Forms.TreeView();
             this.treeView_userpanel = new System.Windows.Forms.TreeView();
             this.button_exit = new System.Windows.Forms.Button();
@@ -57,7 +58,7 @@
             this.button_deletecourse = new System.Windows.Forms.Button();
             this.button_updatecourse = new System.Windows.Forms.Button();
             this.button_addcourse = new System.Windows.Forms.Button();
-            this.button_testdrive = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel5.SuspendLayout();
             this.panel_userpanel.SuspendLayout();
             this.panel_adminpanel.SuspendLayout();
@@ -123,6 +124,16 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(193, 419);
             this.panel5.TabIndex = 5;
+            // 
+            // button_testdrive
+            // 
+            this.button_testdrive.Location = new System.Drawing.Point(3, 304);
+            this.button_testdrive.Name = "button_testdrive";
+            this.button_testdrive.Size = new System.Drawing.Size(184, 23);
+            this.button_testdrive.TabIndex = 6;
+            this.button_testdrive.Text = "Test Google Drive";
+            this.button_testdrive.UseVisualStyleBackColor = true;
+            this.button_testdrive.Click += new System.EventHandler(this.button_testdrive_Click);
             // 
             // treeView_adminpanel
             // 
@@ -263,6 +274,7 @@
             // panel_adminpanel
             // 
             this.panel_adminpanel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.panel_adminpanel.Controls.Add(this.button1);
             this.panel_adminpanel.Controls.Add(this.button_deletecourse);
             this.panel_adminpanel.Controls.Add(this.button_updatecourse);
             this.panel_adminpanel.Controls.Add(this.button_addcourse);
@@ -299,15 +311,15 @@
             this.button_addcourse.Text = "Add Course";
             this.button_addcourse.UseVisualStyleBackColor = true;
             // 
-            // button_testdrive
+            // button1
             // 
-            this.button_testdrive.Location = new System.Drawing.Point(3, 304);
-            this.button_testdrive.Name = "button_testdrive";
-            this.button_testdrive.Size = new System.Drawing.Size(184, 23);
-            this.button_testdrive.TabIndex = 6;
-            this.button_testdrive.Text = "Test Google Drive";
-            this.button_testdrive.UseVisualStyleBackColor = true;
-            this.button_testdrive.Click += new System.EventHandler(this.button_testdrive_Click);
+            this.button1.Location = new System.Drawing.Point(31, 271);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(111, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "TEST CODE";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainPage
             // 
@@ -354,5 +366,6 @@
         private TreeView treeView_userpanel;
         private TreeView treeView_adminpanel;
         private Button button_testdrive;
+        private Button button1;
     }
 }
