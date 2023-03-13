@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Add Course");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Update Course");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Delete Course");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Create Excel");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Create Report");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Edit Report");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Transfer Data");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Review Course");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Add Course");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Update Course");
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Delete Course");
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Create Excel");
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Create Report");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Edit Report");
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Transfer Data");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Review Course");
             this.button_userpanel = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -57,6 +57,7 @@
             this.button_deletecourse = new System.Windows.Forms.Button();
             this.button_updatecourse = new System.Windows.Forms.Button();
             this.button_addcourse = new System.Windows.Forms.Button();
+            this.button_testdrive = new System.Windows.Forms.Button();
             this.panel5.SuspendLayout();
             this.panel_userpanel.SuspendLayout();
             this.panel_adminpanel.SuspendLayout();
@@ -111,6 +112,7 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.panel5.Controls.Add(this.button_testdrive);
             this.panel5.Controls.Add(this.treeView_adminpanel);
             this.panel5.Controls.Add(this.treeView_userpanel);
             this.panel5.Controls.Add(this.button_exit);
@@ -129,16 +131,16 @@
             this.treeView_adminpanel.Enabled = false;
             this.treeView_adminpanel.Location = new System.Drawing.Point(3, 136);
             this.treeView_adminpanel.Name = "treeView_adminpanel";
-            treeNode1.Name = "Düğüm0";
-            treeNode1.Text = "Add Course";
-            treeNode2.Name = "Düğüm1";
-            treeNode2.Text = "Update Course";
-            treeNode3.Name = "Düğüm2";
-            treeNode3.Text = "Delete Course";
+            treeNode9.Name = "Düğüm0";
+            treeNode9.Text = "Add Course";
+            treeNode10.Name = "Düğüm1";
+            treeNode10.Text = "Update Course";
+            treeNode11.Name = "Düğüm2";
+            treeNode11.Text = "Delete Course";
             this.treeView_adminpanel.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3});
+            treeNode9,
+            treeNode10,
+            treeNode11});
             this.treeView_adminpanel.Size = new System.Drawing.Size(121, 97);
             this.treeView_adminpanel.TabIndex = 5;
             this.treeView_adminpanel.Visible = false;
@@ -150,22 +152,22 @@
             this.treeView_userpanel.Enabled = false;
             this.treeView_userpanel.Location = new System.Drawing.Point(3, 74);
             this.treeView_userpanel.Name = "treeView_userpanel";
-            treeNode4.Name = "Düğüm0";
-            treeNode4.Text = "Create Excel";
-            treeNode5.Name = "Düğüm1";
-            treeNode5.Text = "Create Report";
-            treeNode6.Name = "Düğüm2";
-            treeNode6.Text = "Edit Report";
-            treeNode7.Name = "Düğüm3";
-            treeNode7.Text = "Transfer Data";
-            treeNode8.Name = "Düğüm4";
-            treeNode8.Text = "Review Course";
+            treeNode12.Name = "Düğüm0";
+            treeNode12.Text = "Create Excel";
+            treeNode13.Name = "Düğüm1";
+            treeNode13.Text = "Create Report";
+            treeNode14.Name = "Düğüm2";
+            treeNode14.Text = "Edit Report";
+            treeNode15.Name = "Düğüm3";
+            treeNode15.Text = "Transfer Data";
+            treeNode16.Name = "Düğüm4";
+            treeNode16.Text = "Review Course";
             this.treeView_userpanel.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode4,
-            treeNode5,
-            treeNode6,
-            treeNode7,
-            treeNode8});
+            treeNode12,
+            treeNode13,
+            treeNode14,
+            treeNode15,
+            treeNode16});
             this.treeView_userpanel.Size = new System.Drawing.Size(159, 95);
             this.treeView_userpanel.TabIndex = 4;
             this.treeView_userpanel.Visible = false;
@@ -181,7 +183,7 @@
             // 
             // button_account
             // 
-            this.button_account.Location = new System.Drawing.Point(3, 285);
+            this.button_account.Location = new System.Drawing.Point(3, 239);
             this.button_account.Name = "button_account";
             this.button_account.Size = new System.Drawing.Size(184, 59);
             this.button_account.TabIndex = 2;
@@ -297,6 +299,16 @@
             this.button_addcourse.Text = "Add Course";
             this.button_addcourse.UseVisualStyleBackColor = true;
             // 
+            // button_testdrive
+            // 
+            this.button_testdrive.Location = new System.Drawing.Point(3, 304);
+            this.button_testdrive.Name = "button_testdrive";
+            this.button_testdrive.Size = new System.Drawing.Size(184, 23);
+            this.button_testdrive.TabIndex = 6;
+            this.button_testdrive.Text = "Test Google Drive";
+            this.button_testdrive.UseVisualStyleBackColor = true;
+            this.button_testdrive.Click += new System.EventHandler(this.button_testdrive_Click);
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -341,5 +353,6 @@
         private Button button_addcourse;
         private TreeView treeView_userpanel;
         private TreeView treeView_adminpanel;
+        private Button button_testdrive;
     }
 }

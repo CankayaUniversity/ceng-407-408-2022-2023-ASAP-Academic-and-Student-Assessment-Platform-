@@ -40,7 +40,20 @@ namespace ASAP_Project
 
         private void button_account_Click(object sender, EventArgs e)
         {
-            ASAP_Project.GoogleDrive.UploadFile();
+            
+        }
+
+        private void button_testdrive_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ASAP_Project.GoogleDrive.UploadFile();
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+                MessageBox.Show("Error");
+            }
         }
     }
 }
