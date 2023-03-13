@@ -187,6 +187,7 @@
             this.button_account.TabIndex = 2;
             this.button_account.Text = "Account";
             this.button_account.UseVisualStyleBackColor = true;
+            this.button_account.Click += new System.EventHandler(this.button_account_Click);
             // 
             // button_adminpanel
             // 

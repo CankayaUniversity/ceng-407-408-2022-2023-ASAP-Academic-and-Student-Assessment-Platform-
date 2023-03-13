@@ -37,5 +37,10 @@ namespace ASAP_Project
             treeView_userpanel.Enabled = false;
             treeView_userpanel.Visible = false;
         }
+
+        private void button_account_Click(object sender, EventArgs e)
+        {
+            ASAP_Project.GoogleDrive.UploadFile();
+        }
     }
 }
