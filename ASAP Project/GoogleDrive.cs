@@ -29,6 +29,8 @@ namespace ASAP_Project
 
             }
 
+            // EMRE FUCKING DID THIS
+
             string clientId = "606566811129-vqo2k7m0nn2h9g80982a2p61gv9fsrb9.apps.googleusercontent.com";
             string clientSecret = "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";                       
 
@@ -46,6 +48,10 @@ namespace ASAP_Project
                 MessageBox.Show("Unable to authorize access to Google Drive API.");
                 return;
             }
+
+            
+
+
 
             /*UserCredential credential;
             using (var stream = new FileStream("credentials.json", FileMode.Open, FileAccess.Read))
