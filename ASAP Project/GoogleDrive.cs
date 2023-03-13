@@ -56,7 +56,6 @@ namespace ASAP_Project
                 request.Upload();
             }
             var file = request.ResponseBody;
-            Console.WriteLine("File ID: " + file.Id);
         }
     }
 }
