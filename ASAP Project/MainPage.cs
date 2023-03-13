@@ -58,7 +58,15 @@ namespace ASAP_Project
 
         private void button1_Click(object sender, EventArgs e)
         {
-
+            try
+            {
+                ASAP_Project.GoogleDrive.UploadFile();
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+                MessageBox.Show("Error");
+            }
         }
     }
 }

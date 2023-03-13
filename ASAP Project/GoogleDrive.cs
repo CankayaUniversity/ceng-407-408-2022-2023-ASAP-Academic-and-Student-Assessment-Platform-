@@ -28,7 +28,7 @@ namespace ASAP_Project
             UserCredential credential;
             using (var stream = new FileStream("credentials.json", FileMode.Open, FileAccess.Read))
             {
-                string credPath = "..\\token.json";
+                string credPath = ".\\token.json";
                 credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                     clientSecrets: GoogleClientSecrets.Load(stream).Secrets,
                     new[] { DriveService.Scope.Drive },
@@ -36,7 +36,7 @@ namespace ASAP_Project
                     CancellationToken.None,
                     new FileDataStore(credPath, true)).Result;
             }
-
+            
             var service = new DriveService(new BaseClientService.Initializer()
             {
                 HttpClientInitializer = credential,

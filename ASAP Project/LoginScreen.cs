@@ -12,6 +12,10 @@ namespace ASAP_Project
 {
     public partial class LoginScreen : Form
     {
+
+        private string password = "1234";
+        private string username = "esat";
+
         public LoginScreen()
         {
             InitializeComponent();
@@ -33,8 +37,14 @@ namespace ASAP_Project
 
         private void button_login_Click(object sender, EventArgs e)
         {
-            MainPage form = new MainPage();
-            form.Show();
+            if(textBox_password.Text== password &&  textBox_username.Text== username)
+            {
+                MainPage form = new MainPage();
+                form.Show();
+            }
+            else
+                MessageBox.Show("Error");
+
         }
     }
 }
