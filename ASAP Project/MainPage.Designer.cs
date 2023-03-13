@@ -28,12 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Add Course");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Update Course");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Delete Course");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Create Excel");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Create Report");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Edit Report");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Transfer Data");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Review Course");
             this.button_userpanel = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.treeView_adminpanel = new System.Windows.Forms.TreeView();
+            this.treeView_userpanel = new System.Windows.Forms.TreeView();
             this.button_exit = new System.Windows.Forms.Button();
             this.button_account = new System.Windows.Forms.Button();
             this.button_adminpanel = new System.Windows.Forms.Button();
@@ -54,7 +64,7 @@
             // 
             // button_userpanel
             // 
-            this.button_userpanel.Location = new System.Drawing.Point(3, 155);
+            this.button_userpanel.Location = new System.Drawing.Point(3, 6);
             this.button_userpanel.Name = "button_userpanel";
             this.button_userpanel.Size = new System.Drawing.Size(184, 62);
             this.button_userpanel.TabIndex = 0;
@@ -101,6 +111,8 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.panel5.Controls.Add(this.treeView_adminpanel);
+            this.panel5.Controls.Add(this.treeView_userpanel);
             this.panel5.Controls.Add(this.button_exit);
             this.panel5.Controls.Add(this.button_account);
             this.panel5.Controls.Add(this.button_adminpanel);
@@ -109,6 +121,54 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(193, 419);
             this.panel5.TabIndex = 5;
+            // 
+            // treeView_adminpanel
+            // 
+            this.treeView_adminpanel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.treeView_adminpanel.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.treeView_adminpanel.Enabled = false;
+            this.treeView_adminpanel.Location = new System.Drawing.Point(3, 136);
+            this.treeView_adminpanel.Name = "treeView_adminpanel";
+            treeNode1.Name = "Düğüm0";
+            treeNode1.Text = "Add Course";
+            treeNode2.Name = "Düğüm1";
+            treeNode2.Text = "Update Course";
+            treeNode3.Name = "Düğüm2";
+            treeNode3.Text = "Delete Course";
+            this.treeView_adminpanel.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2,
+            treeNode3});
+            this.treeView_adminpanel.Size = new System.Drawing.Size(121, 97);
+            this.treeView_adminpanel.TabIndex = 5;
+            this.treeView_adminpanel.Visible = false;
+            // 
+            // treeView_userpanel
+            // 
+            this.treeView_userpanel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.treeView_userpanel.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.treeView_userpanel.Enabled = false;
+            this.treeView_userpanel.Location = new System.Drawing.Point(3, 74);
+            this.treeView_userpanel.Name = "treeView_userpanel";
+            treeNode4.Name = "Düğüm0";
+            treeNode4.Text = "Create Excel";
+            treeNode5.Name = "Düğüm1";
+            treeNode5.Text = "Create Report";
+            treeNode6.Name = "Düğüm2";
+            treeNode6.Text = "Edit Report";
+            treeNode7.Name = "Düğüm3";
+            treeNode7.Text = "Transfer Data";
+            treeNode8.Name = "Düğüm4";
+            treeNode8.Text = "Review Course";
+            this.treeView_userpanel.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode4,
+            treeNode5,
+            treeNode6,
+            treeNode7,
+            treeNode8});
+            this.treeView_userpanel.Size = new System.Drawing.Size(159, 95);
+            this.treeView_userpanel.TabIndex = 4;
+            this.treeView_userpanel.Visible = false;
             // 
             // button_exit
             // 
@@ -130,7 +190,7 @@
             // 
             // button_adminpanel
             // 
-            this.button_adminpanel.Location = new System.Drawing.Point(3, 223);
+            this.button_adminpanel.Location = new System.Drawing.Point(3, 74);
             this.button_adminpanel.Name = "button_adminpanel";
             this.button_adminpanel.Size = new System.Drawing.Size(184, 56);
             this.button_adminpanel.TabIndex = 1;
@@ -148,7 +208,7 @@
             this.panel_userpanel.Controls.Add(this.button_generate_excel);
             this.panel_userpanel.Location = new System.Drawing.Point(255, 56);
             this.panel_userpanel.Name = "panel_userpanel";
-            this.panel_userpanel.Size = new System.Drawing.Size(245, 416);
+            this.panel_userpanel.Size = new System.Drawing.Size(245, 419);
             this.panel_userpanel.TabIndex = 6;
             this.panel_userpanel.Visible = false;
             // 
@@ -205,7 +265,7 @@
             this.panel_adminpanel.Controls.Add(this.button_addcourse);
             this.panel_adminpanel.Location = new System.Drawing.Point(255, 56);
             this.panel_adminpanel.Name = "panel_adminpanel";
-            this.panel_adminpanel.Size = new System.Drawing.Size(245, 416);
+            this.panel_adminpanel.Size = new System.Drawing.Size(245, 419);
             this.panel_adminpanel.TabIndex = 7;
             this.panel_adminpanel.Visible = false;
             // 
@@ -278,5 +338,7 @@
         private Button button_deletecourse;
         private Button button_updatecourse;
         private Button button_addcourse;
+        private TreeView treeView_userpanel;
+        private TreeView treeView_adminpanel;
     }
 }
