@@ -32,24 +32,29 @@ namespace ASAP_Project
             // EMRE FUCKING DID THIS
 
             string clientId = "606566811129-vqo2k7m0nn2h9g80982a2p61gv9fsrb9.apps.googleusercontent.com";
-            string clientSecret = "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";                       
+            string clientSecret = "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";
+            string accesstoken = "ya29.a0AVvZVsqGpBbpYwDdAMLkX18R8Ntqcq-rYKhry1f1PnRr8_uNRlrjmIOJ6u0dHehoqKd3PihenLZUVlNehMJuwEHQWeiXacwYgm8NF3cudAZJ2kF5oCusa_lzxsiYuohBvabiy_bkWXiylgoNyAPlYLTPi9JbNHG4aCgYKAV0SARASFQGbdwaIrFk78VrafIOMklUo5C4EbA0167";
 
             var scopes = new[] { DriveService.Scope.Drive };
 
-            var credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+
+            var credential = GoogleCredential.FromAccessToken(accesstoken);
+
+
+            /*var credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                 new ClientSecrets { ClientId = clientId, ClientSecret = clientSecret },
                 scopes,
                 Environment.UserName,
                 CancellationToken.None,
-                new FileDataStore("Drive.Auth.Store")).Result;
+                new FileDataStore("..\\ASAP Project\\ASAP Project\\Properties\\Google.Apis.Auth.OAuth2.Responses.TokenResponse-emreh")).Result;
 
             if (credential == null)
             {
                 MessageBox.Show("Unable to authorize access to Google Drive API.");
                 return;
-            }
-
+            }*/
             
+
 
 
 
@@ -67,16 +72,19 @@ namespace ASAP_Project
                     new FileDataStore(credPath, true)).Result;
             }*/
 
-            DriveService service = new DriveService(new BaseClientService.Initializer()
-            {
-                HttpClientInitializer = credential,
-                ApplicationName = "MyConsoleApp",
-            });
 
-            var fileMetadata = new Google.Apis.Drive.v3.Data.File()
-            {
-                Name = "TEST"
-            };
+             DriveService service = new DriveService(new BaseClientService.Initializer()
+             {
+                 HttpClientInitializer = credential,
+                 ApplicationName = "MyConsoleApp",
+             });
+
+             var fileMetadata = new Google.Apis.Drive.v3.Data.File()
+             {
+                 Name = "TEST"
+             };
+
+
 
 
             FilesResource.CreateMediaUpload request;
