@@ -11,11 +11,40 @@ namespace ASAP_Project
 {
     public partial class MainPage : Form
     {
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+
+        private static extern IntPtr CreateRoundRectRgn
+        (
+            int nLeftRect,
+            int nTopRect,
+            int nRightRect,
+            int nBottomRect,
+            int nWidthEllipse,
+            int nHeightEllipse
+        );
+
         public MainPage()
         {
             InitializeComponent();
             panel_adminpanel.Visible = false;
             panel_userpanel.Visible = false;
+            panel1.BackColor = Color.Transparent;
+            panel2.BackColor = Color.Transparent;
+            panel3.BackColor = Color.Transparent;
+            panel4.BackColor = Color.Transparent;
+            panel5.BackColor = Color.FromArgb(60, Color.Black);
+            panel_userpanel.BackColor = Color.FromArgb(60, Color.Black);
+            panel_adminpanel.BackColor = Color.FromArgb(60, Color.Black);
+            panel5.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, panel5.Width,
+            panel5.Height, 30, 30));
+            panel_userpanel.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, panel_userpanel.Width,
+            panel_userpanel.Height, 30, 30));
+            panel_adminpanel.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, panel_adminpanel.Width,
+            panel_adminpanel.Height, 30, 30));
+            pictureBox1.BackColor = Color.Transparent;
+            label_user.Text += LoginScreen.user_name;
+            label_user.BackColor = Color.Transparent;
+
         }
 
         private void button_userpanel_Click(object sender, EventArgs e)
