@@ -211,6 +211,7 @@
             this.button_create_report.TabIndex = 1;
             this.button_create_report.Text = "Create Report";
             this.button_create_report.UseVisualStyleBackColor = true;
+            this.button_create_report.Click += new System.EventHandler(this.button_create_report_Click);
             // 
             // button_generate_excel
             // 
