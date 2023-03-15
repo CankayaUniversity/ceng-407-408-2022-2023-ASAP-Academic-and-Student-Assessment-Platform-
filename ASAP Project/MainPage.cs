@@ -25,11 +25,7 @@ namespace ASAP_Project
             panel_userpanel.Enabled = true;
             panel_userpanel.Visible = true;
             panel_userpanel.BringToFront();
-            treeView_userpanel.Enabled = true;
-            treeView_userpanel.Visible = true;
-            //button_adminpanel.Location = System.Drawing.Point(3,175);
-            treeView_adminpanel.Enabled = false;
-            treeView_adminpanel.Visible = false;
+
         }
 
         private void button_adminpanel_Click(object sender, EventArgs e)
@@ -49,11 +45,6 @@ namespace ASAP_Project
             panel_userpanel.Enabled = false;
 
             panel_adminpanel.BringToFront();
-            //button_adminpanel.Location = Point(3,74);
-            treeView_adminpanel.Enabled = true;
-            treeView_adminpanel.Visible = true;
-            treeView_userpanel.Enabled = false;
-            treeView_userpanel.Visible = false;
         }
 
         private void button_account_Click(object sender, EventArgs e)

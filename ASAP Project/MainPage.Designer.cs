@@ -28,310 +28,257 @@
         /// </summary>
         private void InitializeComponent()
         {
-            TreeNode treeNode1 = new TreeNode("Add Course");
-            TreeNode treeNode2 = new TreeNode("Update Course");
-            TreeNode treeNode3 = new TreeNode("Delete Course");
-            TreeNode treeNode4 = new TreeNode("Create Excel");
-            TreeNode treeNode5 = new TreeNode("Create Report");
-            TreeNode treeNode6 = new TreeNode("Edit Report");
-            TreeNode treeNode7 = new TreeNode("Transfer Data");
-            TreeNode treeNode8 = new TreeNode("Review Course");
-            button_userpanel = new Button();
-            panel1 = new Panel();
-            panel2 = new Panel();
-            panel3 = new Panel();
-            panel4 = new Panel();
-            panel5 = new Panel();
-            button_testdrive = new Button();
-            treeView_adminpanel = new TreeView();
-            treeView_userpanel = new TreeView();
-            button_exit = new Button();
-            button_account = new Button();
-            button_adminpanel = new Button();
-            panel_userpanel = new Panel();
-            button_transferdata = new Button();
-            button_transfer_data = new Button();
-            button_edit_report = new Button();
-            button_create_report = new Button();
-            button_generate_excel = new Button();
-            panel_adminpanel = new Panel();
-            button1 = new Button();
-            button_deletecourse = new Button();
-            button_updatecourse = new Button();
-            button_addcourse = new Button();
-            panel5.SuspendLayout();
-            panel_userpanel.SuspendLayout();
-            panel_adminpanel.SuspendLayout();
-            SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPage));
+            this.button_userpanel = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button_testdrive = new System.Windows.Forms.Button();
+            this.button_exit = new System.Windows.Forms.Button();
+            this.button_account = new System.Windows.Forms.Button();
+            this.button_adminpanel = new System.Windows.Forms.Button();
+            this.panel_userpanel = new System.Windows.Forms.Panel();
+            this.button_transferdata = new System.Windows.Forms.Button();
+            this.button_transfer_data = new System.Windows.Forms.Button();
+            this.button_edit_report = new System.Windows.Forms.Button();
+            this.button_create_report = new System.Windows.Forms.Button();
+            this.button_generate_excel = new System.Windows.Forms.Button();
+            this.panel_adminpanel = new System.Windows.Forms.Panel();
+            this.button_deletecourse = new System.Windows.Forms.Button();
+            this.button_addcourse = new System.Windows.Forms.Button();
+            this.button_updatecourse = new System.Windows.Forms.Button();
+            this.panel5.SuspendLayout();
+            this.panel_userpanel.SuspendLayout();
+            this.panel_adminpanel.SuspendLayout();
+            this.SuspendLayout();
             // 
             // button_userpanel
             // 
-            button_userpanel.Location = new Point(3, 6);
-            button_userpanel.Name = "button_userpanel";
-            button_userpanel.Size = new Size(184, 62);
-            button_userpanel.TabIndex = 0;
-            button_userpanel.Text = "User Panel";
-            button_userpanel.UseVisualStyleBackColor = true;
-            button_userpanel.Click += button_userpanel_Click;
+            this.button_userpanel.Location = new System.Drawing.Point(3, 6);
+            this.button_userpanel.Name = "button_userpanel";
+            this.button_userpanel.Size = new System.Drawing.Size(184, 62);
+            this.button_userpanel.TabIndex = 0;
+            this.button_userpanel.Text = "User Panel";
+            this.button_userpanel.UseVisualStyleBackColor = true;
+            this.button_userpanel.Click += new System.EventHandler(this.button_userpanel_Click);
             // 
             // panel1
             // 
-            panel1.BackColor = SystemColors.ButtonShadow;
-            panel1.Dock = DockStyle.Right;
-            panel1.Location = new Point(786, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(50, 531);
-            panel1.TabIndex = 1;
+            this.panel1.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(1214, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(50, 681);
+            this.panel1.TabIndex = 1;
             // 
             // panel2
             // 
-            panel2.BackColor = SystemColors.ButtonShadow;
-            panel2.Dock = DockStyle.Left;
-            panel2.Location = new Point(0, 0);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(50, 531);
-            panel2.TabIndex = 2;
+            this.panel2.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(50, 681);
+            this.panel2.TabIndex = 2;
             // 
             // panel3
             // 
-            panel3.BackColor = SystemColors.ButtonShadow;
-            panel3.Dock = DockStyle.Top;
-            panel3.Location = new Point(50, 0);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(736, 50);
-            panel3.TabIndex = 3;
+            this.panel3.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(50, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1164, 50);
+            this.panel3.TabIndex = 3;
             // 
             // panel4
             // 
-            panel4.BackColor = SystemColors.AppWorkspace;
-            panel4.Dock = DockStyle.Bottom;
-            panel4.Location = new Point(50, 481);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(736, 50);
-            panel4.TabIndex = 4;
+            this.panel4.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel4.Location = new System.Drawing.Point(50, 631);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1164, 50);
+            this.panel4.TabIndex = 4;
             // 
             // panel5
             // 
-            panel5.BackColor = SystemColors.ControlDarkDark;
-            panel5.Controls.Add(button_testdrive);
-            panel5.Controls.Add(treeView_adminpanel);
-            panel5.Controls.Add(treeView_userpanel);
-            panel5.Controls.Add(button_exit);
-            panel5.Controls.Add(button_account);
-            panel5.Controls.Add(button_adminpanel);
-            panel5.Controls.Add(button_userpanel);
-            panel5.Location = new Point(56, 56);
-            panel5.Name = "panel5";
-            panel5.Size = new Size(193, 419);
-            panel5.TabIndex = 5;
-            // 
-            // button_testdrive
-            // 
-            button_testdrive.Location = new Point(3, 304);
-            button_testdrive.Name = "button_testdrive";
-            button_testdrive.Size = new Size(184, 23);
-            button_testdrive.TabIndex = 6;
-            button_testdrive.Text = "Test Google Drive";
-            button_testdrive.UseVisualStyleBackColor = true;
-            button_testdrive.Click += button_testdrive_Click;
-            // 
-            // treeView_adminpanel
-            // 
-            treeView_adminpanel.BackColor = SystemColors.ControlDarkDark;
-            treeView_adminpanel.BorderStyle = BorderStyle.None;
-            treeView_adminpanel.Enabled = false;
-            treeView_adminpanel.Location = new Point(3, 136);
-            treeView_adminpanel.Name = "treeView_adminpanel";
-            treeNode1.Name = "Düğüm0";
-            treeNode1.Text = "Add Course";
-            treeNode2.Name = "Düğüm1";
-            treeNode2.Text = "Update Course";
-            treeNode3.Name = "Düğüm2";
-            treeNode3.Text = "Delete Course";
-            treeView_adminpanel.Nodes.AddRange(new TreeNode[] { treeNode1, treeNode2, treeNode3 });
-            treeView_adminpanel.Size = new Size(121, 97);
-            treeView_adminpanel.TabIndex = 5;
-            treeView_adminpanel.Visible = false;
-            // 
-            // treeView_userpanel
-            // 
-            treeView_userpanel.BackColor = SystemColors.ControlDarkDark;
-            treeView_userpanel.BorderStyle = BorderStyle.None;
-            treeView_userpanel.Enabled = false;
-            treeView_userpanel.Location = new Point(3, 74);
-            treeView_userpanel.Name = "treeView_userpanel";
-            treeNode4.Name = "Düğüm0";
-            treeNode4.Text = "Create Excel";
-            treeNode5.Name = "Düğüm1";
-            treeNode5.Text = "Create Report";
-            treeNode6.Name = "Düğüm2";
-            treeNode6.Text = "Edit Report";
-            treeNode7.Name = "Düğüm3";
-            treeNode7.Text = "Transfer Data";
-            treeNode8.Name = "Düğüm4";
-            treeNode8.Text = "Review Course";
-            treeView_userpanel.Nodes.AddRange(new TreeNode[] { treeNode4, treeNode5, treeNode6, treeNode7, treeNode8 });
-            treeView_userpanel.Size = new Size(159, 95);
-            treeView_userpanel.TabIndex = 4;
-            treeView_userpanel.Visible = false;
-            // 
-            // button_exit
-            // 
-            button_exit.Location = new Point(3, 385);
-            button_exit.Name = "button_exit";
-            button_exit.Size = new Size(184, 31);
-            button_exit.TabIndex = 3;
-            button_exit.Text = "Exit";
-            button_exit.UseVisualStyleBackColor = true;
-            // 
-            // button_account
-            // 
-            button_account.Location = new Point(3, 239);
-            button_account.Name = "button_account";
-            button_account.Size = new Size(184, 59);
-            button_account.TabIndex = 2;
-            button_account.Text = "Account";
-            button_account.UseVisualStyleBackColor = true;
-            button_account.Click += button_account_Click;
-            // 
-            // button_adminpanel
-            // 
-            button_adminpanel.Location = new Point(3, 74);
-            button_adminpanel.Name = "button_adminpanel";
-            button_adminpanel.Size = new Size(184, 56);
-            button_adminpanel.TabIndex = 1;
-            button_adminpanel.Text = "Admin Panel";
-            button_adminpanel.UseVisualStyleBackColor = true;
-            button_adminpanel.Click += button_adminpanel_Click;
-            // 
-            // panel_userpanel
-            // 
-            panel_userpanel.BackColor = SystemColors.ControlDarkDark;
-            panel_userpanel.Controls.Add(panel_adminpanel);
-            panel_userpanel.Controls.Add(button_transferdata);
-            panel_userpanel.Controls.Add(button_transfer_data);
-            panel_userpanel.Controls.Add(button_edit_report);
-            panel_userpanel.Controls.Add(button_create_report);
-            panel_userpanel.Controls.Add(button_generate_excel);
-            panel_userpanel.Location = new Point(255, 56);
-            panel_userpanel.Name = "panel_userpanel";
-            panel_userpanel.Size = new Size(245, 419);
-            panel_userpanel.TabIndex = 6;
-            panel_userpanel.Visible = false;
-            // 
-            // button_transferdata
-            // 
-            button_transferdata.Location = new Point(3, 295);
-            button_transferdata.Name = "button_transferdata";
-            button_transferdata.Size = new Size(239, 61);
-            button_transferdata.TabIndex = 4;
-            button_transferdata.Text = "Transfer Data";
-            button_transferdata.UseVisualStyleBackColor = true;
-            // 
-            // button_transfer_data
-            // 
-            button_transfer_data.Location = new Point(3, 223);
-            button_transfer_data.Name = "button_transfer_data";
-            button_transfer_data.Size = new Size(239, 66);
-            button_transfer_data.TabIndex = 3;
-            button_transfer_data.Text = "Transfer Data";
-            button_transfer_data.UseVisualStyleBackColor = true;
-            // 
-            // button_edit_report
-            // 
-            button_edit_report.Location = new Point(3, 150);
-            button_edit_report.Name = "button_edit_report";
-            button_edit_report.Size = new Size(239, 67);
-            button_edit_report.TabIndex = 2;
-            button_edit_report.Text = "Edit Report";
-            button_edit_report.UseVisualStyleBackColor = true;
-            // 
-            // button_create_report
-            // 
-            button_create_report.Location = new Point(3, 78);
-            button_create_report.Name = "button_create_report";
-            button_create_report.Size = new Size(239, 66);
-            button_create_report.TabIndex = 1;
-            button_create_report.Text = "Create Report";
-            button_create_report.UseVisualStyleBackColor = true;
-            // 
-            // button_generate_excel
-            // 
-            button_generate_excel.Location = new Point(3, 3);
-            button_generate_excel.Name = "button_generate_excel";
-            button_generate_excel.Size = new Size(239, 69);
-            button_generate_excel.TabIndex = 0;
-            button_generate_excel.Text = "Generate Excel";
-            button_generate_excel.UseVisualStyleBackColor = true;
-            button_generate_excel.Click += button_generate_excel_Click;
-            // 
-            // panel_adminpanel
-            // 
-            panel_adminpanel.BackColor = SystemColors.ControlDarkDark;
-            panel_adminpanel.Controls.Add(button1);
-            panel_adminpanel.Controls.Add(button_deletecourse);
-            panel_adminpanel.Controls.Add(button_addcourse);
-            panel_adminpanel.Controls.Add(button_updatecourse);
-            panel_adminpanel.Location = new Point(3, 0);
-            panel_adminpanel.Name = "panel_adminpanel";
-            panel_adminpanel.Size = new Size(245, 419);
-            panel_adminpanel.TabIndex = 7;
-            panel_adminpanel.Visible = false;
+            this.panel5.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.panel5.Controls.Add(this.button1);
+            this.panel5.Controls.Add(this.button_testdrive);
+            this.panel5.Controls.Add(this.button_exit);
+            this.panel5.Controls.Add(this.button_account);
+            this.panel5.Controls.Add(this.button_adminpanel);
+            this.panel5.Controls.Add(this.button_userpanel);
+            this.panel5.Location = new System.Drawing.Point(56, 56);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(193, 569);
+            this.panel5.TabIndex = 5;
             // 
             // button1
             // 
-            button1.Location = new Point(31, 271);
-            button1.Name = "button1";
-            button1.Size = new Size(111, 23);
-            button1.TabIndex = 3;
-            button1.Text = "TEST CODE";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            this.button1.Location = new System.Drawing.Point(76, 333);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(111, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "TEST CODE";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button_testdrive
+            // 
+            this.button_testdrive.Location = new System.Drawing.Point(3, 304);
+            this.button_testdrive.Name = "button_testdrive";
+            this.button_testdrive.Size = new System.Drawing.Size(184, 23);
+            this.button_testdrive.TabIndex = 6;
+            this.button_testdrive.Text = "Test Google Drive";
+            this.button_testdrive.UseVisualStyleBackColor = true;
+            this.button_testdrive.Click += new System.EventHandler(this.button_testdrive_Click);
+            // 
+            // button_exit
+            // 
+            this.button_exit.Location = new System.Drawing.Point(6, 535);
+            this.button_exit.Name = "button_exit";
+            this.button_exit.Size = new System.Drawing.Size(184, 31);
+            this.button_exit.TabIndex = 3;
+            this.button_exit.Text = "Exit";
+            this.button_exit.UseVisualStyleBackColor = true;
+            // 
+            // button_account
+            // 
+            this.button_account.Location = new System.Drawing.Point(3, 239);
+            this.button_account.Name = "button_account";
+            this.button_account.Size = new System.Drawing.Size(184, 59);
+            this.button_account.TabIndex = 2;
+            this.button_account.Text = "Account";
+            this.button_account.UseVisualStyleBackColor = true;
+            this.button_account.Click += new System.EventHandler(this.button_account_Click);
+            // 
+            // button_adminpanel
+            // 
+            this.button_adminpanel.Location = new System.Drawing.Point(3, 74);
+            this.button_adminpanel.Name = "button_adminpanel";
+            this.button_adminpanel.Size = new System.Drawing.Size(184, 56);
+            this.button_adminpanel.TabIndex = 1;
+            this.button_adminpanel.Text = "Admin Panel";
+            this.button_adminpanel.UseVisualStyleBackColor = true;
+            this.button_adminpanel.Click += new System.EventHandler(this.button_adminpanel_Click);
+            // 
+            // panel_userpanel
+            // 
+            this.panel_userpanel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.panel_userpanel.Controls.Add(this.button_transferdata);
+            this.panel_userpanel.Controls.Add(this.button_transfer_data);
+            this.panel_userpanel.Controls.Add(this.button_edit_report);
+            this.panel_userpanel.Controls.Add(this.button_create_report);
+            this.panel_userpanel.Controls.Add(this.button_generate_excel);
+            this.panel_userpanel.Location = new System.Drawing.Point(255, 56);
+            this.panel_userpanel.Name = "panel_userpanel";
+            this.panel_userpanel.Size = new System.Drawing.Size(245, 569);
+            this.panel_userpanel.TabIndex = 6;
+            // 
+            // button_transferdata
+            // 
+            this.button_transferdata.Location = new System.Drawing.Point(3, 295);
+            this.button_transferdata.Name = "button_transferdata";
+            this.button_transferdata.Size = new System.Drawing.Size(239, 61);
+            this.button_transferdata.TabIndex = 4;
+            this.button_transferdata.Text = "Transfer Data";
+            this.button_transferdata.UseVisualStyleBackColor = true;
+            // 
+            // button_transfer_data
+            // 
+            this.button_transfer_data.Location = new System.Drawing.Point(3, 223);
+            this.button_transfer_data.Name = "button_transfer_data";
+            this.button_transfer_data.Size = new System.Drawing.Size(239, 66);
+            this.button_transfer_data.TabIndex = 3;
+            this.button_transfer_data.Text = "Transfer Data";
+            this.button_transfer_data.UseVisualStyleBackColor = true;
+            // 
+            // button_edit_report
+            // 
+            this.button_edit_report.Location = new System.Drawing.Point(3, 150);
+            this.button_edit_report.Name = "button_edit_report";
+            this.button_edit_report.Size = new System.Drawing.Size(239, 67);
+            this.button_edit_report.TabIndex = 2;
+            this.button_edit_report.Text = "Edit Report";
+            this.button_edit_report.UseVisualStyleBackColor = true;
+            // 
+            // button_create_report
+            // 
+            this.button_create_report.Location = new System.Drawing.Point(3, 78);
+            this.button_create_report.Name = "button_create_report";
+            this.button_create_report.Size = new System.Drawing.Size(239, 66);
+            this.button_create_report.TabIndex = 1;
+            this.button_create_report.Text = "Create Report";
+            this.button_create_report.UseVisualStyleBackColor = true;
+            // 
+            // button_generate_excel
+            // 
+            this.button_generate_excel.Location = new System.Drawing.Point(3, 3);
+            this.button_generate_excel.Name = "button_generate_excel";
+            this.button_generate_excel.Size = new System.Drawing.Size(239, 69);
+            this.button_generate_excel.TabIndex = 0;
+            this.button_generate_excel.Text = "Generate Excel";
+            this.button_generate_excel.UseVisualStyleBackColor = true;
+            // 
+            // panel_adminpanel
+            // 
+            this.panel_adminpanel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.panel_adminpanel.Controls.Add(this.button_deletecourse);
+            this.panel_adminpanel.Controls.Add(this.button_addcourse);
+            this.panel_adminpanel.Controls.Add(this.button_updatecourse);
+            this.panel_adminpanel.Location = new System.Drawing.Point(255, 56);
+            this.panel_adminpanel.Name = "panel_adminpanel";
+            this.panel_adminpanel.Size = new System.Drawing.Size(245, 569);
+            this.panel_adminpanel.TabIndex = 7;
             // 
             // button_deletecourse
             // 
-            button_deletecourse.Location = new Point(3, 150);
-            button_deletecourse.Name = "button_deletecourse";
-            button_deletecourse.Size = new Size(239, 67);
-            button_deletecourse.TabIndex = 2;
-            button_deletecourse.Text = "Delete Course";
-            button_deletecourse.UseVisualStyleBackColor = true;
-            // 
-            // button_updatecourse
-            // 
-            button_updatecourse.Location = new Point(3, 78);
-            button_updatecourse.Name = "button_updatecourse";
-            button_updatecourse.Size = new Size(239, 66);
-            button_updatecourse.TabIndex = 1;
-            button_updatecourse.Text = "Update Course";
-            button_updatecourse.UseVisualStyleBackColor = true;
+            this.button_deletecourse.Location = new System.Drawing.Point(3, 150);
+            this.button_deletecourse.Name = "button_deletecourse";
+            this.button_deletecourse.Size = new System.Drawing.Size(239, 67);
+            this.button_deletecourse.TabIndex = 2;
+            this.button_deletecourse.Text = "Delete Course";
+            this.button_deletecourse.UseVisualStyleBackColor = true;
             // 
             // button_addcourse
             // 
-            button_addcourse.Location = new Point(3, 6);
-            button_addcourse.Name = "button_addcourse";
-            button_addcourse.Size = new Size(239, 69);
-            button_addcourse.TabIndex = 0;
-            button_addcourse.Text = "Add Course";
-            button_addcourse.UseVisualStyleBackColor = true;
+            this.button_addcourse.Location = new System.Drawing.Point(3, 6);
+            this.button_addcourse.Name = "button_addcourse";
+            this.button_addcourse.Size = new System.Drawing.Size(239, 69);
+            this.button_addcourse.TabIndex = 0;
+            this.button_addcourse.Text = "Add Course";
+            this.button_addcourse.UseVisualStyleBackColor = true;
+            // 
+            // button_updatecourse
+            // 
+            this.button_updatecourse.Location = new System.Drawing.Point(3, 78);
+            this.button_updatecourse.Name = "button_updatecourse";
+            this.button_updatecourse.Size = new System.Drawing.Size(239, 66);
+            this.button_updatecourse.TabIndex = 1;
+            this.button_updatecourse.Text = "Update Course";
+            this.button_updatecourse.UseVisualStyleBackColor = true;
             // 
             // MainPage
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(836, 531);
-            Controls.Add(panel_userpanel);
-            Controls.Add(panel5);
-            Controls.Add(panel4);
-            Controls.Add(panel3);
-            Controls.Add(panel2);
-            Controls.Add(panel1);
-            Name = "MainPage";
-            Text = "ASAP (Academic and Student Assessment Platform)";
-            panel5.ResumeLayout(false);
-            panel_userpanel.ResumeLayout(false);
-            panel_adminpanel.ResumeLayout(false);
-            ResumeLayout(false);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.panel_userpanel);
+            this.Controls.Add(this.panel_adminpanel);
+            this.Controls.Add(this.panel5);
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel1);
+            this.Name = "MainPage";
+            this.Text = "ASAP (Academic and Student Assessment Platform)";
+            this.panel5.ResumeLayout(false);
+            this.panel_userpanel.ResumeLayout(false);
+            this.panel_adminpanel.ResumeLayout(false);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
@@ -355,8 +302,6 @@
         private Button button_deletecourse;
         private Button button_updatecourse;
         private Button button_addcourse;
-        private TreeView treeView_userpanel;
-        private TreeView treeView_adminpanel;
         private Button button_testdrive;
         private Button button1;
     }
