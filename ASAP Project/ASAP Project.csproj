@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <PackageReference Include="Google.Apis.Drive.v3" Version="1.60.0.2986" />
+    <PackageReference Include="Microsoft.Office.Interop.Word" Version="15.0.4797.1004" />
   </ItemGroup>
 
   <ItemGroup>

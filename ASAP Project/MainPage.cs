@@ -5,6 +5,7 @@ using System;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using Microsoft.VisualBasic.Logging;
+using Word = Microsoft.Office.Interop.Word;
 
 namespace ASAP_Project
 {
@@ -139,6 +140,56 @@ namespace ASAP_Project
             //var xlNewSheet = (Excel.Worksheet)xlSheets.Add(xlSheets[1], Type.Missing, Type.Missing, Type.Missing);
 
             //excelApp.Visible = true;
+        }
+
+        private void button_create_report_Click(object sender, EventArgs e)
+        {
+            //Added code version 1.0 for report genreation, 
+            //experiences runtime error in Program.cs, need checking
+
+            //We create two instances for an Excel and a Word File
+            Excel.Application excelApp = new Excel.Application();
+            Word.Application wordApp = new Word.Application();
+
+            //We pick our Excel file from Pc (Emre's code)
+            string oSelectedFile = "";
+            System.Windows.Forms.OpenFileDialog oDlg = new System.Windows.Forms.OpenFileDialog();
+            if (System.Windows.Forms.DialogResult.OK == oDlg.ShowDialog())
+            {
+                oSelectedFile = oDlg.FileName;
+
+            }
+
+            //We match our excel 
+            Excel.Workbook workbook = excelApp.Workbooks.Open(oSelectedFile);
+            Excel.Worksheet worksheet = workbook.ActiveSheet;
+
+            //We create a new Word document
+            Word.Document document = wordApp.Documents.Add();
+
+            //We scan our Excel data and add it to our newly
+            //created Word document
+            for (int i = 1; i <= worksheet.UsedRange.Rows.Count; i++)
+            {
+                for (int j = 1; j <= worksheet.UsedRange.Columns.Count; j++)
+                {
+                    string cellValue = worksheet.Cells[i, j].Value.ToString();
+                    Word.Range range = document.Content;
+                    range.InsertAfter(cellValue + "\t");
+                }
+                Word.Range rowRange = document.Content;
+                rowRange.InsertAfter("\n");
+            }
+            
+            //Save the Word document
+            document.SaveAs("/report.docx");
+
+            //Close Excel and Word documents
+            workbook.Close();
+            excelApp.Quit();
+
+            document.Close();
+            wordApp.Quit();
         }
     }
 }
