@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
 using Microsoft.VisualBasic.Logging;
 using Word = Microsoft.Office.Interop.Word;
+using Microsoft.Office.Interop.Word;
 
 namespace ASAP_Project
 {
@@ -113,7 +114,7 @@ namespace ASAP_Project
 
         private void button_userpanel_Click(object sender, EventArgs e)
         {
-
+            panel_generatexcel.Visible = false;
             panel_adminpanel.Visible = false;
             panel_adminpanel.Enabled = false;
             panel_userpanel.Enabled = true;
@@ -124,6 +125,7 @@ namespace ASAP_Project
 
         private void button_adminpanel_Click(object sender, EventArgs e)
         {
+            panel_generatexcel.Visible = false;
             if (LoginScreen.user_name == "admin" && LoginScreen.user_password == "admin")
             {
                 panel_adminpanel.Visible = true;
@@ -143,11 +145,12 @@ namespace ASAP_Project
 
         private void button_account_Click(object sender, EventArgs e)
         {
-
+            panel_generatexcel.Visible = false;
         }
 
         private void button_testdrive_Click(object sender, EventArgs e)
         {
+            panel_generatexcel.Visible = false;
             try
             {
                 ASAP_Project.GoogleDrive.UploadFile();
@@ -178,11 +181,13 @@ namespace ASAP_Project
 
         private void button_generate_excel_Click(object sender, EventArgs e)
         {
-            ASAP_Project.UserPanel.GenerateExcel();
+            panel_generatexcel.Visible = true;
+            
         }
 
         private void button_create_report_Click(object sender, EventArgs e)
         {
+            panel_generatexcel.Visible = false;
             ASAP_Project.UserPanel.CreateReport();
         }
 
@@ -191,6 +196,7 @@ namespace ASAP_Project
             dataGridView_midtermcount.Rows.Clear();
             dataGridView_midtermcount.Columns.Clear();
             dataGridView_midtermcount.Refresh();
+
             if (int.Parse(textBox_midtermcount.Text) >= 1)
             {
                 dataGridView_midtermcount.Visible = true;
@@ -202,6 +208,11 @@ namespace ASAP_Project
 
                 }
             }
+        }
+
+        private void button_generatexcel_main_Click(object sender, EventArgs e)
+        {
+            ASAP_Project.UserPanel.GenerateExcel();
         }
     }
 }

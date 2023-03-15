@@ -53,6 +53,7 @@
             this.button_addcourse = new System.Windows.Forms.Button();
             this.button_updatecourse = new System.Windows.Forms.Button();
             this.panel_generatexcel = new System.Windows.Forms.Panel();
+            this.button_generatexcel_main = new System.Windows.Forms.Button();
             this.dataGridView_midtermcount = new System.Windows.Forms.DataGridView();
             this.textBox_midtermcount = new System.Windows.Forms.TextBox();
             this.label_midtermcount = new System.Windows.Forms.Label();
@@ -315,6 +316,7 @@
             // panel_generatexcel
             // 
             this.panel_generatexcel.BackColor = System.Drawing.SystemColors.GrayText;
+            this.panel_generatexcel.Controls.Add(this.button_generatexcel_main);
             this.panel_generatexcel.Controls.Add(this.dataGridView_midtermcount);
             this.panel_generatexcel.Controls.Add(this.textBox_midtermcount);
             this.panel_generatexcel.Controls.Add(this.label_midtermcount);
@@ -324,6 +326,17 @@
             this.panel_generatexcel.Name = "panel_generatexcel";
             this.panel_generatexcel.Size = new System.Drawing.Size(747, 569);
             this.panel_generatexcel.TabIndex = 8;
+            this.panel_generatexcel.Visible = false;
+            // 
+            // button_generatexcel_main
+            // 
+            this.button_generatexcel_main.Location = new System.Drawing.Point(652, 526);
+            this.button_generatexcel_main.Name = "button_generatexcel_main";
+            this.button_generatexcel_main.Size = new System.Drawing.Size(75, 23);
+            this.button_generatexcel_main.TabIndex = 5;
+            this.button_generatexcel_main.Text = "Generate";
+            this.button_generatexcel_main.UseVisualStyleBackColor = true;
+            this.button_generatexcel_main.Click += new System.EventHandler(this.button_generatexcel_main_Click);
             // 
             // dataGridView_midtermcount
             // 
@@ -439,5 +452,6 @@
         private Label label_midtermcount;
         private TextBox textBox_midtermcount;
         private DataGridView dataGridView_midtermcount;
+        private Button button_generatexcel_main;
     }
 }
