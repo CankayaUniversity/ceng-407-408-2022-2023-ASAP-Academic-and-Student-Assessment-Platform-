@@ -129,6 +129,16 @@ namespace ASAP_Project
             Marshal.ReleaseComObject(xlApp);
 
             MessageBox.Show("Excel dosyasý c:\\deneme-dosya.xls adresinde oluþturuldu...");
+
+
+
+            //var excelApp = new Excel.Application();
+            //excelApp.Workbooks.Add();
+
+            //var xlSheets = excelApp.Sheets as Excel.Sheets;
+            //var xlNewSheet = (Excel.Worksheet)xlSheets.Add(xlSheets[1], Type.Missing, Type.Missing, Type.Missing);
+
+            //excelApp.Visible = true;
         }
     }
 }
