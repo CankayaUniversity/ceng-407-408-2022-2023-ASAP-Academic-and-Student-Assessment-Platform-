@@ -220,6 +220,7 @@
             this.button_generate_excel.TabIndex = 0;
             this.button_generate_excel.Text = "Generate Excel";
             this.button_generate_excel.UseVisualStyleBackColor = true;
+            this.button_generate_excel.Click += new System.EventHandler(this.button_generate_excel_Click);
             // 
             // panel_adminpanel
             // 
