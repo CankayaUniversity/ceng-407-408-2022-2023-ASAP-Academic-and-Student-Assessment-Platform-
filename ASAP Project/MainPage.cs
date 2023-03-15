@@ -56,7 +56,7 @@ namespace ASAP_Project
         {
             try
             {
-                // ASAP_Project.GoogleDrive.UploadFile();
+                ASAP_Project.GoogleDrive.UploadFile();
 
             }
             catch (Exception ex)
