@@ -41,18 +41,22 @@ namespace ASAP_Project
 
         private void button_login_Click(object sender, EventArgs e)
         {
-            if(textBox_password.Text== password &&  textBox_username.Text== username || textBox_password.Text == admin_password && textBox_username.Text == admin_username)
-            {
-                user_name= textBox_username.Text;
-                user_password= textBox_password.Text;
-                MainPage form = new MainPage();
-                form.Show();
+            //if(textBox_password.Text== password &&  textBox_username.Text== username || textBox_password.Text == admin_password && textBox_username.Text == admin_username)
+            //{
+            //    user_name= textBox_username.Text;
+            //    user_password= textBox_password.Text;
+            //    MainPage form = new MainPage();
+            //    form.Show();
 
-                this.Hide();
-            }
-            else
-                MessageBox.Show("Incorrect Usarname or Password");
+            //    this.Hide();
+            //}
+            //else
+            //    MessageBox.Show("Incorrect Usarname or Password");
 
+
+
+            MainPage form = new MainPage();
+            form.Show();
         }
     }
 }

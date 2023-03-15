@@ -52,10 +52,18 @@
             this.button_deletecourse = new System.Windows.Forms.Button();
             this.button_addcourse = new System.Windows.Forms.Button();
             this.button_updatecourse = new System.Windows.Forms.Button();
+            this.panel_generatexcel = new System.Windows.Forms.Panel();
+            this.dataGridView_midtermcount = new System.Windows.Forms.DataGridView();
+            this.textBox_midtermcount = new System.Windows.Forms.TextBox();
+            this.label_midtermcount = new System.Windows.Forms.Label();
+            this.textBox_studentcount = new System.Windows.Forms.TextBox();
+            this.label_studentcount = new System.Windows.Forms.Label();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel_userpanel.SuspendLayout();
             this.panel_adminpanel.SuspendLayout();
+            this.panel_generatexcel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_midtermcount)).BeginInit();
             this.SuspendLayout();
             // 
             // button_userpanel
@@ -304,12 +312,79 @@
             this.button_updatecourse.Text = "Update Course";
             this.button_updatecourse.UseVisualStyleBackColor = true;
             // 
+            // panel_generatexcel
+            // 
+            this.panel_generatexcel.BackColor = System.Drawing.SystemColors.GrayText;
+            this.panel_generatexcel.Controls.Add(this.dataGridView_midtermcount);
+            this.panel_generatexcel.Controls.Add(this.textBox_midtermcount);
+            this.panel_generatexcel.Controls.Add(this.label_midtermcount);
+            this.panel_generatexcel.Controls.Add(this.textBox_studentcount);
+            this.panel_generatexcel.Controls.Add(this.label_studentcount);
+            this.panel_generatexcel.Location = new System.Drawing.Point(461, 56);
+            this.panel_generatexcel.Name = "panel_generatexcel";
+            this.panel_generatexcel.Size = new System.Drawing.Size(747, 569);
+            this.panel_generatexcel.TabIndex = 8;
+            // 
+            // dataGridView_midtermcount
+            // 
+            this.dataGridView_midtermcount.AllowUserToAddRows = false;
+            this.dataGridView_midtermcount.AllowUserToDeleteRows = false;
+            this.dataGridView_midtermcount.AllowUserToResizeColumns = false;
+            this.dataGridView_midtermcount.AllowUserToResizeRows = false;
+            this.dataGridView_midtermcount.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView_midtermcount.ColumnHeadersVisible = false;
+            this.dataGridView_midtermcount.Location = new System.Drawing.Point(249, 15);
+            this.dataGridView_midtermcount.Name = "dataGridView_midtermcount";
+            this.dataGridView_midtermcount.RowHeadersVisible = false;
+            this.dataGridView_midtermcount.RowTemplate.Height = 25;
+            this.dataGridView_midtermcount.Size = new System.Drawing.Size(495, 150);
+            this.dataGridView_midtermcount.TabIndex = 4;
+            this.dataGridView_midtermcount.Visible = false;
+            // 
+            // textBox_midtermcount
+            // 
+            this.textBox_midtermcount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox_midtermcount.Location = new System.Drawing.Point(143, 50);
+            this.textBox_midtermcount.Name = "textBox_midtermcount";
+            this.textBox_midtermcount.Size = new System.Drawing.Size(100, 29);
+            this.textBox_midtermcount.TabIndex = 3;
+            this.textBox_midtermcount.TextChanged += new System.EventHandler(this.textBox_midtermcount_TextChanged);
+            // 
+            // label_midtermcount
+            // 
+            this.label_midtermcount.AutoSize = true;
+            this.label_midtermcount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label_midtermcount.Location = new System.Drawing.Point(14, 58);
+            this.label_midtermcount.Name = "label_midtermcount";
+            this.label_midtermcount.Size = new System.Drawing.Size(123, 21);
+            this.label_midtermcount.TabIndex = 2;
+            this.label_midtermcount.Text = "Midterm Count :";
+            // 
+            // textBox_studentcount
+            // 
+            this.textBox_studentcount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox_studentcount.Location = new System.Drawing.Point(143, 15);
+            this.textBox_studentcount.Name = "textBox_studentcount";
+            this.textBox_studentcount.Size = new System.Drawing.Size(100, 29);
+            this.textBox_studentcount.TabIndex = 1;
+            // 
+            // label_studentcount
+            // 
+            this.label_studentcount.AutoSize = true;
+            this.label_studentcount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label_studentcount.Location = new System.Drawing.Point(21, 23);
+            this.label_studentcount.Name = "label_studentcount";
+            this.label_studentcount.Size = new System.Drawing.Size(116, 21);
+            this.label_studentcount.TabIndex = 0;
+            this.label_studentcount.Text = "Student Count :";
+            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.panel_generatexcel);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel_userpanel);
             this.Controls.Add(this.panel_adminpanel);
@@ -326,6 +401,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel_userpanel.ResumeLayout(false);
             this.panel_adminpanel.ResumeLayout(false);
+            this.panel_generatexcel.ResumeLayout(false);
+            this.panel_generatexcel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_midtermcount)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -355,5 +433,11 @@
         private Button button1;
         private PictureBox pictureBox1;
         private Label label_user;
+        private Panel panel_generatexcel;
+        private Label label_studentcount;
+        private TextBox textBox_studentcount;
+        private Label label_midtermcount;
+        private TextBox textBox_midtermcount;
+        private DataGridView dataGridView_midtermcount;
     }
 }

@@ -32,18 +32,29 @@ namespace ASAP_Project
             panel2.BackColor = Color.Transparent;
             panel3.BackColor = Color.Transparent;
             panel4.BackColor = Color.Transparent;
+
             panel5.BackColor = Color.FromArgb(60, Color.Black);
             panel_userpanel.BackColor = Color.FromArgb(60, Color.Black);
             panel_adminpanel.BackColor = Color.FromArgb(60, Color.Black);
+            panel_generatexcel.BackColor = Color.FromArgb(60, Color.Black);
+
             panel5.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, panel5.Width,
             panel5.Height, 30, 30));
+
             panel_userpanel.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, panel_userpanel.Width,
             panel_userpanel.Height, 30, 30));
+
             panel_adminpanel.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, panel_adminpanel.Width,
             panel_adminpanel.Height, 30, 30));
+
+            panel_generatexcel.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, panel_generatexcel.Width,
+            panel_generatexcel.Height, 30, 30));
+
             pictureBox1.BackColor = Color.Transparent;
             label_user.Text += LoginScreen.user_name;
             label_user.BackColor = Color.Transparent;
+            label_studentcount.BackColor = Color.Transparent;
+            label_midtermcount.BackColor = Color.Transparent;
 
             button1.BackColor = Color.FromArgb(70, Color.Black);
             button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(90, Color.Black);
@@ -86,6 +97,9 @@ namespace ASAP_Project
             //button_exit.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, button_exit.Width,
             //button_exit.Height, 5, 5));
             button_exit.ForeColor = Color.LightGray;
+
+
+
         }
 
         public MainPage()
@@ -170,6 +184,24 @@ namespace ASAP_Project
         private void button_create_report_Click(object sender, EventArgs e)
         {
             ASAP_Project.UserPanel.CreateReport();
+        }
+
+        private void textBox_midtermcount_TextChanged(object sender, EventArgs e)
+        {
+            dataGridView_midtermcount.Rows.Clear();
+            dataGridView_midtermcount.Columns.Clear();
+            dataGridView_midtermcount.Refresh();
+            if (int.Parse(textBox_midtermcount.Text) >= 1)
+            {
+                dataGridView_midtermcount.Visible = true;
+                dataGridView_midtermcount.Columns.Add("Midterm", "Midterm");
+                dataGridView_midtermcount.Columns.Add("QuestionCount", "QuestionCount");
+                for (int i = 0; i < int.Parse(textBox_midtermcount.Text); i++)
+                {
+                    dataGridView_midtermcount.Rows.Add("Midterm" + (i + 1));
+
+                }
+            }
         }
     }
 }

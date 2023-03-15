@@ -122,9 +122,6 @@ namespace ASAP_Project
             excelApp.Quit();
 
             wordApp.Visible = true;
-
-            document.Close();
-            wordApp.Quit();
         }
     }
 }
