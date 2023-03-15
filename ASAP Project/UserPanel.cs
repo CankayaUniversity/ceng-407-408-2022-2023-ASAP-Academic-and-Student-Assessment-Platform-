@@ -99,7 +99,15 @@ namespace ASAP_Project
             {
                 for (int j = 1; j <= worksheet.UsedRange.Columns.Count; j++)
                 {
-                    string cellValue = worksheet.Cells[i, j].Value.ToString();
+                    string cellValue = worksheet.Cells[i, j].Value;
+                    if (cellValue == null)
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        cellValue = worksheet.Cells[i, j].Value.ToString();
+                    }
                     Word.Range range = document.Content;
                     range.InsertAfter(cellValue + "\t");
                 }
@@ -108,7 +116,6 @@ namespace ASAP_Project
             }
 
             //Save the Word document
-            document.SaveAs("/report.docx");
 
             //Close Excel and Word documents
             workbook.Close();
