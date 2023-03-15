@@ -183,7 +183,6 @@
             button_exit.TabIndex = 3;
             button_exit.Text = "Exit";
             button_exit.UseVisualStyleBackColor = true;
-            button_exit.Click += button_exit_Click;
             // 
             // button_account
             // 
@@ -208,6 +207,7 @@
             // panel_userpanel
             // 
             panel_userpanel.BackColor = SystemColors.ControlDarkDark;
+            panel_userpanel.Controls.Add(panel_adminpanel);
             panel_userpanel.Controls.Add(button_transferdata);
             panel_userpanel.Controls.Add(button_transfer_data);
             panel_userpanel.Controls.Add(button_edit_report);
@@ -263,15 +263,16 @@
             button_generate_excel.TabIndex = 0;
             button_generate_excel.Text = "Generate Excel";
             button_generate_excel.UseVisualStyleBackColor = true;
+            button_generate_excel.Click += button_generate_excel_Click;
             // 
             // panel_adminpanel
             // 
             panel_adminpanel.BackColor = SystemColors.ControlDarkDark;
             panel_adminpanel.Controls.Add(button1);
             panel_adminpanel.Controls.Add(button_deletecourse);
-            panel_adminpanel.Controls.Add(button_updatecourse);
             panel_adminpanel.Controls.Add(button_addcourse);
-            panel_adminpanel.Location = new Point(255, 56);
+            panel_adminpanel.Controls.Add(button_updatecourse);
+            panel_adminpanel.Location = new Point(3, 0);
             panel_adminpanel.Name = "panel_adminpanel";
             panel_adminpanel.Size = new Size(245, 419);
             panel_adminpanel.TabIndex = 7;
@@ -307,7 +308,7 @@
             // 
             // button_addcourse
             // 
-            button_addcourse.Location = new Point(3, 3);
+            button_addcourse.Location = new Point(3, 6);
             button_addcourse.Name = "button_addcourse";
             button_addcourse.Size = new Size(239, 69);
             button_addcourse.TabIndex = 0;
@@ -319,7 +320,6 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(836, 531);
-            Controls.Add(panel_adminpanel);
             Controls.Add(panel_userpanel);
             Controls.Add(panel5);
             Controls.Add(panel4);

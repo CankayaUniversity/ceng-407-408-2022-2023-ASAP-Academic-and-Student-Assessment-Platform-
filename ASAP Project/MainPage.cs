@@ -58,37 +58,7 @@ namespace ASAP_Project
 
         private void button_account_Click(object sender, EventArgs e)
         {
-            Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
 
-            if (xlApp == null)
-            {
-                MessageBox.Show("Sisteminizde Excel kurulu deðil...");
-                return;
-            }
-
-            Excel.Workbook xlWorkBook;
-            Excel.Worksheet xlWorkSheet;
-            object misValue = System.Reflection.Missing.Value;
-
-            xlWorkBook = xlApp.Workbooks.Add(misValue);
-            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
-
-            xlWorkSheet.Cells[1, 1] = "Sýra NO";
-            xlWorkSheet.Cells[1, 2] = "Ýsim";
-            xlWorkSheet.Cells[2, 1] = "1";
-            xlWorkSheet.Cells[2, 2] = "Esat";
-            xlWorkSheet.Cells[3, 1] = "2";
-            xlWorkSheet.Cells[3, 2] = "Emre";
-
-            xlWorkBook.SaveAs("deneme_dosya.xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
-            xlWorkBook.Close(true, misValue, misValue);
-            xlApp.Quit();
-
-            Marshal.ReleaseComObject(xlWorkSheet);
-            Marshal.ReleaseComObject(xlWorkBook);
-            Marshal.ReleaseComObject(xlApp);
-
-            MessageBox.Show("Excel dosyasý c:\\deneme-dosya.xls adresinde oluþturuldu...");
         }
 
         private void button_testdrive_Click(object sender, EventArgs e)
@@ -133,6 +103,41 @@ namespace ASAP_Project
             {
                 //Nothing
             }
+        }
+
+        private void button_generate_excel_Click(object sender, EventArgs e)
+        {
+            Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
+
+            if (xlApp == null)
+            {
+                MessageBox.Show("Sisteminizde Excel kurulu deðil...");
+                return;
+            }
+
+            Excel.Workbook xlWorkBook;
+            Excel.Worksheet xlWorkSheet;
+            object misValue = System.Reflection.Missing.Value;
+
+            xlWorkBook = xlApp.Workbooks.Add(misValue);
+            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+
+            xlWorkSheet.Cells[1, 1] = "Sýra NO";
+            xlWorkSheet.Cells[1, 2] = "Ýsim";
+            xlWorkSheet.Cells[2, 1] = "1";
+            xlWorkSheet.Cells[2, 2] = "Esat";
+            xlWorkSheet.Cells[3, 1] = "2";
+            xlWorkSheet.Cells[3, 2] = "Emre";
+
+            xlWorkBook.SaveAs("deneme_dosya.xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            xlWorkBook.Close(true, misValue, misValue);
+            xlApp.Quit();
+
+            Marshal.ReleaseComObject(xlWorkSheet);
+            Marshal.ReleaseComObject(xlWorkBook);
+            Marshal.ReleaseComObject(xlApp);
+
+            MessageBox.Show("Excel dosyasý c:\\deneme-dosya.xls adresinde oluþturuldu...");
         }
     }
 }
