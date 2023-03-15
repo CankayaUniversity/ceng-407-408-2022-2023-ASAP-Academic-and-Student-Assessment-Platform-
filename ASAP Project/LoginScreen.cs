@@ -12,10 +12,11 @@ namespace ASAP_Project
 {
     public partial class LoginScreen : Form
     {
-
-        private string password = "1234";
-        private string username = "esat";
-
+        
+        private string password = "1234"; //herkes için
+        private string username = "esat"; //herkes için
+        private string admin_password = "admin"; //admin için
+        private string admin_username = "admin"; //admin için
         public LoginScreen()
         {
             InitializeComponent();
@@ -37,13 +38,15 @@ namespace ASAP_Project
 
         private void button_login_Click(object sender, EventArgs e)
         {
-            if(textBox_password.Text== password &&  textBox_username.Text== username)
+            if(textBox_password.Text== password &&  textBox_username.Text== username || textBox_password.Text == admin_password && textBox_username.Text == admin_username)
             {
                 MainPage form = new MainPage();
                 form.Show();
+
+                this.Hide();
             }
             else
-                MessageBox.Show("Error");
+                MessageBox.Show("Incorrect Usarname or Password");
 
         }
     }
