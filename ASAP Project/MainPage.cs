@@ -4,6 +4,8 @@ using System;
 
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
+using Microsoft.VisualBasic.Logging;
+
 namespace ASAP_Project
 {
     public partial class MainPage : Form
@@ -17,7 +19,7 @@ namespace ASAP_Project
 
         private void button_userpanel_Click(object sender, EventArgs e)
         {
-
+            
             panel_adminpanel.Visible = false;
             panel_adminpanel.Enabled = false;
             panel_userpanel.Enabled = true;
@@ -28,15 +30,25 @@ namespace ASAP_Project
             //button_adminpanel.Location = System.Drawing.Point(3,175);
             treeView_adminpanel.Enabled = false;
             treeView_adminpanel.Visible = false;
-
         }
 
         private void button_adminpanel_Click(object sender, EventArgs e)
         {
+            if (LoginScreen.user_name == "admin" && LoginScreen.user_password == "admin")
+            {
+                panel_adminpanel.Visible = true;
+                panel_adminpanel.Enabled = true;
+            }
+            else
+            {
+
+                MessageBox.Show("You need login as admin!");
+                panel_adminpanel.Enabled = false;
+                panel_adminpanel.Visible = false;
+            }
             panel_userpanel.Visible=false;
             panel_userpanel.Enabled = false;
-            panel_adminpanel.Enabled = true;
-            panel_adminpanel.Visible=true;
+
             panel_adminpanel.BringToFront();
             //button_adminpanel.Location = Point(3,74);
             treeView_adminpanel.Enabled = true;

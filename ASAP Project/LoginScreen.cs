@@ -17,6 +17,8 @@ namespace ASAP_Project
         private string username = "esat"; //herkes için
         private string admin_password = "admin"; //admin için
         private string admin_username = "admin"; //admin için
+        public static string user_name;
+        public static string user_password;
         public LoginScreen()
         {
             InitializeComponent();
@@ -31,6 +33,7 @@ namespace ASAP_Project
             pictureBox1.BackColor = Color.Transparent;
         }
 
+
         private void LoginScreen_Load(object sender, EventArgs e)
         {
 
@@ -40,6 +43,8 @@ namespace ASAP_Project
         {
             if(textBox_password.Text== password &&  textBox_username.Text== username || textBox_password.Text == admin_password && textBox_username.Text == admin_username)
             {
+                user_name= textBox_username.Text;
+                user_password= textBox_password.Text;
                 MainPage form = new MainPage();
                 form.Show();
 
