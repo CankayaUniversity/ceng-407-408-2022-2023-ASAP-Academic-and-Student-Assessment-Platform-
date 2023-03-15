@@ -24,6 +24,8 @@ namespace ASAP_Project
         );
         public void MainPage_Load()
         {
+            // MAIN PAGE UI PARAMETERS
+
             panel_adminpanel.Visible = false;
             panel_userpanel.Visible = false;
             panel1.BackColor = Color.Transparent;
@@ -46,36 +48,43 @@ namespace ASAP_Project
             button1.BackColor = Color.FromArgb(90, Color.Black);
             button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(110, Color.Black);
             button1.FlatAppearance.MouseDownBackColor = Color.FromArgb(130, Color.Black);
-            button1.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, button1.Width,
-            button1.Height, 5, 5));
+            //button1.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, button1.Width,
+            //button1.Height, 5, 5));
             button1.ForeColor = Color.LightGray;
+
+            button_testdrive.BackColor = Color.FromArgb(90, Color.Black);
+            button_testdrive.FlatAppearance.MouseOverBackColor = Color.FromArgb(110, Color.Black);
+            button_testdrive.FlatAppearance.MouseDownBackColor = Color.FromArgb(130, Color.Black);
+            //button_testdrive.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, button_testdrive.Width,
+            //button_testdrive.Height, 5, 5));
+            button_testdrive.ForeColor = Color.LightGray;
 
             button_userpanel.BackColor = Color.FromArgb(90, Color.Black);
             button_userpanel.FlatAppearance.MouseOverBackColor = Color.FromArgb(110, Color.Black);
             button_userpanel.FlatAppearance.MouseDownBackColor = Color.FromArgb(130, Color.Black);
-            button_userpanel.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, button_userpanel.Width,
-            button_userpanel.Height, 5, 5));
+            //button_userpanel.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, button_userpanel.Width,
+            //button_userpanel.Height, 5, 5));
             button_userpanel.ForeColor = Color.LightGray;
 
             button_adminpanel.BackColor = Color.FromArgb(90, Color.Black);
             button_adminpanel.FlatAppearance.MouseOverBackColor = Color.FromArgb(110, Color.Black);
             button_adminpanel.FlatAppearance.MouseDownBackColor = Color.FromArgb(130, Color.Black);
-            button_adminpanel.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, button_adminpanel.Width,
-            button_adminpanel.Height, 5, 5));
+            //button_adminpanel.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, button_adminpanel.Width,
+            //button_adminpanel.Height, 5, 5));
             button_adminpanel.ForeColor = Color.LightGray;
 
             button_account.BackColor = Color.FromArgb(90, Color.Black);
             button_account.FlatAppearance.MouseOverBackColor = Color.FromArgb(110, Color.Black);
             button_account.FlatAppearance.MouseDownBackColor = Color.FromArgb(130, Color.Black);
-            button_account.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, button_account.Width,
-            button_account.Height, 5, 5));
+            //button_account.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, button_account.Width,
+            //button_account.Height, 5, 5));
             button_account.ForeColor = Color.LightGray;
 
             button_exit.BackColor = Color.FromArgb(90, Color.Black);
             button_exit.FlatAppearance.MouseOverBackColor = Color.FromArgb(110, Color.Black);
             button_exit.FlatAppearance.MouseDownBackColor = Color.FromArgb(130, Color.Black);
-            button_exit.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, button_exit.Width,
-            button_exit.Height, 5, 5));
+            //button_exit.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, button_exit.Width,
+            //button_exit.Height, 5, 5));
             button_exit.ForeColor = Color.LightGray;
         }
 

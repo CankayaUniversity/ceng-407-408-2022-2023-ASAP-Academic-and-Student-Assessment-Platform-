@@ -62,9 +62,9 @@
             // 
             this.button_userpanel.FlatAppearance.BorderSize = 0;
             this.button_userpanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_userpanel.Location = new System.Drawing.Point(17, 247);
+            this.button_userpanel.Location = new System.Drawing.Point(-1, 247);
             this.button_userpanel.Name = "button_userpanel";
-            this.button_userpanel.Size = new System.Drawing.Size(160, 50);
+            this.button_userpanel.Size = new System.Drawing.Size(200, 30);
             this.button_userpanel.TabIndex = 0;
             this.button_userpanel.Text = "User Panel";
             this.button_userpanel.UseVisualStyleBackColor = true;
@@ -151,18 +151,20 @@
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Cyan;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.button1.Location = new System.Drawing.Point(17, 453);
+            this.button1.Location = new System.Drawing.Point(-1, 453);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(160, 23);
+            this.button1.Size = new System.Drawing.Size(200, 30);
             this.button1.TabIndex = 3;
             this.button1.Text = "TEST CODE";
             this.button1.UseVisualStyleBackColor = false;
             // 
             // button_testdrive
             // 
-            this.button_testdrive.Location = new System.Drawing.Point(17, 424);
+            this.button_testdrive.FlatAppearance.BorderSize = 0;
+            this.button_testdrive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_testdrive.Location = new System.Drawing.Point(-1, 423);
             this.button_testdrive.Name = "button_testdrive";
-            this.button_testdrive.Size = new System.Drawing.Size(160, 23);
+            this.button_testdrive.Size = new System.Drawing.Size(200, 30);
             this.button_testdrive.TabIndex = 6;
             this.button_testdrive.Text = "Test Google Drive";
             this.button_testdrive.UseVisualStyleBackColor = true;
@@ -172,9 +174,9 @@
             // 
             this.button_exit.FlatAppearance.BorderSize = 0;
             this.button_exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_exit.Location = new System.Drawing.Point(17, 519);
+            this.button_exit.Location = new System.Drawing.Point(-1, 519);
             this.button_exit.Name = "button_exit";
-            this.button_exit.Size = new System.Drawing.Size(160, 31);
+            this.button_exit.Size = new System.Drawing.Size(200, 30);
             this.button_exit.TabIndex = 3;
             this.button_exit.Text = "Exit";
             this.button_exit.UseVisualStyleBackColor = true;
@@ -184,9 +186,9 @@
             // 
             this.button_account.FlatAppearance.BorderSize = 0;
             this.button_account.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_account.Location = new System.Drawing.Point(17, 359);
+            this.button_account.Location = new System.Drawing.Point(-1, 307);
             this.button_account.Name = "button_account";
-            this.button_account.Size = new System.Drawing.Size(160, 50);
+            this.button_account.Size = new System.Drawing.Size(200, 30);
             this.button_account.TabIndex = 2;
             this.button_account.Text = "Account";
             this.button_account.UseVisualStyleBackColor = true;
@@ -196,9 +198,9 @@
             // 
             this.button_adminpanel.FlatAppearance.BorderSize = 0;
             this.button_adminpanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_adminpanel.Location = new System.Drawing.Point(17, 303);
+            this.button_adminpanel.Location = new System.Drawing.Point(-1, 277);
             this.button_adminpanel.Name = "button_adminpanel";
-            this.button_adminpanel.Size = new System.Drawing.Size(160, 50);
+            this.button_adminpanel.Size = new System.Drawing.Size(200, 30);
             this.button_adminpanel.TabIndex = 1;
             this.button_adminpanel.Text = "Admin Panel";
             this.button_adminpanel.UseVisualStyleBackColor = true;
