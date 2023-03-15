@@ -60,6 +60,8 @@
             // 
             // button_userpanel
             // 
+            this.button_userpanel.FlatAppearance.BorderSize = 0;
+            this.button_userpanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_userpanel.Location = new System.Drawing.Point(17, 247);
             this.button_userpanel.Name = "button_userpanel";
             this.button_userpanel.Size = new System.Drawing.Size(160, 50);
@@ -143,12 +145,18 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(66, 453);
+            this.button1.BackColor = System.Drawing.Color.IndianRed;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Cyan;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button1.Location = new System.Drawing.Point(17, 453);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(111, 23);
+            this.button1.Size = new System.Drawing.Size(160, 23);
             this.button1.TabIndex = 3;
             this.button1.Text = "TEST CODE";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // button_testdrive
             // 
@@ -162,6 +170,8 @@
             // 
             // button_exit
             // 
+            this.button_exit.FlatAppearance.BorderSize = 0;
+            this.button_exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_exit.Location = new System.Drawing.Point(17, 519);
             this.button_exit.Name = "button_exit";
             this.button_exit.Size = new System.Drawing.Size(160, 31);
@@ -172,6 +182,8 @@
             // 
             // button_account
             // 
+            this.button_account.FlatAppearance.BorderSize = 0;
+            this.button_account.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_account.Location = new System.Drawing.Point(17, 359);
             this.button_account.Name = "button_account";
             this.button_account.Size = new System.Drawing.Size(160, 50);
@@ -182,6 +194,8 @@
             // 
             // button_adminpanel
             // 
+            this.button_adminpanel.FlatAppearance.BorderSize = 0;
+            this.button_adminpanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button_adminpanel.Location = new System.Drawing.Point(17, 303);
             this.button_adminpanel.Name = "button_adminpanel";
             this.button_adminpanel.Size = new System.Drawing.Size(160, 50);
