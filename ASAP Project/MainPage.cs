@@ -22,10 +22,8 @@ namespace ASAP_Project
             int nWidthEllipse,
             int nHeightEllipse
         );
-
-        public MainPage()
+        public void MainPage_Load()
         {
-            InitializeComponent();
             panel_adminpanel.Visible = false;
             panel_userpanel.Visible = false;
             panel1.BackColor = Color.Transparent;
@@ -44,8 +42,16 @@ namespace ASAP_Project
             pictureBox1.BackColor = Color.Transparent;
             label_user.Text += LoginScreen.user_name;
             label_user.BackColor = Color.Transparent;
+        }
+
+        public MainPage()
+        {
+            InitializeComponent();
+            MainPage_Load();
 
         }
+
+        
 
         private void button_userpanel_Click(object sender, EventArgs e)
         {
