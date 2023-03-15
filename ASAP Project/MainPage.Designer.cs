@@ -35,6 +35,8 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.label_user = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button_testdrive = new System.Windows.Forms.Button();
             this.button_exit = new System.Windows.Forms.Button();
@@ -51,15 +53,18 @@
             this.button_addcourse = new System.Windows.Forms.Button();
             this.button_updatecourse = new System.Windows.Forms.Button();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel_userpanel.SuspendLayout();
             this.panel_adminpanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // button_userpanel
             // 
-            this.button_userpanel.Location = new System.Drawing.Point(3, 6);
+            this.button_userpanel.FlatAppearance.BorderSize = 0;
+            this.button_userpanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_userpanel.Location = new System.Drawing.Point(-1, 247);
             this.button_userpanel.Name = "button_userpanel";
-            this.button_userpanel.Size = new System.Drawing.Size(184, 62);
+            this.button_userpanel.Size = new System.Drawing.Size(200, 30);
             this.button_userpanel.TabIndex = 0;
             this.button_userpanel.Text = "User Panel";
             this.button_userpanel.UseVisualStyleBackColor = true;
@@ -104,31 +109,62 @@
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.panel5.Controls.Add(this.label_user);
+            this.panel5.Controls.Add(this.pictureBox1);
             this.panel5.Controls.Add(this.button1);
             this.panel5.Controls.Add(this.button_testdrive);
             this.panel5.Controls.Add(this.button_exit);
             this.panel5.Controls.Add(this.button_account);
             this.panel5.Controls.Add(this.button_adminpanel);
             this.panel5.Controls.Add(this.button_userpanel);
-            this.panel5.Location = new System.Drawing.Point(56, 56);
+            this.panel5.Location = new System.Drawing.Point(50, 56);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(193, 569);
+            this.panel5.Size = new System.Drawing.Size(200, 569);
             this.panel5.TabIndex = 5;
+            // 
+            // label_user
+            // 
+            this.label_user.AutoSize = true;
+            this.label_user.Font = new System.Drawing.Font("Calibri", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label_user.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label_user.Location = new System.Drawing.Point(17, 191);
+            this.label_user.Name = "label_user";
+            this.label_user.Size = new System.Drawing.Size(70, 26);
+            this.label_user.TabIndex = 8;
+            this.label_user.Text = "User = ";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Location = new System.Drawing.Point(17, 23);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(160, 162);
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(76, 333);
+            this.button1.BackColor = System.Drawing.Color.IndianRed;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Cyan;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.button1.Location = new System.Drawing.Point(-1, 453);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(111, 23);
+            this.button1.Size = new System.Drawing.Size(200, 30);
             this.button1.TabIndex = 3;
             this.button1.Text = "TEST CODE";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             // 
             // button_testdrive
             // 
-            this.button_testdrive.Location = new System.Drawing.Point(3, 304);
+            this.button_testdrive.FlatAppearance.BorderSize = 0;
+            this.button_testdrive.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_testdrive.Location = new System.Drawing.Point(-1, 423);
             this.button_testdrive.Name = "button_testdrive";
-            this.button_testdrive.Size = new System.Drawing.Size(184, 23);
+            this.button_testdrive.Size = new System.Drawing.Size(200, 30);
             this.button_testdrive.TabIndex = 6;
             this.button_testdrive.Text = "Test Google Drive";
             this.button_testdrive.UseVisualStyleBackColor = true;
@@ -136,18 +172,23 @@
             // 
             // button_exit
             // 
-            this.button_exit.Location = new System.Drawing.Point(6, 535);
+            this.button_exit.FlatAppearance.BorderSize = 0;
+            this.button_exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_exit.Location = new System.Drawing.Point(-1, 519);
             this.button_exit.Name = "button_exit";
-            this.button_exit.Size = new System.Drawing.Size(184, 31);
+            this.button_exit.Size = new System.Drawing.Size(200, 30);
             this.button_exit.TabIndex = 3;
             this.button_exit.Text = "Exit";
             this.button_exit.UseVisualStyleBackColor = true;
+            this.button_exit.Click += new System.EventHandler(this.button_exit_Click);
             // 
             // button_account
             // 
-            this.button_account.Location = new System.Drawing.Point(3, 239);
+            this.button_account.FlatAppearance.BorderSize = 0;
+            this.button_account.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_account.Location = new System.Drawing.Point(-1, 307);
             this.button_account.Name = "button_account";
-            this.button_account.Size = new System.Drawing.Size(184, 59);
+            this.button_account.Size = new System.Drawing.Size(200, 30);
             this.button_account.TabIndex = 2;
             this.button_account.Text = "Account";
             this.button_account.UseVisualStyleBackColor = true;
@@ -155,9 +196,11 @@
             // 
             // button_adminpanel
             // 
-            this.button_adminpanel.Location = new System.Drawing.Point(3, 74);
+            this.button_adminpanel.FlatAppearance.BorderSize = 0;
+            this.button_adminpanel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_adminpanel.Location = new System.Drawing.Point(-1, 277);
             this.button_adminpanel.Name = "button_adminpanel";
-            this.button_adminpanel.Size = new System.Drawing.Size(184, 56);
+            this.button_adminpanel.Size = new System.Drawing.Size(200, 30);
             this.button_adminpanel.TabIndex = 1;
             this.button_adminpanel.Text = "Admin Panel";
             this.button_adminpanel.UseVisualStyleBackColor = true;
@@ -173,41 +216,41 @@
             this.panel_userpanel.Controls.Add(this.button_generate_excel);
             this.panel_userpanel.Location = new System.Drawing.Point(255, 56);
             this.panel_userpanel.Name = "panel_userpanel";
-            this.panel_userpanel.Size = new System.Drawing.Size(245, 569);
+            this.panel_userpanel.Size = new System.Drawing.Size(200, 569);
             this.panel_userpanel.TabIndex = 6;
             // 
             // button_transferdata
             // 
-            this.button_transferdata.Location = new System.Drawing.Point(3, 295);
+            this.button_transferdata.Location = new System.Drawing.Point(16, 247);
             this.button_transferdata.Name = "button_transferdata";
-            this.button_transferdata.Size = new System.Drawing.Size(239, 61);
+            this.button_transferdata.Size = new System.Drawing.Size(160, 50);
             this.button_transferdata.TabIndex = 4;
             this.button_transferdata.Text = "Transfer Data";
             this.button_transferdata.UseVisualStyleBackColor = true;
             // 
             // button_transfer_data
             // 
-            this.button_transfer_data.Location = new System.Drawing.Point(3, 223);
+            this.button_transfer_data.Location = new System.Drawing.Point(16, 191);
             this.button_transfer_data.Name = "button_transfer_data";
-            this.button_transfer_data.Size = new System.Drawing.Size(239, 66);
+            this.button_transfer_data.Size = new System.Drawing.Size(160, 50);
             this.button_transfer_data.TabIndex = 3;
             this.button_transfer_data.Text = "Transfer Data";
             this.button_transfer_data.UseVisualStyleBackColor = true;
             // 
             // button_edit_report
             // 
-            this.button_edit_report.Location = new System.Drawing.Point(3, 150);
+            this.button_edit_report.Location = new System.Drawing.Point(16, 135);
             this.button_edit_report.Name = "button_edit_report";
-            this.button_edit_report.Size = new System.Drawing.Size(239, 67);
+            this.button_edit_report.Size = new System.Drawing.Size(160, 50);
             this.button_edit_report.TabIndex = 2;
             this.button_edit_report.Text = "Edit Report";
             this.button_edit_report.UseVisualStyleBackColor = true;
             // 
             // button_create_report
             // 
-            this.button_create_report.Location = new System.Drawing.Point(3, 78);
+            this.button_create_report.Location = new System.Drawing.Point(16, 79);
             this.button_create_report.Name = "button_create_report";
-            this.button_create_report.Size = new System.Drawing.Size(239, 66);
+            this.button_create_report.Size = new System.Drawing.Size(160, 50);
             this.button_create_report.TabIndex = 1;
             this.button_create_report.Text = "Create Report";
             this.button_create_report.UseVisualStyleBackColor = true;
@@ -215,9 +258,9 @@
             // 
             // button_generate_excel
             // 
-            this.button_generate_excel.Location = new System.Drawing.Point(3, 3);
+            this.button_generate_excel.Location = new System.Drawing.Point(16, 23);
             this.button_generate_excel.Name = "button_generate_excel";
-            this.button_generate_excel.Size = new System.Drawing.Size(239, 69);
+            this.button_generate_excel.Size = new System.Drawing.Size(160, 50);
             this.button_generate_excel.TabIndex = 0;
             this.button_generate_excel.Text = "Generate Excel";
             this.button_generate_excel.UseVisualStyleBackColor = true;
@@ -231,32 +274,32 @@
             this.panel_adminpanel.Controls.Add(this.button_updatecourse);
             this.panel_adminpanel.Location = new System.Drawing.Point(255, 56);
             this.panel_adminpanel.Name = "panel_adminpanel";
-            this.panel_adminpanel.Size = new System.Drawing.Size(245, 569);
+            this.panel_adminpanel.Size = new System.Drawing.Size(200, 569);
             this.panel_adminpanel.TabIndex = 7;
             // 
             // button_deletecourse
             // 
-            this.button_deletecourse.Location = new System.Drawing.Point(3, 150);
+            this.button_deletecourse.Location = new System.Drawing.Point(16, 135);
             this.button_deletecourse.Name = "button_deletecourse";
-            this.button_deletecourse.Size = new System.Drawing.Size(239, 67);
+            this.button_deletecourse.Size = new System.Drawing.Size(160, 50);
             this.button_deletecourse.TabIndex = 2;
             this.button_deletecourse.Text = "Delete Course";
             this.button_deletecourse.UseVisualStyleBackColor = true;
             // 
             // button_addcourse
             // 
-            this.button_addcourse.Location = new System.Drawing.Point(3, 6);
+            this.button_addcourse.Location = new System.Drawing.Point(16, 23);
             this.button_addcourse.Name = "button_addcourse";
-            this.button_addcourse.Size = new System.Drawing.Size(239, 69);
+            this.button_addcourse.Size = new System.Drawing.Size(160, 50);
             this.button_addcourse.TabIndex = 0;
             this.button_addcourse.Text = "Add Course";
             this.button_addcourse.UseVisualStyleBackColor = true;
             // 
             // button_updatecourse
             // 
-            this.button_updatecourse.Location = new System.Drawing.Point(3, 78);
+            this.button_updatecourse.Location = new System.Drawing.Point(16, 79);
             this.button_updatecourse.Name = "button_updatecourse";
-            this.button_updatecourse.Size = new System.Drawing.Size(239, 66);
+            this.button_updatecourse.Size = new System.Drawing.Size(160, 50);
             this.button_updatecourse.TabIndex = 1;
             this.button_updatecourse.Text = "Update Course";
             this.button_updatecourse.UseVisualStyleBackColor = true;
@@ -267,16 +310,20 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel_userpanel);
             this.Controls.Add(this.panel_adminpanel);
-            this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
             this.Name = "MainPage";
             this.Text = "ASAP (Academic and Student Assessment Platform)";
             this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel_userpanel.ResumeLayout(false);
             this.panel_adminpanel.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -306,5 +353,7 @@
         private Button button_addcourse;
         private Button button_testdrive;
         private Button button1;
+        private PictureBox pictureBox1;
+        private Label label_user;
     }
 }

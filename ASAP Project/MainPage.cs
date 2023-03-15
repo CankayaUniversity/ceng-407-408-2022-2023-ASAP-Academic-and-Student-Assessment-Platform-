@@ -11,12 +11,91 @@ namespace ASAP_Project
 {
     public partial class MainPage : Form
     {
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+
+        private static extern IntPtr CreateRoundRectRgn
+        (
+            int nLeftRect,
+            int nTopRect,
+            int nRightRect,
+            int nBottomRect,
+            int nWidthEllipse,
+            int nHeightEllipse
+        );
+        public void MainPage_Load()
+        {
+            // MAIN PAGE UI PARAMETERS
+
+            panel_adminpanel.Visible = false;
+            panel_userpanel.Visible = false;
+            panel1.BackColor = Color.Transparent;
+            panel2.BackColor = Color.Transparent;
+            panel3.BackColor = Color.Transparent;
+            panel4.BackColor = Color.Transparent;
+            panel5.BackColor = Color.FromArgb(60, Color.Black);
+            panel_userpanel.BackColor = Color.FromArgb(60, Color.Black);
+            panel_adminpanel.BackColor = Color.FromArgb(60, Color.Black);
+            panel5.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, panel5.Width,
+            panel5.Height, 30, 30));
+            panel_userpanel.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, panel_userpanel.Width,
+            panel_userpanel.Height, 30, 30));
+            panel_adminpanel.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, panel_adminpanel.Width,
+            panel_adminpanel.Height, 30, 30));
+            pictureBox1.BackColor = Color.Transparent;
+            label_user.Text += LoginScreen.user_name;
+            label_user.BackColor = Color.Transparent;
+
+            button1.BackColor = Color.FromArgb(70, Color.Black);
+            button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(90, Color.Black);
+            button1.FlatAppearance.MouseDownBackColor = Color.FromArgb(110, Color.Black);
+            //button1.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, button1.Width,
+            //button1.Height, 5, 5));
+            button1.ForeColor = Color.LightGray;
+
+            button_testdrive.BackColor = Color.FromArgb(70, Color.Black);
+            button_testdrive.FlatAppearance.MouseOverBackColor = Color.FromArgb(90, Color.Black);
+            button_testdrive.FlatAppearance.MouseDownBackColor = Color.FromArgb(110, Color.Black);
+            //button_testdrive.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, button_testdrive.Width,
+            //button_testdrive.Height, 5, 5));
+            button_testdrive.ForeColor = Color.LightGray;
+
+            button_userpanel.BackColor = Color.FromArgb(70, Color.Black);
+            button_userpanel.FlatAppearance.MouseOverBackColor = Color.FromArgb(90, Color.Black);
+            button_userpanel.FlatAppearance.MouseDownBackColor = Color.FromArgb(110, Color.Black);
+            //button_userpanel.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, button_userpanel.Width,
+            //button_userpanel.Height, 5, 5));
+            button_userpanel.ForeColor = Color.LightGray;
+
+            button_adminpanel.BackColor = Color.FromArgb(70, Color.Black);
+            button_adminpanel.FlatAppearance.MouseOverBackColor = Color.FromArgb(90, Color.Black);
+            button_adminpanel.FlatAppearance.MouseDownBackColor = Color.FromArgb(110, Color.Black);
+            //button_adminpanel.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, button_adminpanel.Width,
+            //button_adminpanel.Height, 5, 5));
+            button_adminpanel.ForeColor = Color.LightGray;
+
+            button_account.BackColor = Color.FromArgb(70, Color.Black);
+            button_account.FlatAppearance.MouseOverBackColor = Color.FromArgb(90, Color.Black);
+            button_account.FlatAppearance.MouseDownBackColor = Color.FromArgb(110, Color.Black);
+            //button_account.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, button_account.Width,
+            //button_account.Height, 5, 5));
+            button_account.ForeColor = Color.LightGray;
+
+            button_exit.BackColor = Color.FromArgb(70, Color.Black);
+            button_exit.FlatAppearance.MouseOverBackColor = Color.FromArgb(90, Color.Black);
+            button_exit.FlatAppearance.MouseDownBackColor = Color.FromArgb(110, Color.Black);
+            //button_exit.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, button_exit.Width,
+            //button_exit.Height, 5, 5));
+            button_exit.ForeColor = Color.LightGray;
+        }
+
         public MainPage()
         {
             InitializeComponent();
-            panel_adminpanel.Visible = false;
-            panel_userpanel.Visible = false;
+            MainPage_Load();
+
         }
+
+        
 
         private void button_userpanel_Click(object sender, EventArgs e)
         {
@@ -67,21 +146,6 @@ namespace ASAP_Project
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                ASAP_Project.GoogleDrive.UploadFile();
-
-
-            }
-            catch (Exception ex)
-            {
-                throw (ex);
-                MessageBox.Show("Error");
-            }
-        }
-
         private void button_exit_Click(object sender, EventArgs e)
         {
 
@@ -99,97 +163,12 @@ namespace ASAP_Project
 
         private void button_generate_excel_Click(object sender, EventArgs e)
         {
-            Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
-
-            if (xlApp == null)
-            {
-                MessageBox.Show("Sisteminizde Excel kurulu deðil...");
-                return;
-            }
-
-            Excel.Workbook xlWorkBook;
-            Excel.Worksheet xlWorkSheet;
-            object misValue = System.Reflection.Missing.Value;
-
-            xlWorkBook = xlApp.Workbooks.Add(misValue);
-            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
-
-            xlWorkSheet.Cells[1, 1] = "Sýra NO";
-            xlWorkSheet.Cells[1, 2] = "Ýsim";
-            xlWorkSheet.Cells[2, 1] = "1";
-            xlWorkSheet.Cells[2, 2] = "Esat";
-            xlWorkSheet.Cells[3, 1] = "2";
-            xlWorkSheet.Cells[3, 2] = "Emre";
-
-            xlWorkBook.SaveAs("deneme_dosya.xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
-            xlWorkBook.Close(true, misValue, misValue);
-            xlApp.Quit();
-
-            Marshal.ReleaseComObject(xlWorkSheet);
-            Marshal.ReleaseComObject(xlWorkBook);
-            Marshal.ReleaseComObject(xlApp);
-
-            MessageBox.Show("Excel dosyasý c:\\deneme-dosya.xls adresinde oluþturuldu...");
-
-
-
-            //var excelApp = new Excel.Application();
-            //excelApp.Workbooks.Add();
-
-            //var xlSheets = excelApp.Sheets as Excel.Sheets;
-            //var xlNewSheet = (Excel.Worksheet)xlSheets.Add(xlSheets[1], Type.Missing, Type.Missing, Type.Missing);
-
-            //excelApp.Visible = true;
+            ASAP_Project.UserPanel.GenerateExcel();
         }
 
         private void button_create_report_Click(object sender, EventArgs e)
         {
-            //Added code version 1.0 for report genreation, 
-            //experiences runtime error in Program.cs, need checking
-
-            //We create two instances for an Excel and a Word File
-            Excel.Application excelApp = new Excel.Application();
-            Word.Application wordApp = new Word.Application();
-
-            //We pick our Excel file from Pc (Emre's code)
-            string oSelectedFile = "";
-            System.Windows.Forms.OpenFileDialog oDlg = new System.Windows.Forms.OpenFileDialog();
-            if (System.Windows.Forms.DialogResult.OK == oDlg.ShowDialog())
-            {
-                oSelectedFile = oDlg.FileName;
-
-            }
-
-            //We match our excel 
-            Excel.Workbook workbook = excelApp.Workbooks.Open(oSelectedFile);
-            Excel.Worksheet worksheet = workbook.ActiveSheet;
-
-            //We create a new Word document
-            Word.Document document = wordApp.Documents.Add();
-
-            //We scan our Excel data and add it to our newly
-            //created Word document
-            for (int i = 1; i <= worksheet.UsedRange.Rows.Count; i++)
-            {
-                for (int j = 1; j <= worksheet.UsedRange.Columns.Count; j++)
-                {
-                    string cellValue = worksheet.Cells[i, j].Value.ToString();
-                    Word.Range range = document.Content;
-                    range.InsertAfter(cellValue + "\t");
-                }
-                Word.Range rowRange = document.Content;
-                rowRange.InsertAfter("\n");
-            }
-            
-            //Save the Word document
-            document.SaveAs("/report.docx");
-
-            //Close Excel and Word documents
-            workbook.Close();
-            excelApp.Quit();
-
-            document.Close();
-            wordApp.Quit();
+            ASAP_Project.UserPanel.CreateReport();
         }
     }
 }
