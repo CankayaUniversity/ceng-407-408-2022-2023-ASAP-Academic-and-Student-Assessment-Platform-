@@ -13,12 +13,12 @@ namespace ASAP_Project
     public partial class LoginScreen : Form
     {
         
-        private string password = "1234"; //herkes için
-        private string username = "esat"; //herkes için
+        private string password = "1234";        //herkes için
+        private string username = "esat";        //herkes için
         private string admin_password = "admin"; //admin için
         private string admin_username = "admin"; //admin için
-        public static string user_name;
-        public static string user_password;
+        public static string user_name;          //textboxta ki girdiyi MainPage de kullanmak için
+        public static string user_password;      //textboxta ki girdiyi MainPage de kullanmak için
         public LoginScreen()
         {
             InitializeComponent();

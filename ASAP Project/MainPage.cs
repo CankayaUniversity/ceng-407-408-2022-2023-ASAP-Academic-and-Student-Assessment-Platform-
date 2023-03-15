@@ -11,7 +11,7 @@ namespace ASAP_Project
     public partial class MainPage : Form
     {
         public MainPage()
-        {         
+        {
             InitializeComponent();
             panel_adminpanel.Visible = false;
             panel_userpanel.Visible = false;
@@ -19,7 +19,7 @@ namespace ASAP_Project
 
         private void button_userpanel_Click(object sender, EventArgs e)
         {
-            
+
             panel_adminpanel.Visible = false;
             panel_adminpanel.Enabled = false;
             panel_userpanel.Enabled = true;
@@ -41,12 +41,11 @@ namespace ASAP_Project
             }
             else
             {
-
                 MessageBox.Show("You need login as admin!");
                 panel_adminpanel.Enabled = false;
                 panel_adminpanel.Visible = false;
             }
-            panel_userpanel.Visible=false;
+            panel_userpanel.Visible = false;
             panel_userpanel.Enabled = false;
 
             panel_adminpanel.BringToFront();
@@ -110,7 +109,7 @@ namespace ASAP_Project
         {
             try
             {
-                 ASAP_Project.GoogleDrive.UploadFile();
+                ASAP_Project.GoogleDrive.UploadFile();
 
 
             }
@@ -118,6 +117,21 @@ namespace ASAP_Project
             {
                 throw (ex);
                 MessageBox.Show("Error");
+            }
+        }
+
+        private void button_exit_Click(object sender, EventArgs e)
+        {
+
+            DialogResult secenek = MessageBox.Show("Çýkýþ yapmak istediðinize emin misiniz?", "Dikkat", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+            if (secenek == DialogResult.Yes)
+            {
+                Environment.Exit(0);
+            }
+            else if (secenek == DialogResult.No)
+            {
+                //Nothing
             }
         }
     }
