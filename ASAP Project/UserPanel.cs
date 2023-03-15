@@ -40,8 +40,15 @@ namespace ASAP_Project
             xlWorkSheet.Cells[3, 1] = "2";
             xlWorkSheet.Cells[3, 2] = "Emre";
 
+
+            //XlApp visible yazıldı nereye kaydettiği bulunamadı
+            xlApp.Visible = true;
+
             xlWorkBook.SaveAs("deneme_dosya.xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
             xlWorkBook.Close(true, misValue, misValue);
+
+
+
             xlApp.Quit();
 
             Marshal.ReleaseComObject(xlWorkSheet);
@@ -67,8 +74,8 @@ namespace ASAP_Project
             //experiences runtime error in Program.cs, need checking
 
             //We create two instances for an Excel and a Word File
-            Excel.Application excelApp = new Excel.Application();
-            Word.Application wordApp = new Word.Application();
+            Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
+            Word.Application wordApp = new Microsoft.Office.Interop.Word.Application();
 
             //We pick our Excel file from Pc (Emre's code)
             string oSelectedFile = "";
@@ -106,6 +113,8 @@ namespace ASAP_Project
             //Close Excel and Word documents
             workbook.Close();
             excelApp.Quit();
+
+            wordApp.Visible = true;
 
             document.Close();
             wordApp.Quit();

@@ -137,6 +137,7 @@ namespace ASAP_Project
             try
             {
                 ASAP_Project.GoogleDrive.UploadFile();
+                // BUG : Dosya seçmeden kapatýnca error veriyor 
 
             }
             catch (Exception ex)
