@@ -14,13 +14,19 @@ using Word = Microsoft.Office.Interop.Word;
 
 namespace ASAP_Project
 {
+    /*int[] Midterm_Q_no, int[] Homework_Q_no,
+            int[] Quiz_Q_no, */
     public class UserPanel
     {
-        public static void GenerateExcel(int Student_no, int Midterm_no, int Homework_no,
-            int Lab_no, int Quiz_no, int Project_no, int Lesson_output_no, bool isCatalog, bool isFinal,
+        public static void GenerateExcel(int Student_no, int Midterm_no, int Homework_no ,
+            int Lab_no, int Quiz_no, int Project_no, int Lesson_output_no , bool isCatalog , bool isFinal ,
             int[] Midterm_Q_no, int[] Homework_Q_no,
-            int[] Quiz_Q_no, int Final_Q_no)
+            int[] Quiz_Q_no, int Final_Q_no = 1)
         {
+            /*int[] Midterm_Q_no = new int[]{ 3, 3, 3};
+            int[] Homework_Q_no = new int[] { 3, 3, 3 };
+            int[] Quiz_Q_no = new int[] { 3, 3, 3 };*/
+
             Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
 
             if (xlApp == null)
@@ -30,47 +36,53 @@ namespace ASAP_Project
             }
 
             Excel.Workbook xlWorkBook;
-            Excel.Worksheet xlWorkSheet;
+
+            //First we create the sheet responsible for Student Information holding
             object misValue = System.Reflection.Missing.Value;
 
             xlWorkBook = xlApp.Workbooks.Add(misValue);
-            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+            Excel.Worksheet xlStudentSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+            Excel.Worksheet xlMidtermSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+            Excel.Worksheet xlHomeworkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+            Excel.Worksheet xlLabSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+            Excel.Worksheet xlQuizSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+            Excel.Worksheet xlProjectSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+            Excel.Worksheet xlLessonOutputSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
 
-            xlWorkSheet.Cells[1, 1] = "Sıra NO";
-            xlWorkSheet.Cells[1, 2] = "İsim";
-            xlWorkSheet.Cells[2, 1] = "1";
-            xlWorkSheet.Cells[2, 2] = "Esat";
-            xlWorkSheet.Cells[3, 1] = "2";
-            xlWorkSheet.Cells[3, 2] = "Emre";
+            xlStudentSheet.Name = "Students";
+            xlMidtermSheet.Name = "Midterms";
+            xlHomeworkSheet.Name = "Homeworks";
+            xlLabSheet.Name = "Labs";
+            xlQuizSheet.Name = "Quizs";
+            xlProjectSheet.Name = "Projects";
+            xlLessonOutputSheet.Name = "Lesson Outputs";
 
+            xlStudentSheet.Cells[1, 1] = "Id";
+            xlStudentSheet.Cells[1, 2] = "Student ID";
+            xlStudentSheet.Cells[1, 3] = "Student Name";
+            xlStudentSheet.Cells[1, 4] = "Student Surname";
+            xlStudentSheet.Cells[1, 5] = "Age";
+            xlStudentSheet.Cells[1, 6] = "Email";
+            xlStudentSheet.Cells[1, 8] = "GPA";
+            xlStudentSheet.Cells[1, 9] = "CumGPA";
 
-            //XlApp visible yazıldı nereye kaydettiği bulunamadı
+            for(int i = 2; i < Student_no + 2; i++)
+            {
+                xlStudentSheet.Cells[i, 1] = i - 1;
+            }
+
             xlApp.Visible = true;
-
-            xlWorkBook.SaveAs("deneme_dosya.xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
-            xlWorkBook.Close(true, misValue, misValue);
 
 
 
             xlApp.Quit();
 
-            Marshal.ReleaseComObject(xlWorkSheet);
+            Marshal.ReleaseComObject(xlStudentSheet);
             Marshal.ReleaseComObject(xlWorkBook);
             Marshal.ReleaseComObject(xlApp);
 
             MessageBox.Show("Excel dosyası c:\\deneme-dosya.xls adresinde oluşturuldu...");
-
-
-
-            //var excelApp = new Excel.Application();
-            //excelApp.Workbooks.Add();
-
-            //var xlSheets = excelApp.Sheets as Excel.Sheets;
-            //var xlNewSheet = (Excel.Worksheet)xlSheets.Add(xlSheets[1], Type.Missing, Type.Missing, Type.Missing);
-
-            //excelApp.Visible = true;
         }
-
         public static void CreateReport()
         {
             //Added code version 1.0 for report genreation, 
