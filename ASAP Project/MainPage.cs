@@ -298,7 +298,6 @@ namespace ASAP_Project
                 int.Parse(textBox_homeworkcount.Text), int.Parse(textBox_labcount.Text), int.Parse(textBox_quizcount.Text), int.Parse(textBox_projectcount.Text),
                 int.Parse(textBox_derscikticount.Text), checkBox_iscatalog.Checked, checkBox_havefinal.Checked, mt_q, hw_q,
                 quiz_q, int.Parse(textbox_final.Text));
-            //ASAP_Project.UserPanel.GenerateExcel();
         }
 
         private void textBox_homeworkcount_TextChanged(object sender, EventArgs e)

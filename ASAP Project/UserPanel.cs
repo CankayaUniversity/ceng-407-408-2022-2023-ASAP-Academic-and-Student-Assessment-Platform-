@@ -23,9 +23,6 @@ namespace ASAP_Project
             int[] Midterm_Q_no, int[] Homework_Q_no,
             int[] Quiz_Q_no, int Final_Q_no = 1)
         {
-            /*int[] Midterm_Q_no = new int[]{ 3, 3, 3};
-            int[] Homework_Q_no = new int[] { 3, 3, 3 };
-            int[] Quiz_Q_no = new int[] { 3, 3, 3 };*/
 
             Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
 
@@ -41,22 +38,8 @@ namespace ASAP_Project
             object misValue = System.Reflection.Missing.Value;
 
             xlWorkBook = xlApp.Workbooks.Add(misValue);
-            Excel.Worksheet xlStudentSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
-            Excel.Worksheet xlMidtermSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
-            Excel.Worksheet xlHomeworkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
-            Excel.Worksheet xlLabSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
-            Excel.Worksheet xlQuizSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
-            Excel.Worksheet xlProjectSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
-            Excel.Worksheet xlLessonOutputSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
-
+            Excel.Worksheet xlStudentSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
             xlStudentSheet.Name = "Students";
-            xlMidtermSheet.Name = "Midterms";
-            xlHomeworkSheet.Name = "Homeworks";
-            xlLabSheet.Name = "Labs";
-            xlQuizSheet.Name = "Quizs";
-            xlProjectSheet.Name = "Projects";
-            xlLessonOutputSheet.Name = "Lesson Outputs";
-
             xlStudentSheet.Cells[1, 1] = "Id";
             xlStudentSheet.Cells[1, 2] = "Student ID";
             xlStudentSheet.Cells[1, 3] = "Student Name";
@@ -66,22 +49,42 @@ namespace ASAP_Project
             xlStudentSheet.Cells[1, 8] = "GPA";
             xlStudentSheet.Cells[1, 9] = "CumGPA";
 
-            for(int i = 2; i < Student_no + 2; i++)
+            for (int i = 2; i < Student_no + 2; i++)
             {
                 xlStudentSheet.Cells[i, 1] = i - 1;
             }
 
+            for(int i = 0; i < Midterm_no; i++)
+            {
+                Excel.Worksheet xlMidtermSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+                xlStudentSheet.Name = "Midterm-" + (i + 1).ToString();
+                xlStudentSheet.Cells[1, 1] = "Id";
+                xlStudentSheet.Cells[1, 2] = "Student ID";
+                xlStudentSheet.Cells[1, 3] = "Student Name";
+                xlStudentSheet.Cells[1, 4] = "Student Surname";
+                xlStudentSheet.Cells[1, 5] = "Age";
+                xlStudentSheet.Cells[1, 6] = "Email";
+                xlStudentSheet.Cells[1, 8] = "GPA";
+                xlStudentSheet.Cells[1, 9] = "CumGPA";
+                for (int j = 2; j < Midterm_Q_no[i] + 2; j++)
+                {
+                    xlStudentSheet.Cells[j, 1] = j - 1;
+                }
+            }
+
+            Excel.Worksheet xlHomeworkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+            Excel.Worksheet xlLabSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+            Excel.Worksheet xlQuizSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+            Excel.Worksheet xlProjectSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+            Excel.Worksheet xlLessonOutputSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+
+            xlHomeworkSheet.Name = "Homeworks";
+            xlLabSheet.Name = "Labs";
+            xlQuizSheet.Name = "Quizs";
+            xlProjectSheet.Name = "Projects";
+            xlLessonOutputSheet.Name = "Lesson Outputs";
+
             xlApp.Visible = true;
-
-
-
-            xlApp.Quit();
-
-            Marshal.ReleaseComObject(xlStudentSheet);
-            Marshal.ReleaseComObject(xlWorkBook);
-            Marshal.ReleaseComObject(xlApp);
-
-            MessageBox.Show("Excel dosyası c:\\deneme-dosya.xls adresinde oluşturuldu...");
         }
         public static void CreateReport()
         {
