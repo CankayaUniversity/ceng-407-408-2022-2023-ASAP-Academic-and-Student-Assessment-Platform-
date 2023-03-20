@@ -14,8 +14,6 @@ using Word = Microsoft.Office.Interop.Word;
 
 namespace ASAP_Project
 {
-    /*int[] Midterm_Q_no, int[] Homework_Q_no,
-            int[] Quiz_Q_no, */
     public class UserPanel
     {
         public static void GenerateExcel(int Student_no, int Midterm_no, int Homework_no ,
@@ -54,21 +52,27 @@ namespace ASAP_Project
                 xlStudentSheet.Cells[i, 1] = i - 1;
             }
 
-            for(int i = 0; i < Midterm_no; i++)
+            Excel.Worksheet[] xlMidtermSheet = new Excel.Worksheet[Midterm_no];
+            for (int i = 0; i < Midterm_no; i++)
             {
-                Excel.Worksheet xlMidtermSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
-                xlStudentSheet.Name = "Midterm-" + (i + 1).ToString();
-                xlStudentSheet.Cells[1, 1] = "Id";
-                xlStudentSheet.Cells[1, 2] = "Student ID";
-                xlStudentSheet.Cells[1, 3] = "Student Name";
-                xlStudentSheet.Cells[1, 4] = "Student Surname";
-                xlStudentSheet.Cells[1, 5] = "Age";
-                xlStudentSheet.Cells[1, 6] = "Email";
-                xlStudentSheet.Cells[1, 8] = "GPA";
-                xlStudentSheet.Cells[1, 9] = "CumGPA";
+                xlMidtermSheet[i] = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+            }
+
+            for (int i = 0; i < xlMidtermSheet.Length; i++)
+            {
+                Excel.Worksheet sheet = xlMidtermSheet[i];
+                sheet.Name = "Midterm-" + (i + 1).ToString();
+                sheet.Cells[1, 1] = "Id";
+                sheet.Cells[1, 2] = "Student ID";
+                sheet.Cells[1, 3] = "Student Name";
+                sheet.Cells[1, 4] = "Student Surname";
+                sheet.Cells[1, 5] = "Age";
+                sheet.Cells[1, 6] = "Email";
+                sheet.Cells[1, 8] = "GPA";
+                sheet.Cells[1, 9] = "CumGPA";
                 for (int j = 2; j < Midterm_Q_no[i] + 2; j++)
                 {
-                    xlStudentSheet.Cells[j, 1] = j - 1;
+                    sheet.Cells[j, 1] = j - 1;
                 }
             }
 
