@@ -239,9 +239,9 @@ namespace ASAP_Project
         static System.Windows.Forms.TextBox[] textbox_quiz = new System.Windows.Forms.TextBox[50];
         static System.Windows.Forms.Label label_final = new System.Windows.Forms.Label();
         static System.Windows.Forms.TextBox textbox_final = new System.Windows.Forms.TextBox();
-        static int[] mt_q;
-        static int[] hw_q;
-        static int[] quiz_q;
+        static int[] mt_q = new int[100];
+        static int[] hw_q = new int[100];
+        static int[] quiz_q = new int[100];
 
 
         private void textBox_midtermcount_TextChanged(object sender, EventArgs e)
