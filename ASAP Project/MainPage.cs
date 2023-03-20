@@ -239,6 +239,10 @@ namespace ASAP_Project
         static System.Windows.Forms.TextBox[] textbox_quiz = new System.Windows.Forms.TextBox[50];
         static System.Windows.Forms.Label label_final = new System.Windows.Forms.Label();
         static System.Windows.Forms.TextBox textbox_final = new System.Windows.Forms.TextBox();
+        static int[] mt_q;
+        static int[] hw_q;
+        static int[] quiz_q;
+
 
         private void textBox_midtermcount_TextChanged(object sender, EventArgs e)
         {
@@ -277,7 +281,23 @@ namespace ASAP_Project
 
         private void button_generatexcel_main_Click(object sender, EventArgs e)
         {
-            ASAP_Project.UserPanel.GenerateExcel();
+            for (int i = 0; i < int.Parse(textBox_midtermcount.Text); i++)
+            {
+                mt_q[i] = int.Parse(textbox_mt[i].Text);
+            }
+            for (int i = 0; i < int.Parse(textBox_homeworkcount.Text); i++)
+            {
+                hw_q[i] = int.Parse(textbox_hw[i].Text);
+            }
+            for (int i = 0; i < int.Parse(textBox_quizcount.Text); i++)
+            {
+                quiz_q[i] = int.Parse(textbox_quiz[i].Text);
+            }
+
+            ASAP_Project.UserPanel.GenerateExcel(int.Parse(textBox_studentcount.Text), int.Parse(textBox_midtermcount.Text), 
+                int.Parse(textBox_homeworkcount.Text), int.Parse(textBox_labcount.Text), int.Parse(textBox_quizcount.Text), int.Parse(textBox_projectcount.Text),
+                int.Parse(textBox_derscikticount.Text), checkBox_iscatalog.Checked, checkBox_havefinal.Checked, mt_q, hw_q,
+                quiz_q, int.Parse(textbox_final.Text));
         }
 
         private void textBox_homeworkcount_TextChanged(object sender, EventArgs e)
