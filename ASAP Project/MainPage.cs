@@ -7,12 +7,14 @@ using Excel = Microsoft.Office.Interop.Excel;
 using Microsoft.VisualBasic.Logging;
 using Word = Microsoft.Office.Interop.Word;
 using Microsoft.Office.Interop.Word;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ASAP_Project
 {
     public partial class MainPage : Form
     {
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+
 
         private static extern IntPtr CreateRoundRectRgn
         (
@@ -22,6 +24,7 @@ namespace ASAP_Project
             int nBottomRect,
             int nWidthEllipse,
             int nHeightEllipse
+
         );
         public void MainPage_Load()
         {
@@ -56,6 +59,13 @@ namespace ASAP_Project
             label_user.BackColor = Color.Transparent;
             label_studentcount.BackColor = Color.Transparent;
             label_midtermcount.BackColor = Color.Transparent;
+            label_homeworkcount.BackColor = Color.Transparent;
+            label_labcount.BackColor = Color.Transparent;
+            label_quizcount.BackColor = Color.Transparent;
+            label_projectcount.BackColor = Color.Transparent;
+            label_derscikticount.BackColor = Color.Transparent;
+            label_iscatalog.BackColor = Color.Transparent;
+            label_havefinal.BackColor = Color.Transparent;
 
             button1.BackColor = Color.FromArgb(70, Color.Black);
             button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(90, Color.Black);
@@ -99,18 +109,47 @@ namespace ASAP_Project
             //button_exit.Height, 5, 5));
             button_exit.ForeColor = Color.LightGray;
 
+            button_create_report.BackColor = Color.FromArgb(70, Color.Black);
+            button_create_report.FlatAppearance.MouseOverBackColor = Color.FromArgb(90, Color.Black);
+            button_create_report.FlatAppearance.MouseDownBackColor = Color.FromArgb(110, Color.Black);
+            //button_userpanel.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, button_userpanel.Width,
+            //button_userpanel.Height, 5, 5));
+            button_create_report.ForeColor = Color.LightGray;
+
+            button_generate_excel.BackColor = Color.FromArgb(70, Color.Black);
+            button_generate_excel.FlatAppearance.MouseOverBackColor = Color.FromArgb(90, Color.Black);
+            button_generate_excel.FlatAppearance.MouseDownBackColor = Color.FromArgb(110, Color.Black);
+            //button_userpanel.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, button_userpanel.Width,
+            //button_userpanel.Height, 5, 5));
+            button_generate_excel.ForeColor = Color.LightGray;
+
+            button_edit_report.BackColor = Color.FromArgb(70, Color.Black);
+            button_edit_report.FlatAppearance.MouseOverBackColor = Color.FromArgb(90, Color.Black);
+            button_edit_report.FlatAppearance.MouseDownBackColor = Color.FromArgb(110, Color.Black);
+            //button_userpanel.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, button_userpanel.Width,
+            //button_userpanel.Height, 5, 5));
+            button_edit_report.ForeColor = Color.LightGray;
+
+            button_transfer_data.BackColor = Color.FromArgb(70, Color.Black);
+            button_transfer_data.FlatAppearance.MouseOverBackColor = Color.FromArgb(90, Color.Black);
+            button_transfer_data.FlatAppearance.MouseDownBackColor = Color.FromArgb(110, Color.Black);
+            //button_userpanel.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, button_userpanel.Width,
+            //button_userpanel.Height, 5, 5));
+            button_transfer_data.ForeColor = Color.LightGray;
 
 
+
+
+            
         }
 
         public MainPage()
         {
             InitializeComponent();
             MainPage_Load();
-
+            
         }
-
-        
+                         
 
         private void button_userpanel_Click(object sender, EventArgs e)
         {
@@ -191,28 +230,136 @@ namespace ASAP_Project
             ASAP_Project.UserPanel.CreateReport();
         }
 
+
+        static System.Windows.Forms.Label[] label_mt = new System.Windows.Forms.Label[50];
+        static System.Windows.Forms.TextBox[] textbox_mt = new System.Windows.Forms.TextBox[50];
+        static System.Windows.Forms.Label[] label_hw = new System.Windows.Forms.Label[50];
+        static System.Windows.Forms.TextBox[] textbox_hw = new System.Windows.Forms.TextBox[50];
+        static System.Windows.Forms.Label[] label_quiz = new System.Windows.Forms.Label[50];
+        static System.Windows.Forms.TextBox[] textbox_quiz = new System.Windows.Forms.TextBox[50];
+        static System.Windows.Forms.Label label_final = new System.Windows.Forms.Label();
+        static System.Windows.Forms.TextBox textbox_final = new System.Windows.Forms.TextBox();
+
         private void textBox_midtermcount_TextChanged(object sender, EventArgs e)
         {
-            dataGridView_midtermcount.Rows.Clear();
-            dataGridView_midtermcount.Columns.Clear();
-            dataGridView_midtermcount.Refresh();
 
-            if (int.Parse(textBox_midtermcount.Text) >= 1)
+            //261,15
+
+            
+
+
+            for (int i = 0; i < int.Parse(textBox_midtermcount.Text); i++)
             {
-                dataGridView_midtermcount.Visible = true;
-                dataGridView_midtermcount.Columns.Add("Midterm", "Midterm");
-                dataGridView_midtermcount.Columns.Add("QuestionCount", "QuestionCount");
-                for (int i = 0; i < int.Parse(textBox_midtermcount.Text); i++)
-                {
-                    dataGridView_midtermcount.Rows.Add("Midterm" + (i + 1));
+                label_mt[i] = new System.Windows.Forms.Label();
+                label_mt[i].Text = "Question Count Midterm " + (i + 1) + " :";
+                label_mt[i].ForeColor = Color.White;
+                label_mt[i].Size = new System.Drawing.Size(160, 21);
+                label_mt[i].Location = new System.Drawing.Point((271) , 15 + (i * 25));
+                label_mt[i].Enabled = true;
+                label_mt[i].Visible = true;
+                label_mt[i].BackColor = Color.Transparent;
+                panel_generatexcel.Controls.Add(label_mt[i]);
+            }
 
-                }
+            
+
+            for (int i = 0; i < int.Parse(textBox_midtermcount.Text); i++)
+            {
+                textbox_mt[i] = new System.Windows.Forms.TextBox();
+                textbox_mt[i].Name = "MidtermQC"+(i + 1);
+                textbox_mt[i].Size = new System.Drawing.Size(90, 21);
+                textbox_mt[i].Location = new System.Drawing.Point((431), 11 + (i * 25));
+                textbox_mt[i].Enabled = true;
+                textbox_mt[i].Visible = true;
+                panel_generatexcel.Controls.Add(textbox_mt[i]);
             }
         }
 
         private void button_generatexcel_main_Click(object sender, EventArgs e)
         {
             ASAP_Project.UserPanel.GenerateExcel();
+        }
+
+        private void textBox_homeworkcount_TextChanged(object sender, EventArgs e)
+        {
+            int lastloc = (label_mt[(int.Parse(textBox_midtermcount.Text)) - 1].Location.Y) + 21;
+
+            for (int i = 0; i < int.Parse(textBox_homeworkcount.Text); i++)
+            {
+                label_hw[i] = new System.Windows.Forms.Label();
+                label_hw[i].Text = "Question Count Homework " + (i + 1) + " :";
+                label_hw[i].ForeColor = Color.White;
+                label_hw[i].Size = new System.Drawing.Size(170, 21);
+                label_hw[i].Location = new System.Drawing.Point((261), lastloc + (i * 25));
+                label_hw[i].Enabled = true;
+                label_hw[i].Visible = true;
+                label_hw[i].BackColor = Color.Transparent;
+                panel_generatexcel.Controls.Add(label_hw[i]);
+            }
+
+
+            for (int i = 0; i < int.Parse(textBox_homeworkcount.Text); i++)
+            {
+                textbox_hw[i] = new System.Windows.Forms.TextBox();
+                textbox_hw[i].Size = new System.Drawing.Size(90, 21);
+                textbox_hw[i].Location = new System.Drawing.Point((431), lastloc + (i * 25));
+                textbox_hw[i].Enabled = true;
+                textbox_hw[i].Visible = true;
+                panel_generatexcel.Controls.Add(textbox_hw[i]);
+            }
+        }
+
+        private void textBox_quizcount_TextChanged(object sender, EventArgs e)
+        {
+            int lastloc = (label_hw[(int.Parse(textBox_homeworkcount.Text)) - 1].Location.Y) + 25;
+
+            for (int i = 0; i < int.Parse(textBox_quizcount.Text); i++)
+            {
+                label_quiz[i] = new System.Windows.Forms.Label();
+                label_quiz[i].Text = "Question Count Quiz " + (i + 1) + " :";
+                label_quiz[i].ForeColor = Color.White;
+                label_quiz[i].Size = new System.Drawing.Size(140, 21);
+                label_quiz[i].Location = new System.Drawing.Point((291), lastloc + (i * 25));
+                label_quiz[i].Enabled = true;
+                label_quiz[i].Visible = true;
+                label_quiz[i].BackColor = Color.Transparent;
+                panel_generatexcel.Controls.Add(label_quiz[i]);
+            }
+
+
+            for (int i = 0; i < int.Parse(textBox_quizcount.Text); i++)
+            {
+                textbox_quiz[i] = new System.Windows.Forms.TextBox();
+                textbox_quiz[i].Size = new System.Drawing.Size(90, 21);
+                textbox_quiz[i].Location = new System.Drawing.Point((431), lastloc + (i * 25));
+                textbox_quiz[i].Enabled = true;
+                textbox_quiz[i].Visible = true;
+                panel_generatexcel.Controls.Add(textbox_quiz[i]);
+            }
+        }
+
+        private void checkBox_havefinal_Click(object sender, EventArgs e)
+        {
+            int lastloc = (label_quiz[(int.Parse(textBox_quizcount.Text)) - 1].Location.Y);
+
+            if (checkBox_havefinal.Checked)
+            {
+                label_final = new System.Windows.Forms.Label();
+                label_final.Text = "Question Count Final " + " :";
+                label_final.ForeColor = Color.White;
+                label_final.Size = new System.Drawing.Size(140, 21);
+                label_final.Location = new System.Drawing.Point((291), lastloc + (25));
+                label_final.Enabled = true;
+                label_final.Visible = true;
+                label_final.BackColor = Color.Transparent;
+                panel_generatexcel.Controls.Add(label_final);
+                textbox_final = new System.Windows.Forms.TextBox();
+                textbox_final.Size = new System.Drawing.Size(90, 21);
+                textbox_final.Location = new System.Drawing.Point((431), lastloc + (25));
+                textbox_final.Enabled = true;
+                textbox_final.Visible = true;
+                panel_generatexcel.Controls.Add(textbox_final);
+            }
         }
     }
 }

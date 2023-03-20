@@ -43,7 +43,6 @@
             this.button_account = new System.Windows.Forms.Button();
             this.button_adminpanel = new System.Windows.Forms.Button();
             this.panel_userpanel = new System.Windows.Forms.Panel();
-            this.button_transferdata = new System.Windows.Forms.Button();
             this.button_transfer_data = new System.Windows.Forms.Button();
             this.button_edit_report = new System.Windows.Forms.Button();
             this.button_create_report = new System.Windows.Forms.Button();
@@ -53,18 +52,30 @@
             this.button_addcourse = new System.Windows.Forms.Button();
             this.button_updatecourse = new System.Windows.Forms.Button();
             this.panel_generatexcel = new System.Windows.Forms.Panel();
+            this.textBox_quizcount = new System.Windows.Forms.TextBox();
+            this.label_quizcount = new System.Windows.Forms.Label();
+            this.textBox_labcount = new System.Windows.Forms.TextBox();
+            this.label_labcount = new System.Windows.Forms.Label();
+            this.textBox_homeworkcount = new System.Windows.Forms.TextBox();
+            this.label_homeworkcount = new System.Windows.Forms.Label();
             this.button_generatexcel_main = new System.Windows.Forms.Button();
-            this.dataGridView_midtermcount = new System.Windows.Forms.DataGridView();
             this.textBox_midtermcount = new System.Windows.Forms.TextBox();
             this.label_midtermcount = new System.Windows.Forms.Label();
             this.textBox_studentcount = new System.Windows.Forms.TextBox();
             this.label_studentcount = new System.Windows.Forms.Label();
+            this.label_projectcount = new System.Windows.Forms.Label();
+            this.textBox_projectcount = new System.Windows.Forms.TextBox();
+            this.label_derscikticount = new System.Windows.Forms.Label();
+            this.textBox_derscikticount = new System.Windows.Forms.TextBox();
+            this.label_iscatalog = new System.Windows.Forms.Label();
+            this.checkBox_iscatalog = new System.Windows.Forms.CheckBox();
+            this.label_havefinal = new System.Windows.Forms.Label();
+            this.checkBox_havefinal = new System.Windows.Forms.CheckBox();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel_userpanel.SuspendLayout();
             this.panel_adminpanel.SuspendLayout();
             this.panel_generatexcel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_midtermcount)).BeginInit();
             this.SuspendLayout();
             // 
             // button_userpanel
@@ -218,7 +229,6 @@
             // panel_userpanel
             // 
             this.panel_userpanel.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.panel_userpanel.Controls.Add(this.button_transferdata);
             this.panel_userpanel.Controls.Add(this.button_transfer_data);
             this.panel_userpanel.Controls.Add(this.button_edit_report);
             this.panel_userpanel.Controls.Add(this.button_create_report);
@@ -228,38 +238,35 @@
             this.panel_userpanel.Size = new System.Drawing.Size(200, 569);
             this.panel_userpanel.TabIndex = 6;
             // 
-            // button_transferdata
-            // 
-            this.button_transferdata.Location = new System.Drawing.Point(16, 247);
-            this.button_transferdata.Name = "button_transferdata";
-            this.button_transferdata.Size = new System.Drawing.Size(160, 50);
-            this.button_transferdata.TabIndex = 4;
-            this.button_transferdata.Text = "Transfer Data";
-            this.button_transferdata.UseVisualStyleBackColor = true;
-            // 
             // button_transfer_data
             // 
-            this.button_transfer_data.Location = new System.Drawing.Point(16, 191);
+            this.button_transfer_data.FlatAppearance.BorderSize = 0;
+            this.button_transfer_data.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_transfer_data.Location = new System.Drawing.Point(0, 173);
             this.button_transfer_data.Name = "button_transfer_data";
-            this.button_transfer_data.Size = new System.Drawing.Size(160, 50);
+            this.button_transfer_data.Size = new System.Drawing.Size(200, 50);
             this.button_transfer_data.TabIndex = 3;
             this.button_transfer_data.Text = "Transfer Data";
             this.button_transfer_data.UseVisualStyleBackColor = true;
             // 
             // button_edit_report
             // 
-            this.button_edit_report.Location = new System.Drawing.Point(16, 135);
+            this.button_edit_report.FlatAppearance.BorderSize = 0;
+            this.button_edit_report.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_edit_report.Location = new System.Drawing.Point(0, 123);
             this.button_edit_report.Name = "button_edit_report";
-            this.button_edit_report.Size = new System.Drawing.Size(160, 50);
+            this.button_edit_report.Size = new System.Drawing.Size(200, 50);
             this.button_edit_report.TabIndex = 2;
             this.button_edit_report.Text = "Edit Report";
             this.button_edit_report.UseVisualStyleBackColor = true;
             // 
             // button_create_report
             // 
-            this.button_create_report.Location = new System.Drawing.Point(16, 79);
+            this.button_create_report.FlatAppearance.BorderSize = 0;
+            this.button_create_report.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_create_report.Location = new System.Drawing.Point(0, 73);
             this.button_create_report.Name = "button_create_report";
-            this.button_create_report.Size = new System.Drawing.Size(160, 50);
+            this.button_create_report.Size = new System.Drawing.Size(200, 50);
             this.button_create_report.TabIndex = 1;
             this.button_create_report.Text = "Create Report";
             this.button_create_report.UseVisualStyleBackColor = true;
@@ -267,9 +274,11 @@
             // 
             // button_generate_excel
             // 
-            this.button_generate_excel.Location = new System.Drawing.Point(16, 23);
+            this.button_generate_excel.FlatAppearance.BorderSize = 0;
+            this.button_generate_excel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button_generate_excel.Location = new System.Drawing.Point(0, 23);
             this.button_generate_excel.Name = "button_generate_excel";
-            this.button_generate_excel.Size = new System.Drawing.Size(160, 50);
+            this.button_generate_excel.Size = new System.Drawing.Size(200, 50);
             this.button_generate_excel.TabIndex = 0;
             this.button_generate_excel.Text = "Generate Excel";
             this.button_generate_excel.UseVisualStyleBackColor = true;
@@ -316,8 +325,21 @@
             // panel_generatexcel
             // 
             this.panel_generatexcel.BackColor = System.Drawing.SystemColors.GrayText;
+            this.panel_generatexcel.Controls.Add(this.checkBox_havefinal);
+            this.panel_generatexcel.Controls.Add(this.label_havefinal);
+            this.panel_generatexcel.Controls.Add(this.checkBox_iscatalog);
+            this.panel_generatexcel.Controls.Add(this.label_iscatalog);
+            this.panel_generatexcel.Controls.Add(this.textBox_derscikticount);
+            this.panel_generatexcel.Controls.Add(this.label_derscikticount);
+            this.panel_generatexcel.Controls.Add(this.textBox_projectcount);
+            this.panel_generatexcel.Controls.Add(this.label_projectcount);
+            this.panel_generatexcel.Controls.Add(this.textBox_quizcount);
+            this.panel_generatexcel.Controls.Add(this.label_quizcount);
+            this.panel_generatexcel.Controls.Add(this.textBox_labcount);
+            this.panel_generatexcel.Controls.Add(this.label_labcount);
+            this.panel_generatexcel.Controls.Add(this.textBox_homeworkcount);
+            this.panel_generatexcel.Controls.Add(this.label_homeworkcount);
             this.panel_generatexcel.Controls.Add(this.button_generatexcel_main);
-            this.panel_generatexcel.Controls.Add(this.dataGridView_midtermcount);
             this.panel_generatexcel.Controls.Add(this.textBox_midtermcount);
             this.panel_generatexcel.Controls.Add(this.label_midtermcount);
             this.panel_generatexcel.Controls.Add(this.textBox_studentcount);
@@ -327,6 +349,62 @@
             this.panel_generatexcel.Size = new System.Drawing.Size(747, 569);
             this.panel_generatexcel.TabIndex = 8;
             this.panel_generatexcel.Visible = false;
+            // 
+            // textBox_quizcount
+            // 
+            this.textBox_quizcount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox_quizcount.Location = new System.Drawing.Point(155, 154);
+            this.textBox_quizcount.Name = "textBox_quizcount";
+            this.textBox_quizcount.Size = new System.Drawing.Size(100, 29);
+            this.textBox_quizcount.TabIndex = 11;
+            this.textBox_quizcount.TextChanged += new System.EventHandler(this.textBox_quizcount_TextChanged);
+            // 
+            // label_quizcount
+            // 
+            this.label_quizcount.AutoSize = true;
+            this.label_quizcount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label_quizcount.Location = new System.Drawing.Point(54, 164);
+            this.label_quizcount.Name = "label_quizcount";
+            this.label_quizcount.Size = new System.Drawing.Size(95, 21);
+            this.label_quizcount.TabIndex = 10;
+            this.label_quizcount.Text = "Quiz Count :";
+            // 
+            // textBox_labcount
+            // 
+            this.textBox_labcount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox_labcount.Location = new System.Drawing.Point(155, 119);
+            this.textBox_labcount.Name = "textBox_labcount";
+            this.textBox_labcount.Size = new System.Drawing.Size(100, 29);
+            this.textBox_labcount.TabIndex = 9;
+            // 
+            // label_labcount
+            // 
+            this.label_labcount.AutoSize = true;
+            this.label_labcount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label_labcount.Location = new System.Drawing.Point(61, 127);
+            this.label_labcount.Name = "label_labcount";
+            this.label_labcount.Size = new System.Drawing.Size(88, 21);
+            this.label_labcount.TabIndex = 8;
+            this.label_labcount.Text = "Lab Count :";
+            // 
+            // textBox_homeworkcount
+            // 
+            this.textBox_homeworkcount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox_homeworkcount.Location = new System.Drawing.Point(155, 84);
+            this.textBox_homeworkcount.Name = "textBox_homeworkcount";
+            this.textBox_homeworkcount.Size = new System.Drawing.Size(100, 29);
+            this.textBox_homeworkcount.TabIndex = 7;
+            this.textBox_homeworkcount.TextChanged += new System.EventHandler(this.textBox_homeworkcount_TextChanged);
+            // 
+            // label_homeworkcount
+            // 
+            this.label_homeworkcount.AutoSize = true;
+            this.label_homeworkcount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label_homeworkcount.Location = new System.Drawing.Point(9, 92);
+            this.label_homeworkcount.Name = "label_homeworkcount";
+            this.label_homeworkcount.Size = new System.Drawing.Size(140, 21);
+            this.label_homeworkcount.TabIndex = 6;
+            this.label_homeworkcount.Text = "Homework Count :";
             // 
             // button_generatexcel_main
             // 
@@ -338,26 +416,10 @@
             this.button_generatexcel_main.UseVisualStyleBackColor = true;
             this.button_generatexcel_main.Click += new System.EventHandler(this.button_generatexcel_main_Click);
             // 
-            // dataGridView_midtermcount
-            // 
-            this.dataGridView_midtermcount.AllowUserToAddRows = false;
-            this.dataGridView_midtermcount.AllowUserToDeleteRows = false;
-            this.dataGridView_midtermcount.AllowUserToResizeColumns = false;
-            this.dataGridView_midtermcount.AllowUserToResizeRows = false;
-            this.dataGridView_midtermcount.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView_midtermcount.ColumnHeadersVisible = false;
-            this.dataGridView_midtermcount.Location = new System.Drawing.Point(249, 15);
-            this.dataGridView_midtermcount.Name = "dataGridView_midtermcount";
-            this.dataGridView_midtermcount.RowHeadersVisible = false;
-            this.dataGridView_midtermcount.RowTemplate.Height = 25;
-            this.dataGridView_midtermcount.Size = new System.Drawing.Size(495, 150);
-            this.dataGridView_midtermcount.TabIndex = 4;
-            this.dataGridView_midtermcount.Visible = false;
-            // 
             // textBox_midtermcount
             // 
             this.textBox_midtermcount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox_midtermcount.Location = new System.Drawing.Point(143, 50);
+            this.textBox_midtermcount.Location = new System.Drawing.Point(155, 50);
             this.textBox_midtermcount.Name = "textBox_midtermcount";
             this.textBox_midtermcount.Size = new System.Drawing.Size(100, 29);
             this.textBox_midtermcount.TabIndex = 3;
@@ -367,7 +429,7 @@
             // 
             this.label_midtermcount.AutoSize = true;
             this.label_midtermcount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label_midtermcount.Location = new System.Drawing.Point(14, 58);
+            this.label_midtermcount.Location = new System.Drawing.Point(26, 58);
             this.label_midtermcount.Name = "label_midtermcount";
             this.label_midtermcount.Size = new System.Drawing.Size(123, 21);
             this.label_midtermcount.TabIndex = 2;
@@ -376,7 +438,7 @@
             // textBox_studentcount
             // 
             this.textBox_studentcount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox_studentcount.Location = new System.Drawing.Point(143, 15);
+            this.textBox_studentcount.Location = new System.Drawing.Point(155, 15);
             this.textBox_studentcount.Name = "textBox_studentcount";
             this.textBox_studentcount.Size = new System.Drawing.Size(100, 29);
             this.textBox_studentcount.TabIndex = 1;
@@ -385,11 +447,86 @@
             // 
             this.label_studentcount.AutoSize = true;
             this.label_studentcount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label_studentcount.Location = new System.Drawing.Point(21, 23);
+            this.label_studentcount.Location = new System.Drawing.Point(33, 23);
             this.label_studentcount.Name = "label_studentcount";
             this.label_studentcount.Size = new System.Drawing.Size(116, 21);
             this.label_studentcount.TabIndex = 0;
             this.label_studentcount.Text = "Student Count :";
+            // 
+            // label_projectcount
+            // 
+            this.label_projectcount.AutoSize = true;
+            this.label_projectcount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label_projectcount.Location = new System.Drawing.Point(38, 196);
+            this.label_projectcount.Name = "label_projectcount";
+            this.label_projectcount.Size = new System.Drawing.Size(111, 21);
+            this.label_projectcount.TabIndex = 12;
+            this.label_projectcount.Text = "Project Count :";
+            // 
+            // textBox_projectcount
+            // 
+            this.textBox_projectcount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox_projectcount.Location = new System.Drawing.Point(155, 189);
+            this.textBox_projectcount.Name = "textBox_projectcount";
+            this.textBox_projectcount.Size = new System.Drawing.Size(100, 29);
+            this.textBox_projectcount.TabIndex = 13;
+            // 
+            // label_derscikticount
+            // 
+            this.label_derscikticount.AutoSize = true;
+            this.label_derscikticount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label_derscikticount.Location = new System.Drawing.Point(8, 230);
+            this.label_derscikticount.Name = "label_derscikticount";
+            this.label_derscikticount.Size = new System.Drawing.Size(141, 21);
+            this.label_derscikticount.TabIndex = 14;
+            this.label_derscikticount.Text = "Ders Çıktısı Count :";
+            // 
+            // textBox_derscikticount
+            // 
+            this.textBox_derscikticount.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox_derscikticount.Location = new System.Drawing.Point(155, 222);
+            this.textBox_derscikticount.Name = "textBox_derscikticount";
+            this.textBox_derscikticount.Size = new System.Drawing.Size(100, 29);
+            this.textBox_derscikticount.TabIndex = 15;
+            // 
+            // label_iscatalog
+            // 
+            this.label_iscatalog.AutoSize = true;
+            this.label_iscatalog.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label_iscatalog.Location = new System.Drawing.Point(64, 265);
+            this.label_iscatalog.Name = "label_iscatalog";
+            this.label_iscatalog.Size = new System.Drawing.Size(85, 21);
+            this.label_iscatalog.TabIndex = 16;
+            this.label_iscatalog.Text = "Is Catalog :";
+            // 
+            // checkBox_iscatalog
+            // 
+            this.checkBox_iscatalog.AutoSize = true;
+            this.checkBox_iscatalog.Location = new System.Drawing.Point(155, 269);
+            this.checkBox_iscatalog.Name = "checkBox_iscatalog";
+            this.checkBox_iscatalog.Size = new System.Drawing.Size(15, 14);
+            this.checkBox_iscatalog.TabIndex = 17;
+            this.checkBox_iscatalog.UseVisualStyleBackColor = true;
+            // 
+            // label_havefinal
+            // 
+            this.label_havefinal.AutoSize = true;
+            this.label_havefinal.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label_havefinal.Location = new System.Drawing.Point(60, 294);
+            this.label_havefinal.Name = "label_havefinal";
+            this.label_havefinal.Size = new System.Drawing.Size(89, 21);
+            this.label_havefinal.TabIndex = 18;
+            this.label_havefinal.Text = "Have Final :";
+            // 
+            // checkBox_havefinal
+            // 
+            this.checkBox_havefinal.AutoSize = true;
+            this.checkBox_havefinal.Location = new System.Drawing.Point(155, 301);
+            this.checkBox_havefinal.Name = "checkBox_havefinal";
+            this.checkBox_havefinal.Size = new System.Drawing.Size(15, 14);
+            this.checkBox_havefinal.TabIndex = 19;
+            this.checkBox_havefinal.UseVisualStyleBackColor = true;
+            this.checkBox_havefinal.Click += new System.EventHandler(this.checkBox_havefinal_Click);
             // 
             // MainPage
             // 
@@ -416,7 +553,6 @@
             this.panel_adminpanel.ResumeLayout(false);
             this.panel_generatexcel.ResumeLayout(false);
             this.panel_generatexcel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView_midtermcount)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -433,7 +569,6 @@
         private Button button_exit;
         private Button button_account;
         private Panel panel_userpanel;
-        private Button button_transferdata;
         private Button button_transfer_data;
         private Button button_edit_report;
         private Button button_create_report;
@@ -451,7 +586,20 @@
         private TextBox textBox_studentcount;
         private Label label_midtermcount;
         private TextBox textBox_midtermcount;
-        private DataGridView dataGridView_midtermcount;
         private Button button_generatexcel_main;
+        private TextBox textBox_homeworkcount;
+        private Label label_homeworkcount;
+        private TextBox textBox_quizcount;
+        private Label label_quizcount;
+        private TextBox textBox_labcount;
+        private Label label_labcount;
+        private CheckBox checkBox_havefinal;
+        private Label label_havefinal;
+        private CheckBox checkBox_iscatalog;
+        private Label label_iscatalog;
+        private TextBox textBox_derscikticount;
+        private Label label_derscikticount;
+        private TextBox textBox_projectcount;
+        private Label label_projectcount;
     }
 }
