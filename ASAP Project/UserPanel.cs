@@ -19,7 +19,7 @@ namespace ASAP_Project
         public static void GenerateExcel(int Student_no, int Midterm_no, int Homework_no ,
             int Lab_no, int Quiz_no, int Project_no, int Lesson_output_no , bool isCatalog , bool isFinal ,
             int[] Midterm_Q_no, int[] Homework_Q_no,
-            int[] Quiz_Q_no, int Final_Q_no = 1)
+            int[] Quiz_Q_no, int Final_Q_no)
         {
 
             Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
@@ -87,7 +87,7 @@ namespace ASAP_Project
             for (int i = 0; i < xlHomeworkSheet.Length; i++)
             {
                 Excel.Worksheet sheet = xlHomeworkSheet[i];
-                sheet.Name = "Midterm-" + (i + 1).ToString();
+                sheet.Name = "Homework-" + (i + 1).ToString();
                 sheet.Cells[1, 1] = "Id";
                 sheet.Cells[1, 2] = "Student ID";
                 sheet.Cells[1, 3] = "Student Name";
@@ -102,15 +102,78 @@ namespace ASAP_Project
                 }
             }
 
+            //Lab sheets
+            Excel.Worksheet[] xlLabSheet = new Excel.Worksheet[Lab_no];
+            for (int i = 0; i < Lab_no; i++)
+            {
+                xlLabSheet[i] = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+            }
 
-            Excel.Worksheet xlLabSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
-            Excel.Worksheet xlQuizSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
-            Excel.Worksheet xlProjectSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+            for (int i = 0; i < xlLabSheet.Length; i++)
+            {
+                Excel.Worksheet sheet = xlLabSheet[i];
+                sheet.Name = "Lab-" + (i + 1).ToString();
+                sheet.Cells[1, 1] = "Id";
+                sheet.Cells[1, 2] = "Student ID";
+                sheet.Cells[1, 3] = "Student Name";
+                sheet.Cells[1, 4] = "Student Surname";
+                sheet.Cells[1, 5] = "Grade";
+                for (int j = 2; j < Student_no + 2; j++)
+                {
+                    sheet.Cells[j, 1] = j - 1;
+                }
+            }
+
+            //Quiz sheets
+            Excel.Worksheet[] xlQuizSheet = new Excel.Worksheet[Quiz_no];
+            for (int i = 0; i < Quiz_no; i++)
+            {
+                xlQuizSheet[i] = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+            }
+
+            for (int i = 0; i < xlQuizSheet.Length; i++)
+            {
+                Excel.Worksheet sheet = xlQuizSheet[i];
+                sheet.Name = "Quiz-" + (i + 1).ToString();
+                sheet.Cells[1, 1] = "Id";
+                sheet.Cells[1, 2] = "Student ID";
+                sheet.Cells[1, 3] = "Student Name";
+                sheet.Cells[1, 4] = "Student Surname";
+                for (int k = 5; k < Quiz_Q_no[i] + 5; k++)
+                {
+                    sheet.Cells[1, k] = "Question-" + (k - 4).ToString();
+                }
+                for (int j = 2; j < Student_no + 2; j++)
+                {
+                    sheet.Cells[j, 1] = j - 1;
+                }
+            }
+
+            //Project sheet(s)
+            Excel.Worksheet[] xlProjectSheet = new Excel.Worksheet[Project_no];
+            for (int i = 0; i < Project_no; i++)
+            {
+                xlProjectSheet[i] = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+            }
+
+            for (int i = 0; i < xlProjectSheet.Length; i++)
+            {
+                Excel.Worksheet sheet = xlProjectSheet[i];
+                sheet.Name = "Project-" + (i + 1).ToString();
+                sheet.Cells[1, 1] = "Id";
+                sheet.Cells[1, 2] = "Student ID";
+                sheet.Cells[1, 3] = "Student Name";
+                sheet.Cells[1, 4] = "Student Surname";
+                sheet.Cells[1, 5] = "Grade";
+                for (int j = 2; j < Student_no + 2; j++)
+                {
+                    sheet.Cells[j, 1] = j - 1;
+                }
+            }
+
+            //Lesson Output sheets?
             Excel.Worksheet xlLessonOutputSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
 
-            xlLabSheet.Name = "Labs";
-            xlQuizSheet.Name = "Quizs";
-            xlProjectSheet.Name = "Projects";
             xlLessonOutputSheet.Name = "Lesson Outputs";
 
             xlApp.Visible = true;
