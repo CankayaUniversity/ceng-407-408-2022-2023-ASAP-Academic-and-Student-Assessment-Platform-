@@ -52,6 +52,7 @@ namespace ASAP_Project
                 xlStudentSheet.Cells[i, 1] = i - 1;
             }
 
+            //Now we create Midterm excel
             Excel.Worksheet[] xlMidtermSheet = new Excel.Worksheet[Midterm_no];
             for (int i = 0; i < Midterm_no; i++)
             {
@@ -66,23 +67,47 @@ namespace ASAP_Project
                 sheet.Cells[1, 2] = "Student ID";
                 sheet.Cells[1, 3] = "Student Name";
                 sheet.Cells[1, 4] = "Student Surname";
-                sheet.Cells[1, 5] = "Age";
-                sheet.Cells[1, 6] = "Email";
-                sheet.Cells[1, 8] = "GPA";
-                sheet.Cells[1, 9] = "CumGPA";
-                for (int j = 2; j < Midterm_Q_no[i] + 2; j++)
+                for (int k=5;k<Midterm_Q_no[i] + 5; k++)
+                {
+                    sheet.Cells[1, k] = "Question-" + (k - 4).ToString();
+                }
+                for (int j = 2; j < Student_no + 2; j++)
                 {
                     sheet.Cells[j, 1] = j - 1;
                 }
             }
 
-            Excel.Worksheet xlHomeworkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+            //Homework sheet(s)
+            Excel.Worksheet[] xlHomeworkSheet = new Excel.Worksheet[Homework_no];
+            for (int i = 0; i < Homework_no; i++)
+            {
+                xlHomeworkSheet[i] = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+            }
+
+            for (int i = 0; i < xlHomeworkSheet.Length; i++)
+            {
+                Excel.Worksheet sheet = xlHomeworkSheet[i];
+                sheet.Name = "Midterm-" + (i + 1).ToString();
+                sheet.Cells[1, 1] = "Id";
+                sheet.Cells[1, 2] = "Student ID";
+                sheet.Cells[1, 3] = "Student Name";
+                sheet.Cells[1, 4] = "Student Surname";
+                for (int k = 5; k < Homework_Q_no[i] + 5; k++)
+                {
+                    sheet.Cells[1, k] = "Question-" + (k - 4).ToString();
+                }
+                for (int j = 2; j < Student_no + 2; j++)
+                {
+                    sheet.Cells[j, 1] = j - 1;
+                }
+            }
+
+
             Excel.Worksheet xlLabSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
             Excel.Worksheet xlQuizSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
             Excel.Worksheet xlProjectSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
             Excel.Worksheet xlLessonOutputSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
 
-            xlHomeworkSheet.Name = "Homeworks";
             xlLabSheet.Name = "Labs";
             xlQuizSheet.Name = "Quizs";
             xlProjectSheet.Name = "Projects";
