@@ -1,0 +1,18 @@
+﻿<Window x:Class="ASAP_Project.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ASAP_Project"
+        mc:Ignorable="d"
+        Title="LoginWindow" Height="450" Width="300
+        ">
+    <Grid>
+        <Label x:Name="label_username" Content="Username :" HorizontalAlignment="Left" Margin="37,240,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="label_password" Content="Password :" HorizontalAlignment="Left" Margin="41,271,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="textbox_username" HorizontalAlignment="Left" Margin="111,244,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <PasswordBox x:Name="passwordbox_password" HorizontalAlignment="Left" Margin="111,275,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="button_login" Content="Login" HorizontalAlignment="Center" Margin="0,313,0,0" VerticalAlignment="Top" Click="button_login_Click"/>
+
+    </Grid>
+</Window>

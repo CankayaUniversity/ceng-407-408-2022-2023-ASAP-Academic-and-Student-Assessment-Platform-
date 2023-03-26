@@ -1,0 +1,108 @@
+﻿<Window x:Class="ASAP_Project.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:effects="clr-namespace:System.Windows.Media.Effects;assembly=PresentationCore"
+        xmlns:local="clr-namespace:ASAP_Project"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="720" Width="1280">
+    <Grid x:Name="grid_mainwindow">
+        <Image x:Name="image_background" Source="/Images/image_bg.jpg" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleX="0"/>
+                    <RotateTransform/>
+                    <TranslateTransform X="0"/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+
+        <Grid x:Name="grid_mainpanel" Margin="20,41,988,51" Opacity="1" >
+
+            <Border Padding="20" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Margin="0,0,0,2" Opacity="0.8">
+                <Border.Effect>
+                    <BlurEffect Radius="3"/>
+                </Border.Effect>
+            </Border>
+
+            <Rectangle Fill="Black" Opacity="0.3" Margin="0,0,0,2" RadiusX="20" RadiusY="20">
+                <Rectangle.Effect>
+                    <BlurEffect Radius="2" KernelType="Box" RenderingBias="Quality"/>
+                </Rectangle.Effect>
+            </Rectangle>
+
+            <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_userpanel" Content="User Panel" HorizontalAlignment="Center" Margin="0,305,0,0" VerticalAlignment="Top" Width="246" Click="button_userpanel_Click" Height="30" ClickMode="Press" Background="#27A4CB" Opacity="0.8"/>
+            <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_adminpanel" HorizontalAlignment="Center" Margin="0,340,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.505,0.152" Width="246" Content="Admin Panel" Height="30" Background="#27A4CB" Click="button_adminpanel_Click" Opacity="0.8"/>
+            <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_account" Content="Account" HorizontalAlignment="Center" VerticalAlignment="Top" Width="246" Margin="0,375,0,0" Height="30" Background="#27A4CB" Opacity="0.8"/>
+            <Image x:Name="image_logo" Margin="0,0,0,378" Source="/Images/image_logo.png" Stretch="None" RenderTransformOrigin="0.301,0.479"/>
+            <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_exit" Content="Exit" HorizontalAlignment="Center" Margin="0,550,0,0" VerticalAlignment="Top" Width="252" Click="button_exit_Click" Height="30" Background="#27A4CB" Opacity="0.8"/>
+        </Grid>
+        <Grid x:Name="grid_userpanel" Margin="317,41,691,51" RenderTransformOrigin="0.5,0.5" Visibility="Hidden">
+            <Border Padding="20" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Margin="0,0,0,2" Opacity="0.8">
+                <Border.Effect>
+                    <BlurEffect Radius="3"/>
+                </Border.Effect>
+            </Border>
+
+            <Rectangle Fill="Black" Opacity="0.3" Margin="0,0,0,2" RadiusX="20" RadiusY="20">
+                <Rectangle.Effect>
+                    <BlurEffect Radius="2" KernelType="Box" RenderingBias="Quality"/>
+                </Rectangle.Effect>
+            </Rectangle>
+            <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_generate_excel" Content="Generate Excel" HorizontalAlignment="Center" Margin="0,170,0,0" VerticalAlignment="Top" Width="246" Background="#27A4CB" Height="30" Opacity="0.8" Click="button_generate_excel_Click"/>
+            <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_createreport" Content="Create Report" HorizontalAlignment="Center" Margin="0,205,0,0" VerticalAlignment="Top" Width="246" Background="#27A4CB" Height="30" Opacity="0.8"/>
+            <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_editreport" Content="Edit Report" HorizontalAlignment="Center" Margin="0,240,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.177,0.152" Width="246" Background="#27A4CB" Height="30" Opacity="0.8"/>
+            <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_transferdata" Content="Transfer Data" HorizontalAlignment="Center" Margin="0,275,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.177,0.403" Width="246" Background="#27A4CB" Height="30" Opacity="0.8"/>
+        </Grid>
+        <Grid x:Name="grid_adminpanel" Margin="317,41,691,51" Visibility="Hidden">
+            <Border Padding="20" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Opacity="0.8">
+                <Border.Effect>
+                    <BlurEffect Radius="3"/>
+                </Border.Effect>
+            </Border>
+            <Rectangle Fill="Black" Opacity="0.3" RadiusX="20" RadiusY="20">
+                <Rectangle.Effect>
+                    <BlurEffect Radius="2" KernelType="Box" RenderingBias="Quality"/>
+                </Rectangle.Effect>
+            </Rectangle>
+            <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_addcourse" Content="Add Course" HorizontalAlignment="Center" Margin="0,170,0,0" VerticalAlignment="Top" Background="#27A4CB" Width="246" Height="30" Opacity="0.8"/>
+            <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_updatecourse" Content="Update Course" HorizontalAlignment="Center" Margin="0,205,0,0" VerticalAlignment="Top" Background="#27A4CB" Width="246" Height="30" Opacity="0.8"/>
+            <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_deletecourse" Content="Delete Course" HorizontalAlignment="Center" Margin="0,240,0,0" VerticalAlignment="Top" Background="#27A4CB" Width="246" Height="30" Opacity="0.8"/>
+
+
+
+        </Grid>
+        <Grid x:Name="grid_generate_excel" Margin="618,41,32,51">
+            <Border Padding="20" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Opacity="0.8" Margin="0,0,10,0">
+                <Border.Effect>
+                    <BlurEffect Radius="3"/>
+                </Border.Effect>
+            </Border>
+            <Rectangle Fill="Black" Opacity="0.3" RadiusX="20" RadiusY="20" Margin="0,0,10,0">
+                <Rectangle.Effect>
+                    <BlurEffect Radius="2" KernelType="Box" RenderingBias="Quality"/>
+                </Rectangle.Effect>
+            </Rectangle>
+            <Label x:Name="label_studentcount" Content="Student Count :" HorizontalAlignment="Left" Margin="30,29,0,0" VerticalAlignment="Top" Foreground="White" Opacity="0.8"/>
+            <TextBox x:Name="textbox_studentcount" HorizontalAlignment="Left" Margin="127,33,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label x:Name="label_midtermcount" Content="Midterm Count :" HorizontalAlignment="Left" Margin="25,60,0,0" VerticalAlignment="Top" Foreground="White" Opacity="0.8"/>
+            <TextBox x:Name="textbox_midtermcount" HorizontalAlignment="Left" Margin="127,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="textbox_midtermcount_TextChanged"/>
+            <Label x:Name="label_homeworkcount" Content="Homework Count :" HorizontalAlignment="Left" Margin="13,91,0,0" VerticalAlignment="Top" Foreground="White" Opacity="0.8"/>
+            <TextBox x:Name="textbox_homeworkcount" HorizontalAlignment="Left" Margin="127,95,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="textbox_homeworkcount_TextChanged"/>
+            <Label x:Name="label_labcount" Content="Lab Count :" HorizontalAlignment="Left" Margin="52,122,0,0" VerticalAlignment="Top" Foreground="White" Opacity="0.8"/>
+            <TextBox x:Name="textbox_labcount" HorizontalAlignment="Left" Margin="127,126,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label x:Name="label_quizcount" Content="Quiz Count :" HorizontalAlignment="Left" Margin="46,153,0,0" VerticalAlignment="Top" Foreground="White" Opacity="0.8"/>
+            <TextBox x:Name="textbox_quizcount" HorizontalAlignment="Left" Margin="127,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label x:Name="label_projectcount" Content="Project Count :" HorizontalAlignment="Left" Margin="34,184,0,0" VerticalAlignment="Top" Foreground="White" Opacity="0.8"/>
+            <TextBox x:Name="textbox_projectcount" HorizontalAlignment="Left" Margin="127,188,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label x:Name="label_derscikticount" Content="Ders Çıktısı Count :" HorizontalAlignment="Left" Margin="13,215,0,0" VerticalAlignment="Top" Foreground="White" Opacity="0.8"/>
+            <TextBox x:Name="textbox_derscikticount" HorizontalAlignment="Left" Margin="127,219,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label x:Name="label_iscatalog" Content="Is Catalog :" HorizontalAlignment="Left" Margin="54,246,0,0" VerticalAlignment="Top" Foreground="White" Opacity="0.8"/>
+            <CheckBox x:Name="checkbox_iscatalog" HorizontalAlignment="Left" Margin="127,252,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="label_havefinal" Content="Have Final :" HorizontalAlignment="Left" Margin="51,272,0,0" VerticalAlignment="Top" Foreground="White" Opacity="0.8"/>
+            <CheckBox x:Name="checkbox_havefinal" HorizontalAlignment="Left" Margin="127,278,0,0" VerticalAlignment="Top"/>
+        </Grid>
+    </Grid>
+</Window>
