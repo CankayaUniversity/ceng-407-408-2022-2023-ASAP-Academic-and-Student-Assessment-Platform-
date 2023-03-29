@@ -148,7 +148,7 @@ namespace ASAP_Project
 
         private void button_transferdatatogoogledrive_Click(object sender, RoutedEventArgs e)
         {
-            GoogleDrive.UploadFile();
+            //GoogleDrive.UploadFile();
         }
 
         private void button_ok_Click(object sender, RoutedEventArgs e)
