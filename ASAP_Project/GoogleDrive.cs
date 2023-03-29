@@ -15,11 +15,17 @@ using static System.Formats.Asn1.AsnWriter;
 using System.Net;
 using static Google.Apis.Requests.BatchRequest;
 using System.IO;
+using System.Threading;
+using Dropbox.Api;
+using Microsoft.Office.Interop.Excel;
+using System.IO;
+using Dropbox.Api.Files;
 
 namespace ASAP_Project
 {
     public class GoogleDrive
     {
+
         public static void UploadFile()
         {
             var openFileDialog = new Microsoft.Win32.OpenFileDialog();
@@ -29,28 +35,8 @@ namespace ASAP_Project
             // EMRE FUCKING DID THIS//
             //
 
-            string accesstoken = "ya29.a0AVvZVsqGpBbpYwDdAMLkX18R8Ntqcq-rYKhry1f1PnRr8_uNRlrjmIOJ6u0dHehoqKd3PihenLZUVlNehMJuwEHQWeiXacwYgm8NF3cudAZJ2kF5oCusa_lzxsiYuohBvabiy_bkWXiylgoNyAPlYLTPi9JbNHG4aCgYKAV0SARASFQGbdwaIrFk78VrafIOMklUo5C4EbA0167";
-
-
-            //var credential = GoogleCredential.FromAccessToken(accesstoken);
-
-            string clientId = "YOUR_CLIENT_ID";
-            string clientSecret = "YOUR_CLIENT_SECRET";
-            string refreshToken = "YOUR_REFRESH_TOKEN";
-            var credential = new UserCredential(new GoogleAuthorizationCodeFlow(
-                new GoogleAuthorizationCodeFlow.Initializer
-                {
-                    ClientSecrets = new ClientSecrets
-                    {
-                        ClientId = clientId,
-                        ClientSecret = clientSecret
-                    }
-                }),
-                "user",
-                new TokenResponse
-                {
-                    RefreshToken = refreshToken
-                });
+            string accesstoken = "accesstoken";
+            var credential = GoogleCredential.FromAccessToken(accesstoken);
 
 
             DriveService service = new DriveService(new BaseClientService.Initializer()
@@ -68,18 +54,15 @@ namespace ASAP_Project
 
 
             FilesResource.CreateMediaUpload request;
-            //using (var stream = new FileStream(oSelectedFile, FileMode.Open))
-            //{
-            //    request = service.Files.Create(
-            //        fileMetadata, stream, "application/vnd.ms-excel");
-            //    request.Fields = "id";
-            //    request.Upload();
-            //}
-            //var file = request.ResponseBody;
+            using (var stream = new FileStream(oSelectedFile, FileMode.Open))
+            {
+                request = service.Files.Create(
+                    fileMetadata, stream, "application/vnd.ms-excel");
+                request.Fields = "id";
+                request.Upload();
+            }
+            var file = request.ResponseBody;
         }
-
-
-
-
+       
     }
 }
