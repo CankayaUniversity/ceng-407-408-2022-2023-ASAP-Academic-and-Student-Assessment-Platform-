@@ -40,11 +40,20 @@ namespace ASAP_Project
         {
             grid_userpanel.Visibility = Visibility.Hidden;
             grid_adminpanel.Visibility = Visibility.Visible;
+            //
         }
 
         private void button_generate_excel_Click(object sender, RoutedEventArgs e)
         {
-            grid_generate_excel.Visibility = Visibility.Visible;
+            if (grid_generate_excel.Visibility == Visibility.Visible)
+            {
+                grid_generate_excel.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                grid_generate_excel.Visibility = Visibility.Visible;
+            }
+            
         }
 
         
@@ -116,6 +125,24 @@ namespace ASAP_Project
                 homeworktextbox[i].Margin = new Thickness(440, (i * 30) + last + 35, 0, 0);
                 grid_generate_excel.Children.Add(homeworktextbox[i]);
             }
+        }
+
+        private void button_transferdata_Click(object sender, RoutedEventArgs e)
+        {
+            grid_generate_excel.Visibility = Visibility.Hidden;
+            if (grid_transferdata.Visibility == Visibility.Visible)
+            {
+                grid_transferdata.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                grid_transferdata.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void button_transferdatatogoogledrive_Click(object sender, RoutedEventArgs e)
+        {
+            GoogleDrive.UploadFile();
         }
     }
     

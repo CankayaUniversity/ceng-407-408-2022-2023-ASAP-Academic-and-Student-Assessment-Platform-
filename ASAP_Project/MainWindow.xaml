@@ -54,7 +54,7 @@
             <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_generate_excel" Content="Generate Excel" HorizontalAlignment="Center" Margin="0,170,0,0" VerticalAlignment="Top" Width="246" Background="#27A4CB" Height="30" Opacity="0.8" Click="button_generate_excel_Click"/>
             <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_createreport" Content="Create Report" HorizontalAlignment="Center" Margin="0,205,0,0" VerticalAlignment="Top" Width="246" Background="#27A4CB" Height="30" Opacity="0.8"/>
             <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_editreport" Content="Edit Report" HorizontalAlignment="Center" Margin="0,240,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.177,0.152" Width="246" Background="#27A4CB" Height="30" Opacity="0.8"/>
-            <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_transferdata" Content="Transfer Data" HorizontalAlignment="Center" Margin="0,275,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.177,0.403" Width="246" Background="#27A4CB" Height="30" Opacity="0.8"/>
+            <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_transferdata" Content="Transfer Data" HorizontalAlignment="Center" Margin="0,275,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.177,0.403" Width="246" Background="#27A4CB" Height="30" Opacity="0.8" Click="button_transferdata_Click"/>
         </Grid>
         <Grid x:Name="grid_adminpanel" Margin="317,41,691,51" Visibility="Hidden">
             <Border Padding="20" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Opacity="0.8">
@@ -74,7 +74,7 @@
 
 
         </Grid>
-        <Grid x:Name="grid_generate_excel" Margin="618,41,32,51">
+        <Grid x:Name="grid_generate_excel" Margin="618,41,32,51" Visibility="Hidden">
             <Border Padding="20" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Opacity="0.8" Margin="0,0,10,0">
                 <Border.Effect>
                     <BlurEffect Radius="3"/>
@@ -103,6 +103,20 @@
             <CheckBox x:Name="checkbox_iscatalog" HorizontalAlignment="Left" Margin="127,252,0,0" VerticalAlignment="Top"/>
             <Label x:Name="label_havefinal" Content="Have Final :" HorizontalAlignment="Left" Margin="51,272,0,0" VerticalAlignment="Top" Foreground="White" Opacity="0.8"/>
             <CheckBox x:Name="checkbox_havefinal" HorizontalAlignment="Left" Margin="127,278,0,0" VerticalAlignment="Top"/>
+            <ComboBox HorizontalAlignment="Left" Margin="285,31,0,0" VerticalAlignment="Top" Width="120"/>
+        </Grid>
+        <Grid x:Name="grid_transferdata" Width="630" Height="612.04" Margin="618,41,32,51" Visibility="Hidden">
+            <Border Padding="20" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Opacity="0.8" Margin="0,0,-5,0">
+                <Border.Effect>
+                    <BlurEffect Radius="3"/>
+                </Border.Effect>
+            </Border>
+            <Rectangle Fill="Black" Opacity="0.3" RadiusX="20" RadiusY="20">
+                <Rectangle.Effect>
+                    <BlurEffect Radius="2" KernelType="Box" RenderingBias="Quality"/>
+                </Rectangle.Effect>
+            </Rectangle>
+            <Button x:Name="button_transferdatatogoogledrive" Content="Button" HorizontalAlignment="Left" Margin="298,281,0,0" VerticalAlignment="Top" Click="button_transferdatatogoogledrive_Click"/>
         </Grid>
     </Grid>
 </Window>
