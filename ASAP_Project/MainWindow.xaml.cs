@@ -16,7 +16,6 @@ using System.Windows.Shapes;
 using System.Data.OleDb;
 using Microsoft.Win32;
 using System.IO;
-using ExcelDataReader;
 using System.Data;
 
 namespace ASAP_Project
@@ -169,7 +168,7 @@ namespace ASAP_Project
                 datagrid_reviewcourse.ItemsSource = dt.DefaultView;
             }
         }
-        //
+        
         private void button_reviewcourse_Click(object sender, RoutedEventArgs e)
         {
             if (grid_reviewcourse.Visibility == Visibility.Visible)
