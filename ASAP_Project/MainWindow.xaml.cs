@@ -158,34 +158,27 @@ namespace ASAP_Project
 
             if (openFileDialog.ShowDialog() == true)
             {
-                Microsoft.Office.Interop.Excel.Application excelApp = new Microsoft.Office.Interop.Excel.Application();
-                Microsoft.Office.Interop.Excel.Workbook workbook = excelApp.Workbooks.Open(openFileDialog.FileName);
+                string filename = openFileDialog.FileName;
+                string connectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + filename + ";Extended Properties=\"Excel 12.0;HDR=YES\"";
+                OleDbConnection connection = new OleDbConnection(connectionString);
+                connection.Open();
+                OleDbDataAdapter adapter = new OleDbDataAdapter("SELECT * FROM [Course_Grading_Constraints$]", connection);
+                System.Data.DataTable dt = new System.Data.DataTable();
+                adapter.Fill(dt);
+                connection.Close();
+                datagrid_reviewcourse.ItemsSource = dt.DefaultView;
+            }
+        }
 
-                Microsoft.Office.Interop.Excel.Worksheet worksheet = (Worksheet)workbook.Worksheets[1];
-                Microsoft.Office.Interop.Excel.Range range = worksheet.UsedRange;
-                object[,] data = (object[,])range.Value;
-
-                System.Data.DataTable dataTable = new System.Data.DataTable();
-                for (int i = 1; i <= range.Rows.Count; i++)
-                {
-                    DataRow row = dataTable.NewRow();
-                    for (int j = 1; j <= range.Columns.Count; j++)
-                    {
-                        if (i == 1)
-                        {
-                            dataTable.Columns.Add(data[1, j].ToString());
-                        }
-                        else
-                        {
-                            row[j - 1] = data[i, j];
-                        }
-                    }
-                    if (i != 1)
-                    {
-                        dataTable.Rows.Add(row);
-                    }
-                }
-                datagrid_reviewcourse.ItemsSource = dataTable.DefaultView;
+        private void button_reviewcourse_Click(object sender, RoutedEventArgs e)
+        {
+            if (grid_reviewcourse.Visibility == Visibility.Visible)
+            {
+                grid_reviewcourse.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                grid_reviewcourse.Visibility = Visibility.Visible;
             }
         }
     } 
