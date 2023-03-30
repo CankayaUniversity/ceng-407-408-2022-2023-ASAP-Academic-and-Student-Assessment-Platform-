@@ -7,9 +7,7 @@
 //using System.Runtime.InteropServices;
 //using System;
 
-//using System.Windows.Forms;
 //using Excel = Microsoft.Office.Interop.Excel;
-//using Microsoft.VisualBasic.Logging;
 //using Word = Microsoft.Office.Interop.Word;
 //using System.Windows;
 
