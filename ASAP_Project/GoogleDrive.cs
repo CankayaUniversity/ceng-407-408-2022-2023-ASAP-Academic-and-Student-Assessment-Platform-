@@ -19,7 +19,7 @@ using System.Threading;
 
 using Microsoft.Office.Interop.Excel;
 using System.IO;
-
+using Google.Apis.Util;
 
 namespace ASAP_Project
 {
@@ -29,15 +29,36 @@ namespace ASAP_Project
         public static void UploadFile()
         {
             var openFileDialog = new Microsoft.Win32.OpenFileDialog();
-            openFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+            openFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             openFileDialog.ShowDialog();
+            //Sonrası silinebilir ve baştan yazılmaya açık, ama bi ara çalışıyordu
             // EMRE FUCKING DID THIS//
             //
 
-            string accesstoken = "accesstoken";
-            var credential = GoogleCredential.FromAccessToken(accesstoken);
+            //string clientId = "606566811129-0v7iesu2r2ehmchfhi56ivf6kuujn7sc.apps.googleusercontent.com";
+            //string clientSecret = "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";
+            ////string[] scope = { "https://www.googleapis.com/auth/drive.file" };
+            //string refreshToken = "1//04dECzas1BhGNCgYIARAAGAQSNwF-L9IrqkbzmoLGSyjrH03u6YIfjraGviDkd0Kj4Tr13tViHgCQeC87IXtXEIr5TwQ7C0CGQow";
 
+            //UserCredential credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+            //    new ClientSecrets
+            //    {
+            //        ClientId = clientId,
+            //        ClientSecret = clientSecret
+            //    },
+            //    new[] { DriveService.Scope.Drive },
+            //    "user",
+            //     System.Threading.CancellationToken.None,
+            //     new Google.Apis.Util.Store.FileDataStore("Drive.Api.Auth.Store")).Result;
+
+            //credential.Token = new TokenResponse
+            //{
+            //    RefreshToken = refreshToken
+            //};
+
+            //bool success = credential.RefreshTokenAsync(CancellationToken.None).Result;
+            //string accessToken = credential.Token.AccessToken;
 
             DriveService service = new DriveService(new BaseClientService.Initializer()
             {
@@ -63,6 +84,5 @@ namespace ASAP_Project
             }
             var file = request.ResponseBody;
         }
-
     }
 }
