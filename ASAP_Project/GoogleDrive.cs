@@ -16,9 +16,7 @@ using System.Net;
 using static Google.Apis.Requests.BatchRequest;
 using System.IO;
 using System.Threading;
-
 using Microsoft.Office.Interop.Excel;
-using System.IO;
 using Google.Apis.Util;
 
 namespace ASAP_Project
@@ -32,57 +30,33 @@ namespace ASAP_Project
             openFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             openFileDialog.ShowDialog();
-            //Sonrası silinebilir ve baştan yazılmaya açık, ama bi ara çalışıyordu
-            // EMRE FUCKING DID THIS//
-            //
 
-            //string clientId = "606566811129-0v7iesu2r2ehmchfhi56ivf6kuujn7sc.apps.googleusercontent.com";
-            //string clientSecret = "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";
-            ////string[] scope = { "https://www.googleapis.com/auth/drive.file" };
-            //string refreshToken = "1//04dECzas1BhGNCgYIARAAGAQSNwF-L9IrqkbzmoLGSyjrH03u6YIfjraGviDkd0Kj4Tr13tViHgCQeC87IXtXEIr5TwQ7C0CGQow";
+            ServiceAccountCredential credential;
 
-            //UserCredential credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-            //    new ClientSecrets
-            //    {
-            //        ClientId = clientId,
-            //        ClientSecret = clientSecret
-            //    },
-            //    new[] { DriveService.Scope.Drive },
-            //    "user",
-            //     System.Threading.CancellationToken.None,
-            //     new Google.Apis.Util.Store.FileDataStore("Drive.Api.Auth.Store")).Result;
+            // Load the service account credentials from the JSON key file.
+            using (var stream = new FileStream("/credentials.json", FileMode.Open, FileAccess.Read))
+            {
+                credential = GoogleCredential.FromStream(stream)
+                    .CreateScoped(DriveService.ScopeConstants.Drive)
+                    .UnderlyingCredential as ServiceAccountCredential;
+            }
 
-            //credential.Token = new TokenResponse
-            //{
-            //    RefreshToken = refreshToken
-            //};
-
-            //bool success = credential.RefreshTokenAsync(CancellationToken.None).Result;
-            //string accessToken = credential.Token.AccessToken;
-
-            DriveService service = new DriveService(new BaseClientService.Initializer()
+            // Create the Drive service.
+            var service = new DriveService(new BaseClientService.Initializer()
             {
                 HttpClientInitializer = credential,
-                ApplicationName = "MyConsoleApp",
+                ApplicationName = "MyApp",
             });
 
-            var fileMetadata = new Google.Apis.Drive.v3.Data.File()
+            // Upload the selected file to Google Drive.
+            var fileMetadata = new Google.Apis.Drive.v3.Data.File();
+            fileMetadata.Name = System.IO.Path.GetFileName(openFileDialog.FileName);
+            var filePath = openFileDialog.FileName;
+            using (var stream = new System.IO.FileStream(filePath, System.IO.FileMode.Open))
             {
-                Name = "TEST"
-            };
-
-
-
-
-            FilesResource.CreateMediaUpload request;
-            using (var stream = new FileStream(openFileDialog.FileName, FileMode.Open))
-            {
-                request = service.Files.Create(
-                    fileMetadata, stream, "application/vnd.ms-excel");
-                request.Fields = "id";
-                request.Upload();
+                var uploadRequest = service.Files.Create(fileMetadata, stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
+                uploadRequest.Upload();
             }
-            var file = request.ResponseBody;
         }
     }
 }
