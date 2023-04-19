@@ -39,24 +39,14 @@ namespace ASAP_Project
             ////string[] scope = { "https://www.googleapis.com/auth/drive.file" };
             //string refreshToken = "1//04dECzas1BhGNCgYIARAAGAQSNwF-L9IrqkbzmoLGSyjrH03u6YIfjraGviDkd0Kj4Tr13tViHgCQeC87IXtXEIr5TwQ7C0CGQow";
 
-            //UserCredential credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
-            //    new ClientSecrets
-            //    {
-            //        ClientId = clientId,
-            //        ClientSecret = clientSecret
-            //    },
-            //    new[] { DriveService.Scope.Drive },
-            //    "user",
-            //     System.Threading.CancellationToken.None,
-            //     new Google.Apis.Util.Store.FileDataStore("Drive.Api.Auth.Store")).Result;
-
-            //credential.Token = new TokenResponse
-            //{
-            //    RefreshToken = refreshToken
-            //};
-
-            //bool success = credential.RefreshTokenAsync(CancellationToken.None).Result;
-            //string accessToken = credential.Token.AccessToken;
+            //A
+            // Load the service account credentials from the JSON key file.
+            using (var stream = new FileStream("/credentials.json", FileMode.Open, FileAccess.Read))
+            {
+                credential = GoogleCredential.FromStream(stream)
+                    .CreateScoped(DriveService.ScopeConstants.Drive)
+                    .UnderlyingCredential as ServiceAccountCredential;
+            }
 
             DriveService service = new DriveService(new BaseClientService.Initializer()
             {
