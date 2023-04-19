@@ -21,6 +21,13 @@ namespace ASAP_Project
             int Final_Q_no)
         {
 
+            // Final Sayfası eklenecek
+            // Midterm-Homework-Final Toplam (öğrencinin toplam notu) sütunu eklenecek
+            // Student sayfasında gpa kısmı ve age-email çıkarılacak
+            // Student sayfasına total sınav notları eklenecek
+            // Student sayfasına öğrenci bilgileri girilecek, o bilgiler diğer sayfalara otomatik olarak doldurulacak ***
+            // Student sayfasına, en son öğrencinin altına sınav notlarının ortalamasının gözükmesi (zamanın olursa bak)
+
             Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
 
             if (xlApp == null)
@@ -86,7 +93,7 @@ namespace ASAP_Project
             for (int i = 0; i < xlHomeworkSheet.Length; i++)
             {
                 Excel.Worksheet sheet = xlHomeworkSheet[i];
-                sheet.Name = "Midterm-" + (i + 1).ToString();
+                sheet.Name = "Homework-" + (i + 1).ToString();
                 sheet.Cells[1, 1] = "Id";
                 sheet.Cells[1, 2] = "Student ID";
                 sheet.Cells[1, 3] = "Student Name";
