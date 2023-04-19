@@ -76,7 +76,7 @@
 
 
         </Grid>
-        <Grid x:Name="grid_generate_excel" Margin="618,41,32,51" Visibility="Hidden">
+        <Grid x:Name="grid_generate_excel" Margin="618,41,32,51">
             <Border Padding="20" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Opacity="0.8" Margin="0,0,10,0">
                 <Border.Effect>
                     <BlurEffect Radius="3"/>
@@ -104,8 +104,8 @@
             <Label x:Name="label_iscatalog" Content="Is Catalog :" HorizontalAlignment="Left" Margin="54,246,0,0" VerticalAlignment="Top" Foreground="White" Opacity="0.8"/>
             <CheckBox x:Name="checkbox_iscatalog" HorizontalAlignment="Left" Margin="127,252,0,0" VerticalAlignment="Top"/>
             <Label x:Name="label_havefinal" Content="Have Final :" HorizontalAlignment="Left" Margin="51,272,0,0" VerticalAlignment="Top" Foreground="White" Opacity="0.8"/>
-            <CheckBox x:Name="checkbox_havefinal" HorizontalAlignment="Left" Margin="127,278,0,0" VerticalAlignment="Top"/>
-            <ComboBox HorizontalAlignment="Left" Margin="285,31,0,0" VerticalAlignment="Top" Width="120"/>
+            <CheckBox x:Name="checkbox_havefinal" HorizontalAlignment="Left" Margin="127,278,0,0" VerticalAlignment="Top" Checked="checkbox_havefinal_Checked"/>
+            <Button x:Name="button_generate_excel_btnr" Content="Generate" HorizontalAlignment="Left" Margin="519,560,0,0" VerticalAlignment="Top" Click="button_generate_excel_btnr_Click"/>
         </Grid>
         <Grid x:Name="grid_transferdata" Width="630" Height="612.04" Margin="618,41,32,51" Visibility="Hidden">
             <Border Padding="20" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Opacity="0.8" Margin="0,0,-5,0">

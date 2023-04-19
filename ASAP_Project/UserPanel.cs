@@ -15,10 +15,10 @@ namespace ASAP_Project
 {
     public class UserPanel
     {
-        public static void GenerateExcel(int Student_no, int Midterm_no, int Homework_no,
+        public void GenerateExcel(int Student_no, int Midterm_no, int Homework_no,
             int Lab_no, int Quiz_no, int Project_no, int Lesson_output_no, bool isCatalog, bool isFinal,
             int[] Midterm_Q_no, int[] Homework_Q_no,
-            int[] Quiz_Q_no, int Final_Q_no)
+            int Final_Q_no)
         {
 
             Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();

@@ -61,9 +61,12 @@ namespace ASAP_Project
 
         }
 
-
+        System.Windows.Controls.TextBox[] midtermtextbox = new System.Windows.Controls.TextBox[10];
+        
         private void textbox_midtermcount_TextChanged(object sender, TextChangedEventArgs e)
         {
+            
+
             System.Windows.Controls.Label[] midtermlabel = new System.Windows.Controls.Label[int.Parse(textbox_midtermcount.Text)];
             for (int i = 0; i < int.Parse(textbox_midtermcount.Text); i++)
             {
@@ -81,7 +84,6 @@ namespace ASAP_Project
                 grid_generate_excel.Children.Add(midtermlabel[i]);
             }
 
-            System.Windows.Controls.TextBox[] midtermtextbox = new System.Windows.Controls.TextBox[int.Parse(textbox_midtermcount.Text)];
             for (int i = 0; i < int.Parse(textbox_midtermcount.Text); i++)
             {
                 midtermtextbox[i] = new System.Windows.Controls.TextBox();
@@ -95,9 +97,12 @@ namespace ASAP_Project
             }
 
         }
-
+        System.Windows.Controls.TextBox[] homeworktextbox = new System.Windows.Controls.TextBox[10];
+        
         private void textbox_homeworkcount_TextChanged(object sender, TextChangedEventArgs e)
         {
+            
+
             int lastps = int.Parse(textbox_midtermcount.Text);
             int last = lastps * 30;
 
@@ -118,7 +123,6 @@ namespace ASAP_Project
                 grid_generate_excel.Children.Add(homeworklabel[i]);
             }
 
-            System.Windows.Controls.TextBox[] homeworktextbox = new System.Windows.Controls.TextBox[int.Parse(textbox_homeworkcount.Text)];
             for (int i = 0; i < int.Parse(textbox_homeworkcount.Text); i++)
             {
                 homeworktextbox[i] = new System.Windows.Controls.TextBox();
@@ -179,6 +183,73 @@ namespace ASAP_Project
             {
                 grid_reviewcourse.Visibility = Visibility.Visible;
             }
+        }
+        System.Windows.Controls.TextBox finaltextbox = new System.Windows.Controls.TextBox();
+        private void checkbox_havefinal_Checked(object sender, RoutedEventArgs e)
+        {
+            int lastps = int.Parse(textbox_homeworkcount.Text);
+            int last = lastps * 30 + 30;
+
+            System.Windows.Controls.Label final_label = new System.Windows.Controls.Label();
+
+
+            final_label = new System.Windows.Controls.Label();
+            final_label.Name = "qCountfinal";
+            final_label.HorizontalAlignment = HorizontalAlignment.Left;
+            final_label.VerticalAlignment = VerticalAlignment.Top;
+            final_label.Width = 170;
+            final_label.Height = 30;
+            final_label.Opacity = 0.8;
+            final_label.Content = "Question Count Final " + " :";
+            final_label.Margin = new Thickness(272, 30 + last + 29, 0, 0);
+            final_label.Foreground = Brushes.White;
+            final_label.Visibility = Visibility.Visible;
+            grid_generate_excel.Children.Add(final_label);
+
+
+            
+
+            finaltextbox = new System.Windows.Controls.TextBox();
+            finaltextbox.Name = "qTextboxfinal";
+            finaltextbox.HorizontalAlignment = HorizontalAlignment.Left;
+            finaltextbox.VerticalAlignment = VerticalAlignment.Top;
+            finaltextbox.Width = 70;
+            finaltextbox.Height = 15;
+            finaltextbox.Margin = new Thickness(440, 30 + last + 35, 0, 0);
+            grid_generate_excel.Children.Add(finaltextbox);
+        }
+
+        private void button_generate_excel_btnr_Click(object sender, RoutedEventArgs e)
+        {
+            int[] midtermqcount = new int[10];
+            for (int i = 0; i < 10; i++)
+            {
+                if (midtermtextbox[i] == null || int.Parse(midtermtextbox[i].Text) == 0)
+                {
+                    break;
+                }
+                else
+                {
+                    midtermqcount[i] = int.Parse(midtermtextbox[i].Text);
+                }
+            }
+            int[] homeworkqcount = new int[10];
+            for (int i = 0; i < 10; i++)
+            {
+                if (homeworktextbox[i] == null || int.Parse(homeworktextbox[i].Text) == 0)
+                {
+                    break;
+                }
+                else
+                {
+                    homeworkqcount[i] = int.Parse(homeworktextbox[i].Text);
+                }
+            }
+
+
+            UserPanel userPanel = new UserPanel();
+            userPanel.GenerateExcel(int.Parse(textbox_studentcount.Text), int.Parse(textbox_midtermcount.Text), int.Parse(textbox_homeworkcount.Text), int.Parse(textbox_labcount.Text),
+                int.Parse(textbox_quizcount.Text), int.Parse(textbox_projectcount.Text), int.Parse(textbox_derscikticount.Text), checkbox_iscatalog.IsChecked ?? false, checkbox_havefinal.IsChecked ?? false, midtermqcount, homeworkqcount, int.Parse(finaltextbox.Text));
         }
     } 
 }
