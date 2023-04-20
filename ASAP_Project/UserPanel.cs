@@ -23,12 +23,12 @@ namespace ASAP_Project
 
             // Final Sayfası eklenecek
             // Midterm-Homework-Final Toplam (öğrencinin toplam notu) sütunu eklenecek
-            // Student sayfasında gpa kısmı ve age-email çıkarılacak
             // Student sayfasına total sınav notları eklenecek
             // Student sayfasına öğrenci bilgileri girilecek, o bilgiler diğer sayfalara otomatik olarak doldurulacak ***
             // Student sayfasına, en son öğrencinin altına sınav notlarının ortalamasının gözükmesi (zamanın olursa bak)
 
             Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
+            xlApp.Visible = true;
 
             if (xlApp == null)
             {
@@ -48,10 +48,6 @@ namespace ASAP_Project
             xlStudentSheet.Cells[1, 2] = "Student ID";
             xlStudentSheet.Cells[1, 3] = "Student Name";
             xlStudentSheet.Cells[1, 4] = "Student Surname";
-            xlStudentSheet.Cells[1, 5] = "Age";
-            xlStudentSheet.Cells[1, 6] = "Email";
-            xlStudentSheet.Cells[1, 8] = "GPA";
-            xlStudentSheet.Cells[1, 9] = "CumGPA";
 
             for (int i = 2; i < Student_no + 2; i++)
             {
@@ -73,14 +69,27 @@ namespace ASAP_Project
                 sheet.Cells[1, 2] = "Student ID";
                 sheet.Cells[1, 3] = "Student Name";
                 sheet.Cells[1, 4] = "Student Surname";
-                for (int k = 5; k < Midterm_Q_no[i] + 5; k++)
+                int k;
+                for (k = 5; k < Midterm_Q_no[i] + 5; k++)
                 {
                     sheet.Cells[1, k] = "Question-" + (k - 4).ToString();
                 }
+                sheet.Cells[1, k] = "Total Grade";
+                sheet.Cells[2, k - 1] = 3;
+                sheet.Cells[2, k - 2] = 2;
                 for (int j = 2; j < Student_no + 2; j++)
                 {
                     sheet.Cells[j, 1] = j - 1;
                 }
+                for (int a = 2; a < Student_no; a++)
+                {
+                    Excel.Range functionRange = sheet.Range[sheet.Cells[a, k]];
+                    functionRange.Locked = false;
+                    string formulaString = "=SUM(" + sheet.Cells[a, 5].Address + ":" + sheet.Cells[a, k - 1].Address + ")";
+                    functionRange.Formula = formulaString;
+                }
+
+
             }
 
             //Homework sheet(s)
@@ -118,7 +127,7 @@ namespace ASAP_Project
             xlQuizSheet.Name = "Quizs";
             xlProjectSheet.Name = "Projects";
             xlLessonOutputSheet.Name = "Lesson Outputs";
-
+            xlWorkBook.SaveAs("filename.xlsx", Excel.XlFileFormat.xlOpenXMLWorkbook);
             xlApp.Visible = true;
         }
         public static void CreateReport()
