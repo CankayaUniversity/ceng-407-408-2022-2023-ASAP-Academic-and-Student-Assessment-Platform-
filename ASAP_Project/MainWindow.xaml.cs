@@ -126,7 +126,7 @@ namespace ASAP_Project
             for (int i = 0; i < int.Parse(textbox_homeworkcount.Text); i++)
             {
                 homeworktextbox[i] = new System.Windows.Controls.TextBox();
-                homeworktextbox[i].Name = "qTextboxmidterm" + (i + 1);
+                homeworktextbox[i].Name = "qTextboxhomework" + (i + 1);
                 homeworktextbox[i].HorizontalAlignment = HorizontalAlignment.Left;
                 homeworktextbox[i].VerticalAlignment = VerticalAlignment.Top;
                 homeworktextbox[i].Width = 70;
@@ -246,7 +246,9 @@ namespace ASAP_Project
                 }
             }
 
-
+            //Final booleanı girilmeyince hata veriyor
+            //Bir değeri diğerinden önnce giremiyorum, örneüin homework sayısı vermeden final durumu işaretlemeyi deneyince hata veriyor.
+            //Herhangi bir değeri girip silince hata veriyor
             UserPanel userPanel = new UserPanel();
             userPanel.GenerateExcel(int.Parse(textbox_studentcount.Text), int.Parse(textbox_midtermcount.Text), int.Parse(textbox_homeworkcount.Text), int.Parse(textbox_labcount.Text),
                 int.Parse(textbox_quizcount.Text), int.Parse(textbox_projectcount.Text), int.Parse(textbox_derscikticount.Text), checkbox_iscatalog.IsChecked ?? false, checkbox_havefinal.IsChecked ?? false, midtermqcount, homeworkqcount, int.Parse(finaltextbox.Text));
