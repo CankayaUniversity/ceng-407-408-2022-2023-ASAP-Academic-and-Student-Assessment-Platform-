@@ -26,6 +26,8 @@ namespace ASAP_Project
 
         public static void UploadFile()
         {
+            //Bu PCde son açılan google accountuna yüklemekte kodu,
+            //Biz bunun asap driveına yüklenmesini sağlamalıyız
             var openFileDialog = new Microsoft.Win32.OpenFileDialog();
             openFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -34,8 +36,9 @@ namespace ASAP_Project
             var credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                 new ClientSecrets { ClientId = "606566811129-0v7iesu2r2ehmchfhi56ivf6kuujn7sc.apps.googleusercontent.com", ClientSecret = "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" },
                 new[] { DriveService.Scope.Drive },
-                "user",
-                System.Threading.CancellationToken.None).Result;
+                "asaproject2023@gmail.com",
+                CancellationToken.None,
+                new FileDataStore("Drive.Auth.Store")).Result;
 
             // Create the Drive service.
             var service = new DriveService(new BaseClientService.Initializer()
