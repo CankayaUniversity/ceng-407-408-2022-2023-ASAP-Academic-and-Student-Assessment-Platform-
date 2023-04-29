@@ -91,6 +91,14 @@ namespace ASAP_Project
                 sheet.Cells[1, 2] = "Student ID";
                 sheet.Cells[1, 3] = "Student Name";
                 sheet.Cells[1, 4] = "Student Surname";
+                //for (int j = 2; j <= Student_no; j++)
+                //{
+                //    string studentId = xlStudentSheet.Cells[2, j].Value?.ToString();
+                //    string lookupRange = sheet.Range["B2", "B" + Student_no + 1].Address;
+
+                //    xlStudentSheet.Cells[2, j, Student_no, j].Formula = "=VLOOKUP(A2,B2:C" + (Student_no + 1) + ",2,FALSE)";
+
+                //}
                 int k;
                 for (k = 5; k < Midterm_Q_no[i] + 5; k++)
                 {
