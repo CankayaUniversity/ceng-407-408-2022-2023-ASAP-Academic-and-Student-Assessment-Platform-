@@ -31,22 +31,17 @@ namespace ASAP_Project
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             openFileDialog.ShowDialog();
 
-            ServiceAccountCredential credential;
-
-            //A
-            // Load the service account credentials from the JSON key file.
-            using (var stream = new FileStream("C:\\Users\\emreh\\source\\repos\\ASAP_Project\\ASAP_Project\\credentials.json", FileMode.Open, FileAccess.Read))
-            {
-                credential = GoogleCredential.FromStream(stream)
-                    .CreateScoped(DriveService.ScopeConstants.Drive)
-                    .UnderlyingCredential as ServiceAccountCredential;
-            }
+            var credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                new ClientSecrets { ClientId = "606566811129-0v7iesu2r2ehmchfhi56ivf6kuujn7sc.apps.googleusercontent.com", ClientSecret = "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" },
+                new[] { DriveService.Scope.Drive },
+                "user",
+                System.Threading.CancellationToken.None).Result;
 
             // Create the Drive service.
             var service = new DriveService(new BaseClientService.Initializer()
             {
                 HttpClientInitializer = credential,
-                ApplicationName = "MyApp",
+                ApplicationName = "ASAP Project"
             });
 
             // Upload the selected file to Google Drive.
