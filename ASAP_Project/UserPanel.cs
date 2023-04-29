@@ -37,50 +37,107 @@ namespace ASAP_Project
             object misValue = System.Reflection.Missing.Value;
 
             xlWorkBook = xlApp.Workbooks.Add(misValue);
-            
 
-            //Now we create Midterm excel
-            Excel.Worksheet[] xlMidtermSheet = new Excel.Worksheet[Midterm_no];
-            for (int i = 0; i < Midterm_no; i++)
+            //Lesson outputa bakın bi
+            Excel.Worksheet xlLessonOutputSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+            xlLessonOutputSheet.Name = "Lesson Output";
+            xlLessonOutputSheet.Cells[1, 1] = Lesson_output_no;
+
+            //Projects
+            Excel.Worksheet[] xlProjectSheet = new Excel.Worksheet[Project_no];
+            for (int i = 0; i < Project_no; i++)
             {
-                xlMidtermSheet[i] = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+                xlProjectSheet[i] = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
             }
-
-            for (int i = 0; i < xlMidtermSheet.Length; i++)
+            for (int i = 0; i < Lab_no; i++)
             {
-                Excel.Worksheet sheet = xlMidtermSheet[i];
-                sheet.Name = "Midterm-" + (i + 1).ToString();
+                Excel.Worksheet sheet = xlProjectSheet[i];
+                sheet.Name = "Project-" + (i + 1).ToString();
                 sheet.Cells[1, 1] = "Id";
                 sheet.Cells[1, 2] = "Student ID";
                 sheet.Cells[1, 3] = "Student Name";
                 sheet.Cells[1, 4] = "Student Surname";
-                int k;
-                for (k = 5; k < Midterm_Q_no[i] + 5; k++)
+                int k = 5;
+                sheet.Cells[1, k] = "Grade";
+                for (int j = 2; j < Student_no + 2; j++)
                 {
-                    sheet.Cells[1, k] = "Question-" + (k - 4).ToString();
+                    sheet.Cells[j, 1] = j - 1;
                 }
+            }
+
+            //Quizzes
+            Excel.Worksheet[] xlQuizSheet = new Excel.Worksheet[Quiz_no];
+            for (int i = 0; i < Quiz_no; i++)
+            {
+                xlQuizSheet[i] = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+            }
+            for (int i = 0; i < Quiz_no; i++)
+            {
+                Excel.Worksheet sheet = xlQuizSheet[i];
+                sheet.Name = "Quiz-" + (i + 1).ToString();
+                sheet.Cells[1, 1] = "Id";
+                sheet.Cells[1, 2] = "Student ID";
+                sheet.Cells[1, 3] = "Student Name";
+                sheet.Cells[1, 4] = "Student Surname";
+                int k = 5;
                 sheet.Cells[1, k] = "Total Grade";
                 for (int j = 2; j < Student_no + 2; j++)
                 {
                     sheet.Cells[j, 1] = j - 1;
                 }
-                //for loop for function
-                for (int a = 2; a < Student_no + 2; a++)
-                {
-                    Excel.Range functionRange = sheet.Range[sheet.Cells[a, k].Address];
-                    functionRange.Locked = false;
-                    string formulaString = "=SUM(" + sheet.Cells[a, 5].Address + ":" + sheet.Cells[a, k - 1].Address + ")";
-                    functionRange.Formula = formulaString;
-                }
-
-
             }
 
-            //Homework sheet(s)
-            //Hep çalışıyordu
-            //bi anda eksik çalışmaya başladı
-            //hatalı değil eksik
-            //mesela hw no 2 dersek, 1. sheet çıkıyor ama 2. sheet çıkmıyor
+            //Labs
+            Excel.Worksheet[] xlLabSheet = new Excel.Worksheet[Lab_no];
+            for (int i = 0; i < Lab_no; i++)
+            {
+                xlLabSheet[i] = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+            }
+            for (int i = 0; i < xlLabSheet.Length; i++)
+            {
+                Excel.Worksheet sheet = xlLabSheet[i];
+                sheet.Name = "Lab-" + (i + 1).ToString();
+                sheet.Cells[1, 1] = "Id";
+                sheet.Cells[1, 2] = "Student ID";
+                sheet.Cells[1, 3] = "Student Name";
+                sheet.Cells[1, 4] = "Student Surname";
+                int k = 5;
+                sheet.Cells[1, k] = "Grade";
+                for (int j = 2; j < Student_no + 2; j++)
+                {
+                    sheet.Cells[j, 1] = j - 1;
+                }
+            }
+
+            //Final sheet
+            if (isFinal == true)
+            {
+                Excel.Worksheet FinalSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+                FinalSheet.Columns.AutoFit();
+                FinalSheet.Name = "Final";
+                FinalSheet.Cells[1, 1] = "Id";
+                FinalSheet.Cells[1, 2] = "Student ID";
+                FinalSheet.Cells[1, 3] = "Student Name";
+                FinalSheet.Cells[1, 4] = "Student Surname";
+                int k;
+                for (k = 5; k < Final_Q_no + 5; k++)
+                {
+                    FinalSheet.Cells[1, k] = "Question-" + (k - 4).ToString();
+                }
+                FinalSheet.Cells[1, k] = "Total Grade";
+                for (int j = 2; j < Student_no + 2; j++)
+                {
+                    FinalSheet.Cells[j, 1] = j - 1;
+                }
+                for (int a = 2; a < Student_no + 2; a++)
+                {
+                    Excel.Range functionRange = FinalSheet.Range[FinalSheet.Cells[a, k].Address];
+                    string formulaString = "=SUM(" + FinalSheet.Cells[a, 5].Address + ":" + FinalSheet.Cells[a, k - 1].Address + ")";
+                    functionRange.Formula = formulaString;
+                }
+            }
+
+            
             Excel.Worksheet[] xlHomeworkSheet = new Excel.Worksheet[Homework_no];
             for (int i = 0; i < Homework_no; i++)
             {
@@ -115,99 +172,46 @@ namespace ASAP_Project
                 }
             }
 
-            //Final sheet
-            if(isFinal == true)
+            //midterm sheet(s)
+            //Hep çalışıyordu
+            //bi anda eksik çalışmaya başladı
+            //hatalı değil eksik
+            //mesela midterm no 2 dersek, 1. sheet çıkıyor ama 2. sheet çıkmıyor
+
+            Excel.Worksheet[] xlMidtermSheet = new Excel.Worksheet[Midterm_no];
+            for (int i = 0; i < Midterm_no; i++)
             {
-                Excel.Worksheet FinalSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
-                FinalSheet.Columns.AutoFit();
-                FinalSheet.Name = "Final";
-                FinalSheet.Cells[1, 1] = "Id";
-                FinalSheet.Cells[1, 2] = "Student ID";
-                FinalSheet.Cells[1, 3] = "Student Name";
-                FinalSheet.Cells[1, 4] = "Student Surname";
-                int k;
-                for (k = 5; k < Final_Q_no + 5; k++)
-                {
-                    FinalSheet.Cells[1, k] = "Question-" + (k - 4).ToString();
-                }
-                FinalSheet.Cells[1, k] = "Total Grade";
-                for (int j = 2; j < Student_no + 2; j++)
-                {
-                    FinalSheet.Cells[j, 1] = j - 1;
-                }
-                for (int a = 2; a < Student_no + 2; a++)
-                {
-                    Excel.Range functionRange = FinalSheet.Range[FinalSheet.Cells[a, k].Address];
-                    string formulaString = "=SUM(" + FinalSheet.Cells[a, 5].Address + ":" + FinalSheet.Cells[a, k - 1].Address + ")";
-                    functionRange.Formula = formulaString;
-                }
+                xlMidtermSheet[i] = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
             }
 
-            //Labs
-            Excel.Worksheet[] xlLabSheet = new Excel.Worksheet[Lab_no];
-            for (int i = 0; i < Lab_no; i++)
+            for (int i = 0; i < xlMidtermSheet.Length; i++)
             {
-                xlLabSheet[i] = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
-            }
-            for (int i = 0; i < xlLabSheet.Length; i++)
-            {
-                Excel.Worksheet sheet = xlLabSheet[i];
-                sheet.Name = "Lab-" + (i + 1).ToString();
+                Excel.Worksheet sheet = xlMidtermSheet[i];
+                sheet.Name = "Midterm-" + (i + 1).ToString();
                 sheet.Cells[1, 1] = "Id";
                 sheet.Cells[1, 2] = "Student ID";
                 sheet.Cells[1, 3] = "Student Name";
                 sheet.Cells[1, 4] = "Student Surname";
-                int k = 5;
-                sheet.Cells[1, k] = "Grade";
-                for (int j = 2; j < Student_no + 2; j++)
+                int k;
+                for (k = 5; k < Midterm_Q_no[i] + 5; k++)
                 {
-                    sheet.Cells[j, 1] = j - 1;
+                    sheet.Cells[1, k] = "Question-" + (k - 4).ToString();
                 }
-            }
-            //Quizzes
-            Excel.Worksheet[] xlQuizSheet = new Excel.Worksheet[Quiz_no];
-            for (int i = 0; i < Quiz_no; i++)
-            {
-                xlQuizSheet[i] = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
-            }
-            for (int i = 0; i < Quiz_no; i++)
-            {
-                Excel.Worksheet sheet = xlQuizSheet[i];
-                sheet.Name = "Quiz-" + (i + 1).ToString();
-                sheet.Cells[1, 1] = "Id";
-                sheet.Cells[1, 2] = "Student ID";
-                sheet.Cells[1, 3] = "Student Name";
-                sheet.Cells[1, 4] = "Student Surname";
-                int k = 5;
                 sheet.Cells[1, k] = "Total Grade";
                 for (int j = 2; j < Student_no + 2; j++)
                 {
                     sheet.Cells[j, 1] = j - 1;
                 }
-            }
-            //Projects
-            Excel.Worksheet[] xlProjectSheet = new Excel.Worksheet[Project_no];
-            for (int i = 0; i < Project_no; i++)
-            {
-                xlProjectSheet[i] = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
-            }
-            for (int i = 0; i < Lab_no; i++)
-            {
-                Excel.Worksheet sheet = xlProjectSheet[i];
-                sheet.Name = "Project-" + (i + 1).ToString();
-                sheet.Cells[1, 1] = "Id";
-                sheet.Cells[1, 2] = "Student ID";
-                sheet.Cells[1, 3] = "Student Name";
-                sheet.Cells[1, 4] = "Student Surname";
-                int k = 5;
-                sheet.Cells[1, k] = "Grade";
-                for (int j = 2; j < Student_no + 2; j++)
+                //for loop for function
+                for (int a = 2; a < Student_no + 2; a++)
                 {
-                    sheet.Cells[j, 1] = j - 1;
+                    Excel.Range functionRange = sheet.Range[sheet.Cells[a, k].Address];
+                    functionRange.Locked = false;
+                    string formulaString = "=SUM(" + sheet.Cells[a, 5].Address + ":" + sheet.Cells[a, k - 1].Address + ")";
+                    functionRange.Formula = formulaString;
                 }
             }
-            Excel.Worksheet xlLessonOutputSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
-            xlLessonOutputSheet.Name = "Lesson Output";
+            
 
             //We create Student sheet
             Excel.Worksheet xlStudentSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
@@ -230,12 +234,12 @@ namespace ASAP_Project
                 Excel.Range functionRange = xlStudentSheet.Range[xlStudentSheet.Cells[a, num].Address];
                 string formulaString = "=SUM(" + xlStudentSheet.Cells[a, 5].Address + ":" + xlStudentSheet.Cells[a, num - 1].Address + ")";
                 functionRange.Formula = formulaString;
-                for (int k = 5; k < num; k++)
+                /*for (int k = 5; k < num; k++)
                 {
                     Excel.Range functionRange2 = xlStudentSheet.Range[xlStudentSheet.Cells[a, num - 2].Address];
                     string formul = "='Midterm-" + (k - 4) + "'!" + Convert.ToChar('A' + (4 + Midterm_Q_no[k - 4]) - 1) + a ;
                     functionRange2.Formula = formul;
-                }
+                }*/
             }
             //Homework and total grade input
             for (num = num + 1; num < Homework_no + 8; num++)
@@ -262,7 +266,24 @@ namespace ASAP_Project
         }
         public static void CreateReport()
         {
-            GoogleDrive.GetFile();
+            var openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            openFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            openFileDialog.ShowDialog();
+
+            Excel.Application application = new Excel.Application();
+            Excel.Workbook wb = application.Workbooks.Open(openFileDialog.FileName);
+            int Midterm_counter = 1;
+            foreach (Excel.Worksheet worksheet in wb.Worksheets)
+            {
+                // Check if the worksheet is one of the desired worksheets
+                if (worksheet.Name == "Midterm-" + Midterm_counter.ToString())
+                {
+                    
+                    Midterm_counter++;
+                }
+            }
+            application.Visible = true;
         }
     }
 }
