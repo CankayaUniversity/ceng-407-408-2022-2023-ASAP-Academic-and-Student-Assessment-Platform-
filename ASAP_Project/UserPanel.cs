@@ -78,6 +78,10 @@ namespace ASAP_Project
             }
 
             //Homework sheet(s)
+            //Hep çalışıyordu
+            //bi anda eksik çalışmaya başladı
+            //hatalı değil eksik
+            //mesela hw no 2 dersek, 1. sheet çıkıyor ama 2. sheet çıkmıyor
             Excel.Worksheet[] xlHomeworkSheet = new Excel.Worksheet[Homework_no];
             for (int i = 0; i < Homework_no; i++)
             {
@@ -204,7 +208,7 @@ namespace ASAP_Project
                 }
             }
             Excel.Worksheet xlLessonOutputSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
-            
+            xlLessonOutputSheet.Name = "Lesson Output";
 
             //We create Student sheet
             Excel.Worksheet xlStudentSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
