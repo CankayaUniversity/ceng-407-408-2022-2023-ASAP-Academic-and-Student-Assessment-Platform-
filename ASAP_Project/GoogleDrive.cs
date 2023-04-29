@@ -1,15 +1,12 @@
 ﻿using Google.Apis.Auth.OAuth2;
 using Google.Apis.Drive.v3;
-using Google.Apis.Drive.v3.Data;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
+using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading;
+using System.Reflection.Metadata;
 using System.Windows;
-using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ASAP_Project
 {
@@ -100,8 +97,20 @@ namespace ASAP_Project
                 var stream = new MemoryStream();
                 downloadfile.Download(stream);
 
-                string appDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "ASAP");
-                using (var fileStream = new FileStream(appDataPath, FileMode.Create, FileAccess.Write))
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Folders|*.none";
+                openFileDialog.CheckFileExists = false;
+                openFileDialog.CheckPathExists = true;
+                openFileDialog.FileName = "Lesson1.xlsx";
+                string filePath = null;
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    filePath = System.IO.Path.GetDirectoryName(openFileDialog.FileName);
+                }
+                
+                
+
+                using (var fileStream = new FileStream(openFileDialog.FileName, FileMode.Create, FileAccess.Write))
                 {
                     stream.WriteTo(fileStream);
                 }
