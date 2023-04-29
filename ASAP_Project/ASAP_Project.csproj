@@ -39,4 +39,8 @@
     <Resource Include="Images\image_logo.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="SendedAccountCredential\" />
+  </ItemGroup>
+
 </Project>
