@@ -99,6 +99,7 @@ namespace ASAP_Project
                 //    xlStudentSheet.Cells[2, j, Student_no, j].Formula = "=VLOOKUP(A2,B2:C" + (Student_no + 1) + ",2,FALSE)";
 
                 //}
+                //a
                 int k;
                 for (k = 5; k < Midterm_Q_no[i] + 5; k++)
                 {
