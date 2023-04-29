@@ -9,16 +9,18 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Windows;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace ASAP_Project
 {
     public class GoogleDrive
     {
-        //Solution Explorerda bulunan credentials dosyaları ile adlarını değiştirin
+        //Solution Explorerda bulunan credentials dosyaları ile adlarını değiştirin    
+        static IDataStore tokenStorage = new FileDataStore("C:\\Users\\emreh\\Desktop\\ASAP P\\ASAP_Project\\SendedAccountCredential\\", false);
+
         public static async void UploadFile()
         {
             
-
             try
             {
                 var openFileDialog = new Microsoft.Win32.OpenFileDialog();
@@ -26,8 +28,7 @@ namespace ASAP_Project
                 openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
                 openFileDialog.ShowDialog();
 
-                //Solution Explorerda bulunan credentials dosyaları ile adlarını değiştirin
-                var tokenStorage = new FileDataStore("C:\\Users\\hayre\\Source\\Repos\\ceng-407-408-2022-2023-ASAP-Academic-and-Student-Assessment-Platform-\\ASAP_Project\\SendedAccountCredential\\", false);
+                           
 
                 var credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                     new ClientSecrets { ClientId = "714044421228-cugq90i34shjhu5ifs9lmh06fop801ro.apps.googleusercontent.com", ClientSecret = "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" },
@@ -68,13 +69,6 @@ namespace ASAP_Project
 
             try
             {
-                var openFileDialog = new Microsoft.Win32.OpenFileDialog();
-                openFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
-                openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                openFileDialog.ShowDialog();
-
-                //Solution Explorerda bulunan credentials dosyaları ile adlarını değiştirin
-                var tokenStorage = new FileDataStore("C:\\Users\\hayre\\Source\\Repos\\ceng-407-408-2022-2023-ASAP-Academic-and-Student-Assessment-Platform-\\ASAP_Project\\SendedAccountCredential\\", false);
 
                 var credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                     new ClientSecrets { ClientId = "714044421228-cugq90i34shjhu5ifs9lmh06fop801ro.apps.googleusercontent.com", ClientSecret = "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" },
@@ -90,30 +84,33 @@ namespace ASAP_Project
                     ApplicationName = "ASAP Project"
                 });
 
-                //Upload the selected file to Google Drive.
-                FilesResource.ListRequest listRequest = service.Files.List();
-                listRequest.PageSize = 10;
-                listRequest.Fields = "nextPageToken, files(id, name)";
+                var request = service.Files.List();
+                request.Q = "name='" + "Lesson1.xlsx" + "' and trashed = false";
+                request.Fields = "nextPageToken, files(id)";
+                var results = request.Execute().Files;
 
-                IList<Google.Apis.Drive.v3.Data.File> files = listRequest.Execute().Files;
-                MessageBox.Show("Files:");
-                if (files != null && files.Count > 0)
-                {
-                    foreach (var file in files)
-                    {
-                        MessageBox.Show("{0} ({1})", file.Name);
-                    }
-                }
-                else
+                if (results == null || results.Count == 0)
                 {
                     MessageBox.Show("No files found.");
+                }
+
+                var file = service.Files.Get(results[0].Id).Execute();
+
+                var downloadfile = service.Files.Get(results[0].Id);
+                var stream = new MemoryStream();
+                downloadfile.Download(stream);
+
+                string appDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "ASAP");
+                using (var fileStream = new FileStream(appDataPath, FileMode.Create, FileAccess.Write))
+                {
+                    stream.WriteTo(fileStream);
                 }
             }
 
 
             catch (Exception ex)
             {
-                MessageBox.Show($"Error uploading file to Google Drive: {ex.Message}");
+                MessageBox.Show($"Error downloading file to Google Drive: {ex.Message}");
             }
         }
     }

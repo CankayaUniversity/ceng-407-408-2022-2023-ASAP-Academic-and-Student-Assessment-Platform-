@@ -253,5 +253,10 @@ namespace ASAP_Project
             userPanel.GenerateExcel(int.Parse(textbox_studentcount.Text), int.Parse(textbox_midtermcount.Text), int.Parse(textbox_homeworkcount.Text), int.Parse(textbox_labcount.Text),
                 int.Parse(textbox_quizcount.Text), int.Parse(textbox_projectcount.Text), int.Parse(textbox_derscikticount.Text), checkbox_iscatalog.IsChecked ?? false, checkbox_havefinal.IsChecked ?? false, midtermqcount, homeworkqcount, int.Parse(finaltextbox.Text));
         }
+
+        private void button_createreport_Click(object sender, RoutedEventArgs e)
+        {
+            UserPanel.CreateReport();
+        }
     } 
 }
