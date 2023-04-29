@@ -141,12 +141,27 @@ namespace ASAP_Project
             }
 
 
-            Excel.Worksheet xlLabSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+            Excel.Worksheet[] xlLabSheet = new Excel.Worksheet[Lab_no];
+            for (int i = 0; i < Lab_no; i++)
+            {
+                Excel.Worksheet sheet = xlLabSheet[i];
+                sheet.Name = "Lab-" + (i + 1).ToString();
+                sheet.Cells[1, 1] = "Id";
+                sheet.Cells[1, 2] = "Student ID";
+                sheet.Cells[1, 3] = "Student Name";
+                sheet.Cells[1, 4] = "Student Surname";
+                int k = 5;
+                sheet.Cells[1, k] = "Total Grade";
+                for (int j = 2; j < Student_no + 2; j++)
+                {
+                    sheet.Cells[j, 1] = j - 1;
+                }
+            }
+
             Excel.Worksheet xlQuizSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
             Excel.Worksheet xlProjectSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
             Excel.Worksheet xlLessonOutputSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
 
-            xlLabSheet.Name = "Labs";
             xlQuizSheet.Name = "Quizs";
             xlProjectSheet.Name = "Projects";
             xlLessonOutputSheet.Name = "Lesson Outputs";
