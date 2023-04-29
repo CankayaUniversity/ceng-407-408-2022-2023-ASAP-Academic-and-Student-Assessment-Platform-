@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
 using System;
-
 using Excel = Microsoft.Office.Interop.Excel;
 using Word = Microsoft.Office.Interop.Word;
 using System.Windows;
@@ -263,7 +262,7 @@ namespace ASAP_Project
         }
         public static void CreateReport()
         {
-            
+            GoogleDrive.GetFile();
         }
     }
 }
