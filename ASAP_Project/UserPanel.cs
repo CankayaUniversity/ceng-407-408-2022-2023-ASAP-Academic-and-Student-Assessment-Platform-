@@ -214,7 +214,7 @@ namespace ASAP_Project
             
 
             //We create Student sheet
-            Excel.Worksheet xlStudentSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+            Excel.Worksheet xlStudentSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
             xlStudentSheet.Columns.AutoFit();
             xlStudentSheet.Name = "Students";
             xlStudentSheet.Cells[1, 1] = "Id";
