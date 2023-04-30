@@ -284,7 +284,13 @@ namespace ASAP_Project
             xlApp.Visible = true;
         }
 
-
+        /// <summary>
+        /// THIS ONE CREATES A REPORT FROM AN EXISING EXCEL
+        /// IT MAKES NECESARRY CALCULATIONS INTERNALLY AND IMPLEMENTS THEM TO EXCEL FILE NEWLY CREATED
+        /// IN THIS ONE I CHOOSE A LOCAL FILE SO IT CHANGES THAT
+        /// BUT WE WILL PICK IT UP FROM DRIVE SO IT WİLL SAVE THE FILE TO THE PC INSTEAD (GOD I HOPE SO)
+        /// - TAN :D
+        /// </summary>
         public static void CreateReport()
         {
             var openFileDialog = new Microsoft.Win32.OpenFileDialog();
