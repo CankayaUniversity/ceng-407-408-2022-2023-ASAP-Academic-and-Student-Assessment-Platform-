@@ -210,8 +210,27 @@ namespace ASAP_Project
                     string formulaString = "=SUM(" + sheet.Cells[a, 5].Address + ":" + sheet.Cells[a, k - 1].Address + ")";
                     functionRange.Formula = formulaString;
                 }
+                Excel.Worksheet xlMidtermDC = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+                xlMidtermDC.Name = "Midterm-" + (i + 1).ToString() + " Constraints";
+                xlMidtermDC.Cells[1, 1] = "Lesson Output No.";
+                
+                for(int a = 2; a < Midterm_Q_no[i] + 2; a++)
+                {
+                    xlMidtermDC.Cells[1, a] = "Question-" + (a - 1).ToString();
+                }
+                for (int j = 2; j < Lesson_output_no + 2; j++)
+                {
+                    xlMidtermDC.Cells[j, 1] = j - 1;
+                }
+                Excel.Worksheet xlMidtermGrading = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+                xlMidtermGrading.Name = "Midterm-" + (i + 1).ToString() + " Grading";
+                for (int a = 1; a < Midterm_Q_no[i] + 1; a++)
+                {
+                    xlMidtermGrading.Cells[1, a] = "Question-" + (a - 1).ToString();
+                    k = a + 1;
+                }
+                xlMidtermGrading.Cells[1, k] = "Total grade";
             }
-            
 
             //We create Student sheet
             Excel.Worksheet xlStudentSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
@@ -264,6 +283,8 @@ namespace ASAP_Project
 
             xlApp.Visible = true;
         }
+
+
         public static void CreateReport()
         {
             var openFileDialog = new Microsoft.Win32.OpenFileDialog();
@@ -276,10 +297,48 @@ namespace ASAP_Project
             int Midterm_counter = 1;
             foreach (Excel.Worksheet worksheet in wb.Worksheets)
             {
-                // Check if the worksheet is one of the desired worksheets
+                // Checsks if the worksheet is one of the desired worksheets
                 if (worksheet.Name == "Midterm-" + Midterm_counter.ToString())
                 {
-                    
+                    int Question_no = 0;
+                    for (int i = 5; i < worksheet.Cells.Rows.Count; i++)
+                    {
+                        if(worksheet.Cells[1, i].Value == "Question-" + (i - 4).ToString())
+                        {
+                            Question_no++;
+                        }
+                        else if(worksheet.Cells[1, i].Value == null)
+                        {
+                            break;
+                        }
+                    }
+                    int Student_no = 0;
+                    for(int i = 2; i < worksheet.Cells.Columns.Count; i++)
+                    {
+                        if(worksheet.Cells[i , 1].Value == i - 1)
+                        {
+                            Student_no++;
+                        }
+                        else if(worksheet.Cells[i , 1].Value == null)
+                        {
+                            break;
+                        }
+                    }
+                    //We create an array to hold Questions of each student
+                    int[,] questionScores = new int[Student_no, Question_no];
+                    //then we fill this array
+                    for(int j = 2; j < Student_no + 2; j++)
+                    {
+                        for(int k = 5; k < Question_no + 5; k++)
+                        {
+                            questionScores[j - 2, k - 5] = Convert.ToInt32(worksheet.Cells[j, k].Value);
+                        }
+                    }
+                    //Now we take information from Ders  Ciktisi(Lesson output) table
+                    //Since we will want users to load the excel they generated from us, it will has its own special template
+                    //So this code is designed in order to work for that
+                    //We must show users error messages if they try to upload specially created folders.
+
                     Midterm_counter++;
                 }
             }
