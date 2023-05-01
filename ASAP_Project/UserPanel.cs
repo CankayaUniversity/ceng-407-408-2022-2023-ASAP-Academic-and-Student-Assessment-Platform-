@@ -12,8 +12,20 @@ using System.Windows;
 
 namespace ASAP_Project
 {
+    /// <summary>
+    /// We have a really long code both in Generate Excel and in
+    /// CreateReport. I thought about creating functions to get rid of extra work
+    /// but for excel read-write in C#, (If we used another language, for example Python, I would have used functions to do repeating actions of these functions)
+    /// that just doesn't work. So I wrote each code one by one copied some parts if needed.
+    /// This is just an explanation for why these codes are way too long.
+    /// - Tan :D
+    /// </summary>
     public class UserPanel
     {
+        /// <summary>
+        /// This one generates an Excel from scratch
+        /// - Tan :D
+        /// </summary>
         public void GenerateExcel(int Student_no, int Midterm_no, int Homework_no,
             int Lab_no, int Quiz_no, int Project_no, int Lesson_output_no, bool isCatalog, bool isFinal,
             int[] Midterm_Q_no, int[] Homework_Q_no,
@@ -129,6 +141,7 @@ namespace ASAP_Project
                 {
                     FinalSheet.Cells[j, 1] = j - 1;
                 }
+                //Formulation to add questions into the total score
                 for (int a = 2; a < Student_no + 2; a++)
                 {
                     Excel.Range functionRange = FinalSheet.Range[FinalSheet.Cells[a, k].Address];
@@ -162,7 +175,7 @@ namespace ASAP_Project
                 {
                     sheet.Cells[j, 1] = j - 1;
                 }
-                //for loop for function
+                //Formulation to add questions into the total score
                 for (int a = 2; a < Student_no + 2; a++)
                 {
                     Excel.Range functionRange = sheet.Range[sheet.Cells[a, k].Address];
@@ -202,7 +215,7 @@ namespace ASAP_Project
                 {
                     sheet.Cells[j, 1] = j - 1;
                 }
-                //for loop for function
+                //Formulation to add questions into the total score
                 for (int a = 2; a < Student_no + 2; a++)
                 {
                     Excel.Range functionRange = sheet.Range[sheet.Cells[a, k].Address];
@@ -210,6 +223,8 @@ namespace ASAP_Project
                     string formulaString = "=SUM(" + sheet.Cells[a, 5].Address + ":" + sheet.Cells[a, k - 1].Address + ")";
                     functionRange.Formula = formulaString;
                 }
+                //This one creates the Midterm-n grading constraints
+                //which has midterm-n DC - Question table
                 Excel.Worksheet xlMidtermDC = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
                 xlMidtermDC.Name = "Midterm-" + (i + 1).ToString() + " Constraints";
                 xlMidtermDC.Cells[1, 1] = "Lesson Output No.";
@@ -222,6 +237,8 @@ namespace ASAP_Project
                 {
                     xlMidtermDC.Cells[j, 1] = j - 1;
                 }
+                //This one creates the Midterm-n grading 
+                //which has midterm-n Question - full_grade table
                 Excel.Worksheet xlMidtermGrading = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
                 xlMidtermGrading.Name = "Midterm-" + (i + 1).ToString() + " Grading";
                 for (int a = 1; a < Midterm_Q_no[i] + 1; a++)
@@ -230,6 +247,7 @@ namespace ASAP_Project
                     k = a + 1;
                 }
                 xlMidtermGrading.Cells[1, k] = "Total grade";
+                //These parts can be copy-pasted to other parts
             }
 
             //We create Student sheet
@@ -298,14 +316,22 @@ namespace ASAP_Project
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             openFileDialog.ShowDialog();
 
+            //This part takes values from excel 
+            //In the order of midterm-n , midterm-n constraints and midterm-gradeing constraints
+            //does necessary calculations and writes the result
             Excel.Application application = new Excel.Application();
             Excel.Workbook wb = application.Workbooks.Open(openFileDialog.FileName);
             int Midterm_counter = 1;
+            //We check each sheet of the loaded file statement
             foreach (Excel.Worksheet worksheet in wb.Worksheets)
             {
                 // Checsks if the worksheet is one of the desired worksheets
+                //We do all the calculations inside this if as well
+                //and editing in the excel sheets too
+                //So this will be a loooooong if statement
                 if (worksheet.Name == "Midterm-" + Midterm_counter.ToString())
                 {
+                    //We calculate question no of this midterm
                     int Question_no = 0;
                     for (int i = 5; i < worksheet.Cells.Rows.Count; i++)
                     {
@@ -318,6 +344,7 @@ namespace ASAP_Project
                             break;
                         }
                     }
+                    //We get student_no of this midterm
                     int Student_no = 0;
                     for(int i = 2; i < worksheet.Cells.Columns.Count; i++)
                     {
@@ -344,6 +371,53 @@ namespace ASAP_Project
                     //Since we will want users to load the excel they generated from us, it will has its own special template
                     //So this code is designed in order to work for that
                     //We must show users error messages if they try to upload specially created folders.
+                    //I MIGHT NEED HELP IN THIS :)
+                    //- TAN :D
+                    Excel.Worksheet worksheetDC = null;
+                    Excel.Worksheet worksheetGrades = null;
+                    int DC_no = 0;
+                    int[,] dynamicArray = null;
+
+                    //Here we get the other 2 worksheet we will use and their values
+                    //from constranints and expected grades list for midterm-n
+                    foreach (Excel.Worksheet worksheet2 in wb.Worksheets)
+                    {
+                        if (worksheet2.Name == "Midterm-" + Midterm_counter.ToString() + " Constraints")
+                        {
+                            worksheetDC = worksheet2;
+                            for (int i = 2; i < worksheet.Cells.Columns.Count; i++)
+                            {
+                                if (worksheet.Cells[i, 1].Value == i - 1)
+                                {
+                                    DC_no++;
+                                }
+                                else if (worksheet.Cells[i, 1].Value == null)
+                                {
+                                    break;
+                                }
+
+                            }
+                            dynamicArray = new int[DC_no, Question_no];
+                            dynamicArray[0, 0] = 1;
+                        } else if (worksheet2.Name == "Midterm-" + Midterm_counter.ToString() + " Grading")
+                        {
+                            worksheetDC = worksheet2;
+                            for (int i = 2; i < worksheet.Cells.Columns.Count; i++)
+                            {
+                                if (worksheet.Cells[i, 1].Value == i - 1)
+                                {
+                                    DC_no++;
+                                }
+                                else if (worksheet.Cells[i, 1].Value == null)
+                                {
+                                    break;
+                                }
+
+                            }
+                            dynamicArray = new int[DC_no, Question_no];
+                            dynamicArray[0, 0] = 1;
+                        }
+                    }
 
                     Midterm_counter++;
                 }
