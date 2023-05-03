@@ -20,6 +20,8 @@ using System.Data;
 using Excel = Microsoft.Office.Interop.Excel;
 using Application = Microsoft.Office.Interop.Excel.Application;
 using Range = Microsoft.Office.Interop.Excel.Range;
+using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace ASAP_Project
 {
@@ -346,6 +348,228 @@ namespace ASAP_Project
 
             MessageBox.Show("a");
 
+        }
+
+        private void button_addcourse_Click(object sender, RoutedEventArgs e)
+        {
+            if (grid_addcourse.Visibility == Visibility.Visible)
+            {
+                grid_addcourse.Visibility = Visibility.Hidden;
+            }
+            else 
+            {
+                grid_addcourse.Visibility = Visibility.Visible;
+            }
+            
+        }
+        
+
+        public ObservableCollection<DC_PC_CheckBoxTable> Rows { get; set; }
+
+        private void textbox_howmanydc_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            int dc_count = int.Parse(textbox_howmanydc.Text);
+
+            System.Data.DataTable dc_pc_datatable = new System.Data.DataTable();
+
+            DataContext = this;
+
+            Rows = new ObservableCollection<DC_PC_CheckBoxTable>();
+
+            for (int i = 0; i < dc_count; i++)
+            {
+                Rows.Add(new DC_PC_CheckBoxTable
+                {
+                    DCPC = "DÇ " + (i + 1).ToString(),
+                    PC1 = false,
+                    PC2 = false,
+                    PC3 = false,
+                    PC4 = false,
+                    PC5 = false,
+                    PC6 = false,
+                    PC7 = false,
+                    PC8 = false,
+                    PC9 = false,
+                    PC10 = false,
+                    PC11 = false,
+                });
+            }
+
+            datagrid_addcourse.ItemsSource = Rows;
+
+            
+        }
+
+        public class DC_PC_CheckBoxTable
+        {
+            public string DCPC { get; set; }           
+            public bool PC1 { get; set; }
+            public bool PC2 { get; set; }
+            public bool PC3 { get; set; }
+            public bool PC4 { get; set; }
+            public bool PC5 { get; set; }
+            public bool PC6 { get; set; }
+            public bool PC7 { get; set; }
+            public bool PC8 { get; set; }
+            public bool PC9 { get; set; }
+            public bool PC10 { get; set; }
+            public bool PC11 { get; set; }
+        }
+
+        private void button_addcourseexportexcel_Click(object sender, RoutedEventArgs e)
+        {
+            System.Data.DataTable dataTable = new System.Data.DataTable();
+
+            Application excel = new Application();
+
+            Workbook workbook = excel.Workbooks.Add();
+
+            Worksheet worksheet = workbook.ActiveSheet;
+
+            worksheet.Name = "DC-PC";
+
+            workbook.Title = (textbox_coursecode.Text).ToString();
+
+            foreach (DataGridColumn col in datagrid_addcourse.Columns)
+            {
+                dataTable.Columns.Add(col.Header.ToString(), typeof(string));
+            }
+
+
+            foreach (var row in datagrid_addcourse.Items)
+            {
+                DC_PC_CheckBoxTable rowView = (DC_PC_CheckBoxTable)row;
+                DataRow dataRow = dataTable.NewRow();
+
+                dataRow[0] = rowView.DCPC;
+
+                if (rowView.PC1 == true)
+                {
+                    dataRow[1] = 1;
+                }
+                else
+                {
+                    dataRow[1] = 0;
+                }
+                if (rowView.PC2 == true)
+                {
+                    dataRow[2] = 1;
+                }
+                else
+                {
+                    dataRow[2] = 0;
+                }
+                if (rowView.PC3 == true)
+                {
+                    dataRow[3] = 1;
+                }
+                else
+                {
+                    dataRow[3] = 0;
+                }
+                if (rowView.PC4 == true)
+                {
+                    dataRow[4] = 1;
+                }
+                else
+                {
+                    dataRow[4] = 0;
+                }
+                if (rowView.PC5 == true)
+                {
+                    dataRow[5] = 1;
+                }
+                else
+                {
+                    dataRow[5] = 0;
+                }
+                if (rowView.PC6 == true)
+                {
+                    dataRow[6] = 1;
+                }
+                else
+                {
+                    dataRow[6] = 0;
+                }
+                if (rowView.PC7 == true)
+                {
+                    dataRow[7] = 1;
+                }
+                else
+                {
+                    dataRow[7] = 0;
+                }
+                if (rowView.PC8 == true)
+                {
+                    dataRow[8] = 1;
+                }
+                else
+                {
+                    dataRow[8] = 0;
+                }
+                if (rowView.PC9 == true)
+                {
+                    dataRow[9] = 1;
+                }
+                else
+                {
+                    dataRow[9] = 0;
+                }
+                if (rowView.PC10 == true)
+                {
+                    dataRow[10] = 1;
+                }
+                else
+                {
+                    dataRow[10] = 0;
+                }
+                if (rowView.PC11 == true)
+                {
+                    dataRow[11] = 1;
+                }
+                else
+                {
+                    dataRow[11] = 0;
+                }
+                
+
+                dataTable.Rows.Add(dataRow);
+            }
+
+            
+
+            for (int i = 0; i < dataTable.Columns.Count; i++)
+            {
+                worksheet.Cells[1, i + 1] = dataTable.Columns[i].ColumnName;
+            }
+            for (int i = 0; i < dataTable.Rows.Count; i++)
+            {
+                for (int j = 0; j < dataTable.Columns.Count; j++)
+                {
+                    worksheet.Cells[i + 2, j + 1] = dataTable.Rows[i][j].ToString();
+                }
+            }
+
+            Worksheet student = workbook.Worksheets.Add();
+            student.Name = "Students";
+            student.Cells[1, 1] = "No";
+            student.Cells[1, 2] = "Student ID";
+            student.Cells[1, 3] = "Student Name";
+            student.Cells[1, 4] = "Student Surname";
+
+            for (int i = 1; i < int.Parse(textbox_coursestudentcount.Text) + 1; i++)
+            {
+                student.Cells[i + 1, 1] = i;
+            }
+
+            string fileName = textbox_coursecode.Text + "-" + textbox_courseyear.Text;
+            string appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string filePath = System.IO.Path.Combine(appDataFolder, fileName);
+
+            workbook.SaveAs(filePath);
+            MessageBox.Show("Your excel file saved as this location: " + filePath);
+
+            excel.Visible = true;
         }
     } 
 }

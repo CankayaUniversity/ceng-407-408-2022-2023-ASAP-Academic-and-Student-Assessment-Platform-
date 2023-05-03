@@ -59,7 +59,7 @@
             <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_downloadexcel" Content="Download Excel" HorizontalAlignment="Center" Margin="0,345,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.177,0.403" Width="246" Background="#27A4CB" Height="30" Opacity="0.8" Click="button_downloadexcel_Click"/>
 
         </Grid>
-        <Grid x:Name="grid_adminpanel" Margin="317,41,691,51" Visibility="Hidden">
+        <Grid x:Name="grid_adminpanel" Margin="317,41,691,51">
             <Border Padding="20" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Opacity="0.8">
                 <Border.Effect>
                     <BlurEffect Radius="3"/>
@@ -70,7 +70,7 @@
                     <BlurEffect Radius="2" KernelType="Box" RenderingBias="Quality"/>
                 </Rectangle.Effect>
             </Rectangle>
-            <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_addcourse" Content="Add Course" HorizontalAlignment="Center" Margin="0,170,0,0" VerticalAlignment="Top" Background="#27A4CB" Width="246" Height="30" Opacity="0.8"/>
+            <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_addcourse" Content="Add Course" HorizontalAlignment="Center" Margin="0,170,0,0" VerticalAlignment="Top" Background="#27A4CB" Width="246" Height="30" Opacity="0.8" Click="button_addcourse_Click"/>
             <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_updatecourse" Content="Update Course" HorizontalAlignment="Center" Margin="0,205,0,0" VerticalAlignment="Top" Background="#27A4CB" Width="246" Height="30" Opacity="0.8"/>
             <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_deletecourse" Content="Delete Course" HorizontalAlignment="Center" Margin="0,240,0,0" VerticalAlignment="Top" Background="#27A4CB" Width="246" Height="30" Opacity="0.8"/>
 
@@ -140,7 +140,7 @@
             <Label x:Name="label_course" Content="Course :" HorizontalAlignment="Left" Margin="204,27,0,0" VerticalAlignment="Top" Foreground="White"/>
             <ComboBox x:Name="combobox_course" HorizontalAlignment="Left" Margin="262,29,0,0" VerticalAlignment="Top" Width="120"/>
         </Grid>
-        <Grid x:Name="grid_createreport" Width="630" Height="612.04" Margin="618,41,32,51">
+        <Grid x:Name="grid_createreport" Width="630" Height="612.04" Margin="618,41,32,51" Visibility="Hidden">
             <Border Padding="20" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Opacity="0.8">
                 <Border.Effect>
                     <BlurEffect Radius="3"/>
@@ -153,6 +153,28 @@
             </Rectangle>
             <Button x:Name="button_selectexcelfile" Style="{StaticResource RoundedButtonStyle}" Content="OK" HorizontalAlignment="Left" Margin="149,29,0,0" VerticalAlignment="Top" Click="button_selectexcelfile_Click" Width="59"/>
             <Label x:Name="label_Selectexcelfile" Content="Select Excel File" HorizontalAlignment="Left" Margin="38,25,0,0" VerticalAlignment="Top" Foreground="White"/>
+        </Grid>
+        <Grid x:Name="grid_addcourse" Width="630" Height="612.04" Margin="618,41,32,51">
+            <Border Padding="20" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Opacity="0.8">
+                <Border.Effect>
+                    <BlurEffect Radius="3"/>
+                </Border.Effect>
+            </Border>
+            <Rectangle Fill="Black" Opacity="0.3" RadiusX="20" RadiusY="20">
+                <Rectangle.Effect>
+                    <BlurEffect Radius="2" KernelType="Box" RenderingBias="Quality"/>
+                </Rectangle.Effect>
+            </Rectangle>
+            <Label x:Name="label_CourseCode" Content="Course Code :" HorizontalAlignment="Left" Margin="38,25,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <TextBox x:Name="textbox_coursecode" HorizontalAlignment="Left" Margin="131,29,0,0" TextWrapping="Wrap" Text="CENG-XXX" VerticalAlignment="Top" Width="120"/>
+            <Label x:Name="label_CourseYear" Content="Course Year :" HorizontalAlignment="Left" Margin="43,56,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <TextBox x:Name="textbox_courseyear" HorizontalAlignment="Left" Margin="131,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label x:Name="label_CourseStudentCount" Content="Student Count :" HorizontalAlignment="Left" Margin="29,87,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <TextBox x:Name="textbox_coursestudentcount" HorizontalAlignment="Left" Margin="131,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label x:Name="label_howmanydc" Content="DC Count :" HorizontalAlignment="Left" Margin="54,118,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <TextBox x:Name="textbox_howmanydc" HorizontalAlignment="Left" Margin="131,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="textbox_howmanydc_TextChanged"/>
+            <DataGrid x:Name="datagrid_addcourse" Margin="10,159,27,248" SelectionUnit="Cell" CanUserAddRows="False"/>
+            <Button x:Name="button_addcourseexportexcel" Content="Button" HorizontalAlignment="Left" Margin="563,390,0,0" VerticalAlignment="Top" Click="button_addcourseexportexcel_Click"/>
         </Grid>
 
     </Grid>
