@@ -17,6 +17,9 @@ using System.Data.OleDb;
 using Microsoft.Win32;
 using System.IO;
 using System.Data;
+using Excel = Microsoft.Office.Interop.Excel;
+using Application = Microsoft.Office.Interop.Excel.Application;
+using Range = Microsoft.Office.Interop.Excel.Range;
 
 namespace ASAP_Project
 {
@@ -256,7 +259,93 @@ namespace ASAP_Project
 
         private void button_createreport_Click(object sender, RoutedEventArgs e)
         {
-            UserPanel.CreateReport();
+            
+        }
+
+        private void button_downloadexcel_Click(object sender, RoutedEventArgs e)
+        {
+            GoogleDrive.GetFile();
+        }
+
+        private void button_selectexcelfile_Click(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            openFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            openFileDialog.ShowDialog();
+            string excelfileloc = openFileDialog.FileName;
+
+            List<string> sheetNames = new List<string>();
+            List<string> columnNames = new List<string>();
+
+
+            int midtermsheetcount = 0;
+            int []midtermqcount = new int[10];
+            bool finalsheet = false;
+            int i = 0;
+            string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + excelfileloc + "; Extended Properties='Excel 12.0 Xml;HDR=YES'";
+
+            using (OleDbConnection connection = new OleDbConnection(connectionString))
+            {
+                connection.Open();
+
+                // Get list of sheet names
+                System.Data.DataTable schemaTable = connection.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+                
+                foreach (DataRow row in schemaTable.Rows)
+                {
+                    sheetNames.Add(row["TABLE_NAME"].ToString().Replace("$", ""));
+                }
+
+                // Close connection
+                connection.Close();
+            }
+            foreach (string sheetName in sheetNames)
+            {
+                if (sheetName.Contains("Midterm-"))
+                {
+                    
+                    midtermsheetcount++;
+
+                    using (OleDbConnection connection = new OleDbConnection(connectionString))
+                    {
+                        connection.Open();
+
+                        System.Data.DataTable dataTable = new System.Data.DataTable();
+                        OleDbDataAdapter dataAdapter = new OleDbDataAdapter("SELECT * FROM [" + sheetName + "]", connection);
+                        dataAdapter.Fill(dataTable);
+
+                        foreach (DataRow row in dataTable.Rows)
+                        {
+                            columnNames.Add(row["COLUMN_NAME"].ToString());
+                        }
+
+
+                        connection.Close();
+                    }
+
+                    foreach (string columnName in columnNames)
+                    {
+                        midtermqcount[i]++;
+                    }
+
+                }
+
+
+
+
+                if (sheetName.Contains("Final"))
+                {
+                    finalsheet = true;
+                }
+
+
+                i++;
+            }
+
+
+            MessageBox.Show("a");
+
         }
     } 
 }

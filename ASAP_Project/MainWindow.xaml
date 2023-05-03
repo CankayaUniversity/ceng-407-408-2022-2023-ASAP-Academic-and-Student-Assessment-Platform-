@@ -56,6 +56,7 @@
             <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_editreport" Content="Edit Report" HorizontalAlignment="Center" Margin="0,240,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.177,0.152" Width="246" Background="#27A4CB" Height="30" Opacity="0.8"/>
             <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_transferdata" Content="Transfer Data" HorizontalAlignment="Center" Margin="0,275,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.177,0.403" Width="246" Background="#27A4CB" Height="30" Opacity="0.8" Click="button_transferdata_Click"/>
             <Button x:Name="button_reviewcourse" Style="{StaticResource RoundedButtonStyle}" Content="Review Course" HorizontalAlignment="Center" Margin="0,310,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.177,0.403" Width="246" Background="#27A4CB" Height="30" Opacity="0.8" Click="button_reviewcourse_Click"/>
+            <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_downloadexcel" Content="Download Excel" HorizontalAlignment="Center" Margin="0,345,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.177,0.403" Width="246" Background="#27A4CB" Height="30" Opacity="0.8" Click="button_downloadexcel_Click"/>
 
         </Grid>
         <Grid x:Name="grid_adminpanel" Margin="317,41,691,51" Visibility="Hidden">
@@ -76,11 +77,12 @@
 
 
         </Grid>
-        <Grid x:Name="grid_generate_excel" Margin="618,41,32,51">
+        <Grid x:Name="grid_generate_excel" Margin="618,41,32,51" Visibility="Hidden">
             <Border Padding="20" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Opacity="0.8" Margin="0,0,10,0">
                 <Border.Effect>
                     <BlurEffect Radius="3"/>
                 </Border.Effect>
+                <Grid/>
             </Border>
             <Rectangle Fill="Black" Opacity="0.3" RadiusX="20" RadiusY="20" Margin="0,0,10,0">
                 <Rectangle.Effect>
@@ -137,6 +139,20 @@
             <ComboBox x:Name="combobox_year" HorizontalAlignment="Left" Margin="70,29,0,0" VerticalAlignment="Top" Width="120"/>
             <Label x:Name="label_course" Content="Course :" HorizontalAlignment="Left" Margin="204,27,0,0" VerticalAlignment="Top" Foreground="White"/>
             <ComboBox x:Name="combobox_course" HorizontalAlignment="Left" Margin="262,29,0,0" VerticalAlignment="Top" Width="120"/>
+        </Grid>
+        <Grid x:Name="grid_createreport" Width="630" Height="612.04" Margin="618,41,32,51">
+            <Border Padding="20" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Opacity="0.8">
+                <Border.Effect>
+                    <BlurEffect Radius="3"/>
+                </Border.Effect>
+            </Border>
+            <Rectangle Fill="Black" Opacity="0.3" RadiusX="20" RadiusY="20">
+                <Rectangle.Effect>
+                    <BlurEffect Radius="2" KernelType="Box" RenderingBias="Quality"/>
+                </Rectangle.Effect>
+            </Rectangle>
+            <Button x:Name="button_selectexcelfile" Style="{StaticResource RoundedButtonStyle}" Content="OK" HorizontalAlignment="Left" Margin="149,29,0,0" VerticalAlignment="Top" Click="button_selectexcelfile_Click" Width="59"/>
+            <Label x:Name="label_Selectexcelfile" Content="Select Excel File" HorizontalAlignment="Left" Margin="38,25,0,0" VerticalAlignment="Top" Foreground="White"/>
         </Grid>
 
     </Grid>
