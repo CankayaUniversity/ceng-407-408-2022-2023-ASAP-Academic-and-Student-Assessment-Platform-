@@ -261,7 +261,7 @@ namespace ASAP_Project
 
         private void button_createreport_Click(object sender, RoutedEventArgs e)
         {
-            
+            UserPanel.CreateReport();
         }
 
         private void button_downloadexcel_Click(object sender, RoutedEventArgs e)
