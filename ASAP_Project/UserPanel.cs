@@ -50,10 +50,6 @@ namespace ASAP_Project
 
             xlWorkBook = xlApp.Workbooks.Add(misValue);
 
-            //Lesson outputa bakın bi
-            Excel.Worksheet xlLessonOutputSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
-            xlLessonOutputSheet.Name = "Lesson Output";
-            xlLessonOutputSheet.Cells[1, 1] = Lesson_output_no;
 
             //Projects
             Excel.Worksheet[] xlProjectSheet = new Excel.Worksheet[Project_no];
@@ -61,7 +57,7 @@ namespace ASAP_Project
             {
                 xlProjectSheet[i] = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
             }
-            for (int i = 0; i < Lab_no; i++)
+            for (int i = 0; i < Project_no; i++)
             {
                 Excel.Worksheet sheet = xlProjectSheet[i];
                 sheet.Name = "Project-" + (i + 1).ToString();
@@ -75,6 +71,25 @@ namespace ASAP_Project
                 {
                     sheet.Cells[j, 1] = j - 1;
                 }
+            }
+            //Dc Table generation for projects
+            Excel.Worksheet xlProjectsDC = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+            xlProjectsDC.Name = "Project Constraints";
+            xlProjectsDC.Cells[1, 1] = "Lesson Output No.";
+            for (int i = 1; i < Project_no + 1; i++)
+            {
+                xlProjectsDC.Cells[1, i + 1] = "Project-" + (i).ToString();
+            }
+            for (int j = 2; j < Lesson_output_no + 2; j++)
+            {
+                xlProjectsDC.Cells[j, 1] = j - 1;
+            }
+            Excel.Worksheet xlProjectsGrading = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+            //A table to hold grades of all projects
+            xlProjectsGrading.Name = "Projects " + " Grading";
+            for (int a = 1; a < Project_no + 1; a++)
+            {
+                xlProjectsGrading.Cells[1, a] = "Project-" + (a).ToString();
             }
 
             //Quizzes
@@ -98,6 +113,25 @@ namespace ASAP_Project
                     sheet.Cells[j, 1] = j - 1;
                 }
             }
+            //Dc Table generation for Quizzes
+            Excel.Worksheet xlQuizzesDC = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+            xlQuizzesDC.Name = "Quiz Constraints";
+            xlQuizzesDC.Cells[1, 1] = "Lesson Output No.";
+            for (int i = 1; i < Quiz_no + 1; i++)
+            {
+                xlQuizzesDC.Cells[1, i + 1] = "Quiz-" + (i).ToString();
+            }
+            for (int j = 2; j < Lesson_output_no + 2; j++)
+            {
+                xlQuizzesDC.Cells[j, 1] = j - 1;
+            }
+            Excel.Worksheet xlQuizzesGrading = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+            //A table to hold grades of all Quizzes
+            xlQuizzesGrading.Name = "Quiz " + " Grading";
+            for (int a = 1; a < Project_no + 1; a++)
+            {
+                xlQuizzesGrading.Cells[1, a] = "Quiz-" + (a).ToString();
+            }
 
             //Labs
             Excel.Worksheet[] xlLabSheet = new Excel.Worksheet[Lab_no];
@@ -119,6 +153,25 @@ namespace ASAP_Project
                 {
                     sheet.Cells[j, 1] = j - 1;
                 }
+            }
+            //Dc Table generation for Labs
+            Excel.Worksheet xlLabsDC = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+            xlLabsDC.Name = "Lab Constraints";
+            xlLabsDC.Cells[1, 1] = "Lesson Output No.";
+            for (int i = 1; i < Lab_no + 1; i++)
+            {
+                xlLabsDC.Cells[1, i + 1] = "Lab-" + (i).ToString();
+            }
+            for (int j = 2; j < Lesson_output_no + 2; j++)
+            {
+                xlLabsDC.Cells[j, 1] = j - 1;
+            }
+            Excel.Worksheet xlLabsGrading = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+            //A table to hold grades of all Labs
+            xlLabsGrading.Name = "Lab " + " Grading";
+            for (int a = 1; a < Lab_no + 1; a++)
+            {
+                xlLabsGrading.Cells[1, a] = "Lab-" + (a).ToString();
             }
 
             //Final sheet
@@ -236,7 +289,6 @@ namespace ASAP_Project
             }
 
             //midterm sheet kodu
-
             Excel.Worksheet[] xlMidtermSheet = new Excel.Worksheet[Midterm_no];
             for (int i = 0; i < Midterm_no; i++)
             {
@@ -465,7 +517,7 @@ namespace ASAP_Project
                 }
             }
 
-
+            Excel.Worksheet xlLessonOutputSheet = (Excel.Worksheet)wb.Worksheets.Add();
 
             return Midterm_Counter++;
         }
@@ -511,6 +563,12 @@ namespace ASAP_Project
                 }
             }
             application.Visible = true;
+            wb.Save();
+
+            // Close the workbook and quit the Excel application
+            wb.Close();
+            application.Quit();
+
         }
     }
 }
