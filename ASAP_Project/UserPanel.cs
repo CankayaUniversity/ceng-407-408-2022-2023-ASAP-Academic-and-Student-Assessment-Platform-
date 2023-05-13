@@ -229,6 +229,11 @@ namespace ASAP_Project
             }
 
 
+
+
+
+
+
             Excel.Worksheet[] xlHomeworkSheet = new Excel.Worksheet[Homework_no];
             for (int i = 0; i < Homework_no; i++)
             {
@@ -550,6 +555,51 @@ namespace ASAP_Project
         /// BUT WE WILL PICK IT UP FROM DRIVE SO IT WİLL SAVE THE FILE TO THE PC INSTEAD (GOD I HOPE SO)
         /// - TAN :D
         /// </summary>
+        /// 
+
+
+        // verilerin tutulacağı alan:
+        public class Veriler
+        {
+            private double[,] finalSinavVerileri;
+            private double[,,] vizeSinavVerileri;
+            private double[,,] odevVerileri;
+            private double[,,] labVerileri;
+
+            public Veriler(double[,] finalSinavVerileri, double[,,] vizeSinavVerileri, double[,,] odevVerileri, double[,,] labVerileri)
+            {
+                this.finalSinavVerileri = finalSinavVerileri;
+                this.vizeSinavVerileri = vizeSinavVerileri;
+                this.odevVerileri = odevVerileri;
+                this.labVerileri = labVerileri;
+            }
+
+            public double[,] FinalSinavVerileri
+            {
+                get { return finalSinavVerileri; }
+                set { finalSinavVerileri = value; }
+            }
+
+            public double[,,] VizeSinavVerileri
+            {
+                get { return vizeSinavVerileri; }
+                set { vizeSinavVerileri = value; }
+            }
+
+            public double[,,] OdevVerileri
+            {
+                get { return odevVerileri; }
+                set { odevVerileri = value; }
+            }
+
+            public double[,,] LabVerileri
+            {
+                get { return labVerileri; }
+                set { labVerileri = value; }
+            }
+        }
+
+
         public static void CreateReport()
         {
             var openFileDialog = new Microsoft.Win32.OpenFileDialog();
