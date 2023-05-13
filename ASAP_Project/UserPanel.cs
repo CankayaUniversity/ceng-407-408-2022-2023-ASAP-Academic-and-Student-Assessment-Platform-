@@ -400,9 +400,8 @@ namespace ASAP_Project
             xlApp.Visible = true;
         }
 
-
         //Calculator for HW,Midterms and Final
-        private static int ExcelCalculator(Excel.Workbook wb, Excel.Worksheet worksheet, int Midterm_Counter, String name)
+        private static int ExcelCalculator(Excel.Workbook wb, Excel.Worksheet worksheet, int Counter, String name)
         {
             //We calculate question no of this midterm
             int Question_no = 0;
@@ -455,7 +454,7 @@ namespace ASAP_Project
             //from constranints and expected grades list for midterm-n
             foreach (Excel.Worksheet worksheet2 in wb.Worksheets)
             {
-                if (worksheet2.Name == name + Midterm_Counter.ToString() + " Constraints")
+                if (worksheet2.Name == name + Counter.ToString() + " Constraints")
                 {
                     worksheetDC = worksheet2;
                     for (int i = 2; i < worksheet.Cells.Columns.Count; i++)
@@ -472,7 +471,7 @@ namespace ASAP_Project
                     }
                     DCArray = new int[DC_no, Question_no];
                 }
-                else if (worksheet2.Name == name + Midterm_Counter.ToString() + " Grading")
+                else if (worksheet2.Name == name + Counter.ToString() + " Grading")
                 {
                     worksheetGrades = worksheet2;
                 }
@@ -517,10 +516,33 @@ namespace ASAP_Project
                 }
             }
 
-            Excel.Worksheet xlLessonOutputSheet = (Excel.Worksheet)wb.Worksheets.Add();
-
-            return Midterm_Counter++;
+            Excel.Worksheet xlStudentDCSheet = (Excel.Worksheet)wb.Worksheets.Add();
+            xlStudentDCSheet.Name = name + Counter.ToString() + " Student - DC";
+            xlStudentDCSheet.Cells[1, 1] = "Id";
+            xlStudentDCSheet.Cells[1, 2] = "Student ID";
+            xlStudentDCSheet.Cells[1, 3] = "Student Name";
+            xlStudentDCSheet.Cells[1, 4] = "Student Surname";
+            for (int x = 5; x < DC_no + 5; x++)
+            {
+                xlStudentDCSheet.Cells[1, x] = "DC" + (x - 4).ToString();
+            }
+            for(int i = 2; i <Student_no + 2; i++)
+            {
+                //We enter student info to that code as well
+                //To do so, we must get the student data for the lesson.
+                //If we are going to use this on many places, we might need a function which extracts 
+                //The student information from the drive excel created by the admin
+                xlStudentDCSheet.Cells[i, 1] = i - 1;
+                for (int j = 5; j < DC_no + 5; j++)
+                {
+                    xlStudentDCSheet.Cells[i, j]= Student_DC[i - 2, j - 5];
+                }
+            }
+            Counter = Counter + 1;
+            return Counter;
         }
+
+
         /// <summary>
         /// THIS ONE CREATES A REPORT FROM AN EXISING EXCEL
         /// IT MAKES NECESARRY CALCULATIONS INTERNALLY AND IMPLEMENTS THEM TO EXCEL FILE NEWLY CREATED
@@ -543,32 +565,33 @@ namespace ASAP_Project
             int Homework_counter = 1;
             int Midterm_counter = 1;
             //We check each sheet of the loaded file  statement
-            foreach (Excel.Worksheet worksheet in wb.Worksheets)
+            // Get the total number of worksheets
+            int totalWorksheets = wb.Worksheets.Count;
+
+            // Iterate through the worksheets collection in reverse order
+            for (int i = totalWorksheets; i > 0; i--)
             {
-                // Checsks if the worksheet is one of the desired worksheets
-                //We do all the calculations inside this if as well
-                //and editing in the excel sheets too
+                Excel.Worksheet worksheet = (Excel.Worksheet)wb.Worksheets[i];
+
+                // Check if the worksheet is one of the desired worksheets
+                // Perform calculations and editing inside this if statement
                 if (worksheet.Name == "Midterm-" + Midterm_counter.ToString())
                 {
                     Midterm_counter = ExcelCalculator(wb, worksheet, Midterm_counter, "Midterm-");
                 }
             }
+
             //Now for Homeworks
-            foreach (Excel.Worksheet worksheet in wb.Worksheets)
+            /*foreach (Excel.Worksheet worksheet in wb.Worksheets)
             {
 
                 if (worksheet.Name == "Homework-" + Homework_counter.ToString())
                 {
                     Homework_counter = ExcelCalculator(wb, worksheet, Homework_counter, "Homework-");
                 }
-            }
+            }*/
             application.Visible = true;
             wb.Save();
-
-            // Close the workbook and quit the Excel application
-            wb.Close();
-            application.Quit();
-
         }
     }
 }
