@@ -86,7 +86,7 @@ namespace ASAP_Project
             }
             Excel.Worksheet xlProjectsGrading = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
             //A table to hold grades of all projects
-            xlProjectsGrading.Name = "Projects " + " Grading";
+            xlProjectsGrading.Name = "Project Grading";
             for (int a = 1; a < Project_no + 1; a++)
             {
                 xlProjectsGrading.Cells[1, a] = "Project-" + (a).ToString();
@@ -127,7 +127,7 @@ namespace ASAP_Project
             }
             Excel.Worksheet xlQuizzesGrading = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
             //A table to hold grades of all Quizzes
-            xlQuizzesGrading.Name = "Quiz " + " Grading";
+            xlQuizzesGrading.Name = "Quiz Grading";
             for (int a = 1; a < Project_no + 1; a++)
             {
                 xlQuizzesGrading.Cells[1, a] = "Quiz-" + (a).ToString();
@@ -168,7 +168,7 @@ namespace ASAP_Project
             }
             Excel.Worksheet xlLabsGrading = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
             //A table to hold grades of all Labs
-            xlLabsGrading.Name = "Lab " + " Grading";
+            xlLabsGrading.Name = "Lab Grading";
             for (int a = 1; a < Lab_no + 1; a++)
             {
                 xlLabsGrading.Cells[1, a] = "Lab-" + (a).ToString();
@@ -204,7 +204,7 @@ namespace ASAP_Project
                 //This one creates the Final-n grading constraints
                 //which has Final-n DC - Question table
                 Excel.Worksheet xlFinalDC = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
-                xlFinalDC.Name = "Final " + " Constraints";
+                xlFinalDC.Name = "Final" + " Constraints";
                 xlFinalDC.Cells[1, 1] = "Lesson Output No.";
 
                 for (int a = 2; a < Final_Q_no + 2; a++)
@@ -218,7 +218,7 @@ namespace ASAP_Project
                 //This one creates the homweork-n grading 
                 //which has homework-n Question - full_grade table
                 Excel.Worksheet xlFinalGrading = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
-                xlFinalGrading.Name = "Final " + " Grading";
+                xlFinalGrading.Name = "Final " + "Grading";
                 for (int a = 1; a < Final_Q_no + 1; a++)
                 {
                     xlFinalGrading.Cells[1, a] = "Question-" + (a - 1).ToString();
@@ -227,11 +227,6 @@ namespace ASAP_Project
                 xlFinalGrading.Cells[1, k] = "Total grade";
                 //These parts can be copy-pasted to other parts
             }
-
-
-
-
-
 
 
             Excel.Worksheet[] xlHomeworkSheet = new Excel.Worksheet[Homework_no];
@@ -405,146 +400,358 @@ namespace ASAP_Project
             xlApp.Visible = true;
         }
 
+
+        // verilerin tutulacağı alan:
+        public class Veriler
+        {
+            public double[,] finalSinavVerileri;
+            public double[,,] vizeSinavVerileri;
+            public double[,,] odevVerileri;
+            public double[,] labVerileri; //birden fazlalar evet ama lablar, quizler ve projeler tek bi DC tabosu kullnıyor.
+            public double[,] projeVerileri;
+            public double[,] quizVerileri;
+        }
+
+        public static Veriler  newVeri = new Veriler();
+
         //Calculator for HW,Midterms and Final
         private static int ExcelCalculator(Excel.Workbook wb, Excel.Worksheet worksheet, int Counter, String name)
         {
-            //We calculate question no of this midterm
-            int Question_no = 0;
-            for (int i = 5; i < worksheet.Cells.Rows.Count; i++)
+            //we have 3 templates in generate excel
+            //1- Midterm and Homeworks (and Final, but difference is it is only one so no numbers)
+            //(DC Table for each Midterm and Homework, and for the one Final)
+            //2- Labs ,Projects and Quizes (we make a DC table for their count)
+            if (name == "Midterm-" || name == "Homework-" || name == "Final")
             {
-                if (worksheet.Cells[1, i].Value == "Question-" + (i - 4).ToString())
+                int Question_no = 0;
+                for (int i = 5; i < worksheet.Cells.Rows.Count; i++)
                 {
-                    Question_no++;
-                }
-                else if (worksheet.Cells[1, i].Value == null)
-                {
-                    break;
-                }
-            }
-            //We get student_no of this midterm
-            int Student_no = 0;
-            for (int i = 2; i < worksheet.Cells.Columns.Count; i++)
-            {
-                if (worksheet.Cells[i, 1].Value == i - 1)
-                {
-                    Student_no++;
-                }
-                else if (worksheet.Cells[i, 1].Value == null)
-                {
-                    break;
-                }
-            }
-            //We create an array to hold Questions of each student
-            int[,] questionScores = new int[Student_no, Question_no];
-            //then we fill this array
-            for (int j = 2; j < Student_no + 2; j++)
-            {
-                for (int k = 5; k < Question_no + 5; k++)
-                {
-                    questionScores[j - 2, k - 5] = Convert.ToInt32(worksheet.Cells[j, k].Value);
-                }
-            }
-            //Now we take information from Ders  Ciktisi(Lesson output) table
-            //Since we will want users to load the excel they generated from us, it will has its own special template
-            //So this code is designed in order to work for that
-            //We must show users error messages if they try to upload specially created folders.
-            //I MIGHT NEED HELP IN THIS :)
-            //- TAN :D
-            Excel.Worksheet worksheetDC = null;
-            Excel.Worksheet worksheetGrades = null;
-            int DC_no = 0;
-            int[,] DCArray = null;
-            int[] GradesArray = new int[Question_no];
-            //Here we get the other 2 worksheet we will use and their values
-            //from constranints and expected grades list for midterm-n
-            foreach (Excel.Worksheet worksheet2 in wb.Worksheets)
-            {
-                if (worksheet2.Name == name + Counter.ToString() + " Constraints")
-                {
-                    worksheetDC = worksheet2;
-                    for (int i = 2; i < worksheet.Cells.Columns.Count; i++)
+                    if (worksheet.Cells[1, i].Value == "Question-" + (i - 4).ToString())
                     {
-                        if (worksheet.Cells[i, 1].Value == i - 1)
-                        {
-                            DC_no++;
-                        }
-                        else if (worksheet.Cells[i, 1].Value == null)
-                        {
-                            break;
-                        }
-
+                        Question_no++;
                     }
-                    DCArray = new int[DC_no, Question_no];
-                }
-                else if (worksheet2.Name == name + Counter.ToString() + " Grading")
-                {
-                    worksheetGrades = worksheet2;
-                }
-            }
-            //We input DC of that midterm inside our dynamic DC-lesson array
-            for (int j = 2; j < DC_no + 2; j++)
-            {
-                for (int k = 2; k < Question_no + 2; k++)
-                {
-                    DCArray[j - 2, k - 2] = Convert.ToInt32(worksheetDC.Cells[j, k].Value);
-                }
-            }
-            //We input that midterms max grades question by question to the Point array
-            for (int j = 1; j < Question_no + 1; j++)
-            {
-
-                GradesArray[j - 1] = Convert.ToInt32(worksheetGrades.Cells[2, j].Value);
-            }
-
-            //Now we start calculations
-            double[,] Student_DC = new double[Student_no, DC_no];
-            int sum_grade;
-
-            //This one calculates each DC for all students and stores them in an Student-DC array
-            for(int i = 0; i < Student_no; i++)
-            {
-                for(int j = 0; j < DC_no; j++)
-                {
-                    double sum = 0;
-                    double total_DC = 0;
-                    for(int k = 0; k < Question_no; k++)
+                    else if (worksheet.Cells[1, i].Value == null)
                     {
-                        if(DCArray[j, k] == 1)
+                        break;
+                    }
+                }
+                //We get student_no of this midterm
+                int Student_no = 0;
+                for (int i = 2; i < worksheet.Cells.Columns.Count; i++)
+                {
+                    if (worksheet.Cells[i, 1].Value == i - 1)
+                    {
+                        Student_no++;
+                    }
+                    else if (worksheet.Cells[i, 1].Value == null)
+                    {
+                        break;
+                    }
+                }
+                //We create an array to hold Questions of each student
+                int[,] questionScores = new int[Student_no, Question_no];
+                //then we fill this array
+                for (int j = 2; j < Student_no + 2; j++)
+                {
+                    for (int k = 5; k < Question_no + 5; k++)
+                    {
+                        questionScores[j - 2, k - 5] = Convert.ToInt32(worksheet.Cells[j, k].Value);
+                    }
+                }
+                //Now we take information from Ders  Ciktisi(Lesson output) table
+                //Since we will want users to load the excel they generated from us, it will has its own special template
+                //So this code is designed in order to work for that
+                //We must show users error messages if they try to upload specially created folders.
+                //I MIGHT NEED HELP IN THIS :)
+                //- TAN :D
+                Excel.Worksheet worksheetDC = null;
+                Excel.Worksheet worksheetGrades = null;
+                int DC_no = 0;
+                int[,] DCArray = null;
+                int[] GradesArray = new int[Question_no];
+                //Here we get the other 2 worksheet we will use and their values
+                //from constranints and expected grades list for midterm-n
+                if (name == "Midterm-" || name == "Homework-")
+                {
+                    foreach (Excel.Worksheet worksheet2 in wb.Worksheets)
+                    {
+                        if (worksheet2.Name == name + Counter.ToString() + " Constraints")
                         {
-                            sum = sum + (questionScores[i, k] / Convert.ToDouble(GradesArray[k]));
-                            total_DC = total_DC + 1.0;
+                            worksheetDC = worksheet2;
+                            for (int i = 2; i < worksheet2.Cells.Columns.Count; i++)
+                            {
+                                if (worksheet.Cells[i, 1].Value == i - 1)
+                                {
+                                    DC_no++;
+                                }
+                                else if (worksheet.Cells[i, 1].Value == null)
+                                {
+                                    break;
+                                }
+
+                            }
+                            DCArray = new int[DC_no, Question_no];
+                        }
+                        else if (worksheet2.Name == name + Counter.ToString() + " Grading")
+                        {
+                            worksheetGrades = worksheet2;
                         }
                     }
-
-                    Student_DC[i, j] = sum / total_DC;
-
-                }
-            }
-
-            Excel.Worksheet xlStudentDCSheet = (Excel.Worksheet)wb.Worksheets.Add();
-            xlStudentDCSheet.Name = name + Counter.ToString() + " Student - DC";
-            xlStudentDCSheet.Cells[1, 1] = "Id";
-            xlStudentDCSheet.Cells[1, 2] = "Student ID";
-            xlStudentDCSheet.Cells[1, 3] = "Student Name";
-            xlStudentDCSheet.Cells[1, 4] = "Student Surname";
-            for (int x = 5; x < DC_no + 5; x++)
-            {
-                xlStudentDCSheet.Cells[1, x] = "DC" + (x - 4).ToString();
-            }
-            for(int i = 2; i <Student_no + 2; i++)
-            {
-                //We enter student info to that code as well
-                //To do so, we must get the student data for the lesson.
-                //If we are going to use this on many places, we might need a function which extracts 
-                //The student information from the drive excel created by the admin
-                xlStudentDCSheet.Cells[i, 1] = i - 1;
-                for (int j = 5; j < DC_no + 5; j++)
+                }else if(name == "Final")
                 {
-                    xlStudentDCSheet.Cells[i, j]= Student_DC[i - 2, j - 5];
+                    foreach (Excel.Worksheet worksheet2 in wb.Worksheets)
+                    {
+                        if (worksheet2.Name == name + " Constraints")
+                        {
+                            worksheetDC = worksheet2;
+                            for (int i = 2; i < worksheet.Cells.Columns.Count; i++)
+                            {
+                                if (worksheet.Cells[i, 1].Value == i - 1)
+                                {
+                                    DC_no++;
+                                }
+                                else if (worksheet.Cells[i, 1].Value == null)
+                                {
+                                    break;
+                                }
+
+                            }
+                            DCArray = new int[DC_no, Question_no];
+                        }
+                        else if (worksheet2.Name == name + " Grading")
+                        {
+                            worksheetGrades = worksheet2;
+                        }
+                    }
                 }
+                //We input DC of that midterm inside our dynamic DC-lesson array
+                for (int j = 2; j < DC_no + 2; j++)
+                {
+                    for (int k = 2; k < Question_no + 2; k++)
+                    {
+                        DCArray[j - 2, k - 2] = Convert.ToInt32(worksheetDC.Cells[j, k].Value);
+                    }
+                }
+                //We input that midterms max grades question by question to the Point array
+                for (int j = 1; j < Question_no + 1; j++)
+                {
+
+                    GradesArray[j - 1] = Convert.ToInt32(worksheetGrades.Cells[2, j].Value);
+                }
+
+                //Now we start calculations
+                double[,] Student_DC = new double[Student_no, DC_no];
+                int sum_grade;
+
+                //This one calculates each DC for all students and stores them in an Student-DC array
+                for (int i = 0; i < Student_no; i++)
+                {
+                    for (int j = 0; j < DC_no; j++)
+                    {
+                        double sum = 0;
+                        double total_DC = 0;
+                        for (int k = 0; k < Question_no; k++)
+                        {
+                            if (DCArray[j, k] == 1)
+                            {
+                                sum = sum + (questionScores[i, k] / Convert.ToDouble(GradesArray[k]));
+                                total_DC = total_DC + 1.0;
+                            }
+                        }
+
+                        Student_DC[i, j] = sum / total_DC;
+
+                    }
+                }
+
+                Excel.Worksheet xlStudentDCSheet = (Excel.Worksheet)wb.Worksheets.Add();
+                if (name == "Midterm-" || name == "Homework-")
+                {
+                    xlStudentDCSheet.Name = name + Counter.ToString() + " Student - DC";
+                }
+                else if (name == "Final")
+                {
+                    xlStudentDCSheet.Name = name + " Student - DC";
+                }
+                xlStudentDCSheet.Cells[1, 1] = "Id";
+                xlStudentDCSheet.Cells[1, 2] = "Student ID";
+                xlStudentDCSheet.Cells[1, 3] = "Student Name";
+                xlStudentDCSheet.Cells[1, 4] = "Student Surname";
+                for (int x = 5; x < DC_no + 5; x++)
+                {
+                    xlStudentDCSheet.Cells[1, x] = "DC" + (x - 4).ToString();
+                }
+                for (int i = 2; i < Student_no + 2; i++)
+                {
+                    //We enter student info to that code as well
+                    //To do so, we must get the student data for the lesson.
+                    //If we are going to use this on many places, we might need a function which extracts 
+                    //The student information from the drive excel created by the admin
+                    xlStudentDCSheet.Cells[i, 1] = i - 1;
+                    for (int j = 5; j < DC_no + 5; j++)
+                    {
+                        xlStudentDCSheet.Cells[i, j] = Student_DC[i - 2, j - 5];
+                    }
+                }
+                Counter = Counter + 1;
+                return Counter;
             }
-            Counter = Counter + 1;
-            return Counter;
+            else if(name =="Project" || name == "Quiz" || name == "Lab")//Now for labs,quizzes and projects
+            {
+                int totalWorksheets = wb.Worksheets.Count;
+                Counter++;
+                int Event_no = 0;
+                for (int i = totalWorksheets; i > 0; i--)
+                {
+                    Excel.Worksheet ws = (Excel.Worksheet)wb.Worksheets[i];
+                    if(ws.Name == name + "-" + Counter.ToString())
+                    {
+                        Event_no++;
+                        Counter++;
+                    }
+                }
+                //We get student_no of this event
+                int Student_no = 0;
+                for (int i = 2; i < worksheet.Cells.Columns.Count; i++)
+                {
+                    if (worksheet.Cells[i, 1].Value == i - 1)
+                    {
+                        Student_no++;
+                    }
+                    else if (worksheet.Cells[i, 1].Value == null)
+                    {
+                        break;
+                    }
+                }
+                //We create an array to hold Event(quiz,lab,project) scores of each student
+                double[,] EventScores = new double[Student_no, Event_no];
+                int col = 0;
+                Counter = 1;
+                //then we fill this array
+                for (int i = totalWorksheets; i > 0; i--)
+                {
+                    Excel.Worksheet ws = (Excel.Worksheet)wb.Worksheets[i];
+                    if (ws.Name == name + "-" + Counter.ToString())
+                    {
+                        for(int k = 0; k < EventScores.GetLength(0); k++)
+                        {
+                            //ws.Cells[5,k + 2].Value = EventScores[k,col];
+                            //Ben Tan, güdümlü bir malım
+                            EventScores[k, col] = ws.Cells[k + 2,5].Value;
+                        }
+                        col++;
+                        Counter++;
+                    }
+                }
+                //Now we take information from Ders  Ciktisi(Lesson output) table
+                //Since we will want users to load the excel they generated from us, it will has its own special template
+                //So this code is designed in order to work for that
+                //We must show users error messages if they try to upload specially created folders.
+                //I MIGHT NEED HELP IN THIS :)
+                //- TAN :D
+                Excel.Worksheet worksheetDC = null;
+                Excel.Worksheet worksheetGrades = null;
+                int DC_no = 0;
+                int[,] DCArray = null;
+                int[] GradesArray = new int[Event_no];
+                //Here we get the other 2 worksheet we will use and their values
+                //from constranints and expected grades list for midterm-n
+
+                foreach (Excel.Worksheet worksheet2 in wb.Worksheets)
+                {
+                    if (worksheet2.Name == name + " Constraints")
+                    {
+                        worksheetDC = worksheet2;
+                        for (int i = 2; i < worksheet2.Cells.Columns.Count; i++)
+                        {
+                            if (worksheet.Cells[i, 1].Value == i - 1)
+                            {
+                                DC_no++;
+                            }
+                            else if (worksheet.Cells[i, 1].Value == null)
+                            {
+                                break;
+                            }
+
+                        }
+                        DCArray = new int[DC_no, Event_no];
+                    }
+                    if (worksheet2.Name == name + " Grading")
+                    {
+                        worksheetGrades = worksheet2;
+                        string a = worksheetGrades.Name;
+                        string b = worksheet2.Name;
+                        int ab;
+                    }
+                }//We input DC of that midterm inside our dynamic DC-lesson array
+
+                for (int j = 2; j < DC_no + 2; j++)
+                {
+                    for (int k = 2; k < Event_no + 2; k++)
+                    {
+                        DCArray[j - 2, k - 2] = Convert.ToInt32(worksheetDC.Cells[j, k].Value);
+                    }
+                }
+                //We input that midterms max grades question by question to the Point array
+                for (int j = 0; j < Event_no; j++)
+                {
+                    int num = Convert.ToInt32(worksheetGrades.Cells[2, j + 1].Value);
+                    GradesArray[j] = num;
+                }
+
+                //Now we start calculations
+                double[,] Student_DC = new double[Student_no, DC_no];
+
+                //This one calculates each DC for all students and stores them in an Student-DC array
+                for (int i = 0; i < Student_no; i++)
+                {
+                    for (int j = 0; j < DC_no; j++)
+                    {
+                        double sum = 0;
+                        double total_DC = 0;
+                        for (int k = 0; k < Event_no; k++)
+                        {
+                            if (DCArray[j, k] == 1)
+                            {
+                                sum = sum + (EventScores[i, k] / Convert.ToDouble(GradesArray[k]));
+                                total_DC = total_DC + 1.0;
+                            }
+                        }
+
+                        Student_DC[i, j] = sum / total_DC;
+
+                    }
+                }
+
+                Excel.Worksheet xlStudentDCSheet = (Excel.Worksheet)wb.Worksheets.Add();
+                xlStudentDCSheet.Name = name + " Student - DC";
+                xlStudentDCSheet.Cells[1, 1] = "Id";
+                xlStudentDCSheet.Cells[1, 2] = "Student ID";
+                xlStudentDCSheet.Cells[1, 3] = "Student Name";
+                xlStudentDCSheet.Cells[1, 4] = "Student Surname";
+                for (int x = 5; x < DC_no + 5; x++)
+                {
+                    xlStudentDCSheet.Cells[1, x] = "DC" + (x - 4).ToString();
+                }
+                for (int i = 2; i < Student_no + 2; i++)
+                {
+                    //We enter student info to that code as well
+                    //To do so, we must get the student data for the lesson.
+                    //If we are going to use this on many places, we might need a function which extracts 
+                    //The student information from the drive excel created by the admin
+                    xlStudentDCSheet.Cells[i, 1] = i - 1;
+                    for (int j = 5; j < DC_no + 5; j++)
+                    {
+                        xlStudentDCSheet.Cells[i, j] = Student_DC[i - 2, j - 5];
+                    }
+                }
+                Counter = Counter + 1;
+                return Counter;
+            }
+            else
+            {
+                return (-1);
+            }
         }
 
 
@@ -556,50 +763,6 @@ namespace ASAP_Project
         /// - TAN :D
         /// </summary>
         /// 
-
-
-        // verilerin tutulacağı alan:
-        public class Veriler
-        {
-            private double[,] finalSinavVerileri;
-            private double[,,] vizeSinavVerileri;
-            private double[,,] odevVerileri;
-            private double[,,] labVerileri;
-
-            public Veriler(double[,] finalSinavVerileri, double[,,] vizeSinavVerileri, double[,,] odevVerileri, double[,,] labVerileri)
-            {
-                this.finalSinavVerileri = finalSinavVerileri;
-                this.vizeSinavVerileri = vizeSinavVerileri;
-                this.odevVerileri = odevVerileri;
-                this.labVerileri = labVerileri;
-            }
-
-            public double[,] FinalSinavVerileri
-            {
-                get { return finalSinavVerileri; }
-                set { finalSinavVerileri = value; }
-            }
-
-            public double[,,] VizeSinavVerileri
-            {
-                get { return vizeSinavVerileri; }
-                set { vizeSinavVerileri = value; }
-            }
-
-            public double[,,] OdevVerileri
-            {
-                get { return odevVerileri; }
-                set { odevVerileri = value; }
-            }
-
-            public double[,,] LabVerileri
-            {
-                get { return labVerileri; }
-                set { labVerileri = value; }
-            }
-        }
-
-
         public static void CreateReport()
         {
             var openFileDialog = new Microsoft.Win32.OpenFileDialog();
@@ -617,6 +780,9 @@ namespace ASAP_Project
             //We check each sheet of the loaded file  statement
             // Get the total number of worksheets
             int totalWorksheets = wb.Worksheets.Count;
+            bool quiz = false;
+            bool project = false;
+            bool lab = false;
 
             // Iterate through the worksheets collection in reverse order
             for (int i = totalWorksheets; i > 0; i--)
@@ -629,17 +795,33 @@ namespace ASAP_Project
                 {
                     Midterm_counter = ExcelCalculator(wb, worksheet, Midterm_counter, "Midterm-");
                 }
-            }
-
-            //Now for Homeworks
-            /*foreach (Excel.Worksheet worksheet in wb.Worksheets)
-            {
-
                 if (worksheet.Name == "Homework-" + Homework_counter.ToString())
                 {
                     Homework_counter = ExcelCalculator(wb, worksheet, Homework_counter, "Homework-");
                 }
-            }*/
+                if (worksheet.Name == "Final")
+                {
+                    //This variable simply exists here locally
+                    //We do not use this, anywhere :D
+                    int FinalCounter = ExcelCalculator(wb, worksheet, 1, "Final");
+                }
+                //One time only entry for quizzes, labs and projects
+                if (worksheet.Name == "Quiz-" + 1.ToString() && !quiz)
+                {
+                    int quizCount = ExcelCalculator(wb, worksheet, 0, "Quiz");
+                    quiz = true;
+                }
+                if (worksheet.Name == "Lab-" + 1.ToString() && !lab)
+                {
+                    int labCount = ExcelCalculator(wb, worksheet, 0, "Lab");
+                    lab = true;
+                }
+                if (worksheet.Name == "Project-" + 1.ToString() && !project)
+                {
+                    int projectCount = ExcelCalculator(wb, worksheet, 0, "Project");
+                    project = true;
+                }
+            }
             application.Visible = true;
             wb.Save();
         }
