@@ -13,7 +13,7 @@ namespace ASAP_Project
     public class GoogleDrive
     {
         //Solution Explorerda bulunan credentials dosyaları ile adlarını değiştirin    
-        static IDataStore tokenStorage = new FileDataStore("C:\\Users\\hayre\\Source\\Repos\\ceng-407-408-2022-2023-ASAP-Academic-and-Student-Assessment-Platform-\\ASAP_Project\\SendedAccountCredential\\", false);
+        static IDataStore tokenStorage = new FileDataStore("C:\\Users\\emreh\\Desktop\\ASAP P\\ASAP_Project\\SendedAccountCredential\\", false);
 
         public static async void UploadFile()
         {
