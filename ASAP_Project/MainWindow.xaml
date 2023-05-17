@@ -59,7 +59,7 @@
             <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_downloadexcel" Content="Download Excel" HorizontalAlignment="Center" Margin="0,345,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.177,0.403" Width="246" Background="#27A4CB" Height="30" Opacity="0.8" Click="button_downloadexcel_Click"/>
 
         </Grid>
-        <Grid x:Name="grid_adminpanel" Margin="317,41,691,51">
+        <Grid x:Name="grid_adminpanel" Margin="317,41,691,51" Visibility="Hidden">
             <Border Padding="20" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Opacity="0.8">
                 <Border.Effect>
                     <BlurEffect Radius="3"/>
@@ -77,7 +77,7 @@
 
 
         </Grid>
-        <Grid x:Name="grid_generate_excel" Margin="618,41,32,51" Visibility="Hidden">
+        <Grid x:Name="grid_generate_excel" Margin="618,41,32,51">
             <Border Padding="20" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Opacity="0.8" Margin="0,0,10,0">
                 <Border.Effect>
                     <BlurEffect Radius="3"/>
@@ -108,6 +108,8 @@
             <Label x:Name="label_havefinal" Content="Have Final :" HorizontalAlignment="Left" Margin="51,272,0,0" VerticalAlignment="Top" Foreground="White" Opacity="0.8"/>
             <CheckBox x:Name="checkbox_havefinal" HorizontalAlignment="Left" Margin="127,278,0,0" VerticalAlignment="Top" Checked="checkbox_havefinal_Checked"/>
             <Button x:Name="button_generate_excel_btnr" Content="Generate" HorizontalAlignment="Left" Margin="519,560,0,0" VerticalAlignment="Top" Click="button_generate_excel_btnr_Click"/>
+            <Label x:Name="label_selectcourse" Content="Select a Course :" HorizontalAlignment="Left" Margin="264,29,0,0" VerticalAlignment="Top" Foreground="White" Opacity="0.8"/>
+            <ComboBox x:Name="combobox_courselist" HorizontalAlignment="Left" Margin="366,29,0,0" VerticalAlignment="Top" Width="120"/>
         </Grid>
         <Grid x:Name="grid_transferdata" Width="630" Height="612.04" Margin="618,41,32,51" Visibility="Hidden">
             <Border Padding="20" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Opacity="0.8" Margin="0,0,-5,0">
@@ -154,7 +156,7 @@
             <Button x:Name="button_selectexcelfile" Style="{StaticResource RoundedButtonStyle}" Content="OK" HorizontalAlignment="Left" Margin="149,29,0,0" VerticalAlignment="Top" Click="button_selectexcelfile_Click" Width="59"/>
             <Label x:Name="label_Selectexcelfile" Content="Select Excel File" HorizontalAlignment="Left" Margin="38,25,0,0" VerticalAlignment="Top" Foreground="White"/>
         </Grid>
-        <Grid x:Name="grid_addcourse" Width="630" Height="612.04" Margin="618,41,32,51">
+        <Grid x:Name="grid_addcourse" Width="630" Height="612.04" Margin="618,41,32,51" Visibility="Hidden">
             <Border Padding="20" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Opacity="0.8">
                 <Border.Effect>
                     <BlurEffect Radius="3"/>

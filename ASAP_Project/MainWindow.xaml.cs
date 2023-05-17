@@ -22,6 +22,9 @@ using Application = Microsoft.Office.Interop.Excel.Application;
 using Range = Microsoft.Office.Interop.Excel.Range;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using Google.Apis.Auth.OAuth2;
+using Google.Apis.Drive.v3;
+using Google.Apis.Services;
 
 namespace ASAP_Project
 {
@@ -53,6 +56,8 @@ namespace ASAP_Project
             //
         }
 
+
+        
         private void button_generate_excel_Click(object sender, RoutedEventArgs e)
         {
             if (grid_generate_excel.Visibility == Visibility.Visible)
@@ -62,6 +67,15 @@ namespace ASAP_Project
             else
             {
                 grid_generate_excel.Visibility = Visibility.Visible;
+
+                List<string> list = new List<string>();
+                list = GoogleDrive.getCourseList();
+
+                foreach (var item in list)
+                {
+                    combobox_courselist.Items.Add(item);
+                }
+
             }
 
         }

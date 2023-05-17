@@ -2,8 +2,10 @@
 using Google.Apis.Drive.v3;
 using Google.Apis.Services;
 using Google.Apis.Util.Store;
+using Microsoft.Office.Interop.Word;
 using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection.Metadata;
 using System.Windows;
@@ -122,5 +124,37 @@ namespace ASAP_Project
                 MessageBox.Show($"Error downloading file to Google Drive: {ex.Message}");
             }
         }
+
+        public static List<string> course_list = new List<string>();
+        public static List<string> getCourseList()
+        {
+            var credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                    new ClientSecrets { ClientId = "714044421228-cugq90i34shjhu5ifs9lmh06fop801ro.apps.googleusercontent.com", ClientSecret = "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" },
+                    new[] { DriveService.Scope.Drive },
+                    "user",
+                    System.Threading.CancellationToken.None,
+                    tokenStorage).Result;
+
+            // Create the Drive service.
+            var service = new DriveService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = "ASAP Project"
+            });
+            string folderId = "1yaDOAB2U008ohDirn03H8-RB1r6LJoFc";
+            var fileListRequest = service.Files.List();
+            fileListRequest.Q = $"'{folderId}' in parents";
+            fileListRequest.PageSize = 10; // Set the number of files to retrieve per page
+            fileListRequest.Fields = "nextPageToken, files(name, id, mimeType)"; // Specify the fields to retrieve
+            var fileList = fileListRequest.Execute();
+
+            foreach (var file in fileList.Files)
+            {
+                course_list.Add(file.Name);
+            }
+
+            return course_list;
+        }
+       
     }
 }
