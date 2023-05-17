@@ -7,6 +7,7 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.MemoryMappedFiles;
 using System.Reflection.Metadata;
 using System.Windows;
 
@@ -62,10 +63,8 @@ namespace ASAP_Project
             }
         }
 
-        public static async void GetFile()
+        public static System.IO.MemoryStream GetFile(string name)
         {
-
-
             try
             {
 
@@ -84,7 +83,7 @@ namespace ASAP_Project
                 });
 
                 var request = service.Files.List();
-                request.Q = "name='" + "Lesson1.xlsx" + "' and trashed = false";
+                request.Q = "name='" + name + "' and trashed = false";
                 request.Fields = "nextPageToken, files(id)";
                 var results = request.Execute().Files;
 
@@ -99,11 +98,11 @@ namespace ASAP_Project
                 var stream = new MemoryStream();
                 downloadfile.Download(stream);
 
-                OpenFileDialog openFileDialog = new OpenFileDialog();
+                /*OpenFileDialog openFileDialog = new OpenFileDialog();
                 openFileDialog.Filter = "Folders|*.none";
                 openFileDialog.CheckFileExists = false;
                 openFileDialog.CheckPathExists = true;
-                openFileDialog.FileName = "Lesson1.xlsx";
+                openFileDialog.FileName = name;
                 string filePath = null;
                 if (openFileDialog.ShowDialog() == true)
                 {
@@ -115,13 +114,16 @@ namespace ASAP_Project
                 using (var fileStream = new FileStream(openFileDialog.FileName, FileMode.Create, FileAccess.Write))
                 {
                     stream.WriteTo(fileStream);
-                }
+                }*/
+
+                return stream;
             }
 
 
             catch (Exception ex)
             {
                 MessageBox.Show($"Error downloading file to Google Drive: {ex.Message}");
+                return null;
             }
         }
 
