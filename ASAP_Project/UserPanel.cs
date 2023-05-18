@@ -22,11 +22,24 @@ namespace ASAP_Project
     /// </summary>
     public class UserPanel
     {
+
+        public void Name_giver(Excel.Worksheet worksheet, int Student_no, String[,] info)
+        {
+            //This is from the name_taker code, but doesn't relies on the other for and if statements
+            //And directly writes on the worksheet provided, so no return options needed.
+            for (int j = 2; j < Student_no + 2; j++)
+            {
+                for(int k = 2; k < 3 + 2; k++) 
+                {
+                    worksheet.Cells[j, k].Value = info[j - 2, k - 2];
+                }
+            }
+        }
         /// <summary>
         /// This one generates an Excel from scratch
         /// - Tan :D
         /// </summary>
-        public void GenerateExcel(int Student_no, int Midterm_no, int Homework_no,
+        public void GenerateExcel(String[,] info, int Student_no, int Midterm_no, int Homework_no,
             int Lab_no, int Quiz_no, int Project_no, int Lesson_output_no, bool isCatalog, bool isFinal,
             int[] Midterm_Q_no, int[] Homework_Q_no,
             int Final_Q_no)
@@ -71,6 +84,7 @@ namespace ASAP_Project
                 {
                     sheet.Cells[j, 1] = j - 1;
                 }
+                Name_giver(sheet, Student_no, info);
             }
             //Dc Table generation for projects
             Excel.Worksheet xlProjectsDC = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
@@ -112,6 +126,7 @@ namespace ASAP_Project
                 {
                     sheet.Cells[j, 1] = j - 1;
                 }
+                Name_giver(sheet, Student_no, info);
             }
             //Dc Table generation for Quizzes
             Excel.Worksheet xlQuizzesDC = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
@@ -153,6 +168,7 @@ namespace ASAP_Project
                 {
                     sheet.Cells[j, 1] = j - 1;
                 }
+                Name_giver(sheet, Student_no, info);
             }
             //Dc Table generation for Labs
             Excel.Worksheet xlLabsDC = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
@@ -194,6 +210,7 @@ namespace ASAP_Project
                 {
                     FinalSheet.Cells[j, 1] = j - 1;
                 }
+                Name_giver(FinalSheet, Student_no, info);
                 //Formulation to add questions into the total score
                 for (int a = 2; a < Student_no + 2; a++)
                 {
@@ -253,6 +270,7 @@ namespace ASAP_Project
                 {
                     sheet.Cells[j, 1] = j - 1;
                 }
+                Name_giver(sheet, Student_no, info);
                 //Formulation to add questions into the total score
                 for (int a = 2; a < Student_no + 2; a++)
                 {
@@ -313,6 +331,7 @@ namespace ASAP_Project
                 {
                     sheet.Cells[j, 1] = j - 1;
                 }
+                Name_giver(sheet, Student_no, info);
                 //Formulation to add questions into the total score
                 for (int a = 2; a < Student_no + 2; a++)
                 {
@@ -396,6 +415,7 @@ namespace ASAP_Project
             {
                 xlStudentSheet.Cells[i, 1] = i - 1;
             }
+            Name_giver(xlStudentSheet, Student_no, info);
 
             xlApp.Visible = true;
         }
