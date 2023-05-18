@@ -24,7 +24,7 @@ using System.ComponentModel;
 using System.Collections.ObjectModel;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Drive.v3;
-using Google.Apis.Services;
+using Google.Apis.Services;  
 
 namespace ASAP_Project
 {
@@ -238,6 +238,55 @@ namespace ASAP_Project
             grid_generate_excel.Children.Add(finaltextbox);
         }
 
+        //This code takes the excel file
+        //finds the student information and take it into a 2d array for us to use later on
+        //I said return an object because, we will use this while we send data to generate excel or ExcelCalculator
+        //which works with Report Generator(CreateReport)
+        public String[,] Name_taker(Excel.Workbook wb, ref int Student_Count)
+        {
+            String[,] StuInfo = null;
+            //Now this will be the code we take from admin page to drive and to this snippet of code
+            int totalWorksheets = wb.Worksheets.Count;
+            
+            for (int i = totalWorksheets; i > 0; i--)
+            {
+                Excel.Worksheet worksheet = (Excel.Worksheet)wb.Worksheets[i];
+                if(worksheet.Name == "Students")
+                {
+                    Student_Count = Student_counter(worksheet);
+                    StuInfo = new String[Student_Count, 3];
+                    for (int j = 2; j <Student_Count + 2; j++)
+                    {
+                        for(int k = 2; k < 3 + 2; k++) //to make it more understandable I wrote 3+2 instead of 5
+                        {
+                            StuInfo[j - 2, k - 2] = Convert.ToString(worksheet.Cells[j,k].Value);
+                        }
+                    }
+                    break;
+                }
+            }
+            return StuInfo;
+        }
+
+        //This one calculates the student_no of that sheet
+        public int Student_counter(Excel.Worksheet worksheet)
+        {
+            int Student_no = 0;
+            for (int i = 2; i < worksheet.Cells.Columns.Count; i++)
+            {
+                if (worksheet.Cells[i, 1].Value == i - 1)
+                {
+                    Student_no++;
+                }
+                else if (worksheet.Cells[i, 1].Value == null)
+                {
+                    break;
+                }
+            }
+            return Student_no;
+        }
+
+        //This one is responsible for handling the button click of "Generate Excel"
         private void button_generate_excel_btnr_Click(object sender, RoutedEventArgs e)
         {
             int[] midtermqcount = new int[10];
@@ -272,8 +321,23 @@ namespace ASAP_Project
 
             MemoryStream secilenexcel = new MemoryStream();
             secilenexcel = GoogleDrive.GetFile(combobox_courselist.SelectedItem.ToString());
+            // Converts MemoryStream to byte[]
+            byte[] excelData = secilenexcel.ToArray();
 
-            userPanel.GenerateExcel(int.Parse(textbox_studentcount.Text), int.Parse(textbox_midtermcount.Text), int.Parse(textbox_homeworkcount.Text), int.Parse(textbox_labcount.Text),
+            // Saves byte[] as a temporary file
+            string tempFilePath = System.IO.Path.GetTempFileName();
+            File.WriteAllBytes(tempFilePath, excelData);
+
+            // Opens the temporary file with Excel Interop
+            Application excelApp = new Application();
+            Workbook wb = excelApp.Workbooks.Open(tempFilePath);
+            int Student_Count = 0;
+            //This also get editted in the Name_taker function
+            //thanks to the referencing (I guess)
+            //-Tan :D
+            String[,] info = Name_taker(wb, ref Student_Count);
+
+            userPanel.GenerateExcel(info, Student_Count, int.Parse(textbox_midtermcount.Text), int.Parse(textbox_homeworkcount.Text), int.Parse(textbox_labcount.Text),
                 int.Parse(textbox_quizcount.Text), int.Parse(textbox_projectcount.Text), int.Parse(textbox_derscikticount.Text), checkbox_iscatalog.IsChecked ?? false, checkbox_havefinal.IsChecked ?? false, midtermqcount, homeworkqcount, int.Parse(finaltextbox.Text));
         }
 
@@ -570,7 +634,7 @@ namespace ASAP_Project
 
             Worksheet student = workbook.Worksheets.Add();
             student.Name = "Students";
-            student.Cells[1, 1] = "No";
+            student.Cells[1, 1] = "Id";
             student.Cells[1, 2] = "Student ID";
             student.Cells[1, 3] = "Student Name";
             student.Cells[1, 4] = "Student Surname";
