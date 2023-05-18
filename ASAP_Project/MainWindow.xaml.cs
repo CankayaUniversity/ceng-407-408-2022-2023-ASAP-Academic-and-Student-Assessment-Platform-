@@ -343,7 +343,25 @@ namespace ASAP_Project
 
         private void button_createreport_Click(object sender, RoutedEventArgs e)
         {
-            UserPanel.CreateReport();
+            if (grid_createreport.Visibility == Visibility.Visible)
+            {
+                grid_createreport.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                grid_createreport.Visibility = Visibility.Visible;
+
+                List<string> list = new List<string>();
+                list = GoogleDrive.getGenExcelList();
+
+                foreach (var item in list)
+                {
+                    combobox_createreport.Items.Add(item);
+                }
+
+            }
+
+
         }
 
         private void button_downloadexcel_Click(object sender, RoutedEventArgs e)
