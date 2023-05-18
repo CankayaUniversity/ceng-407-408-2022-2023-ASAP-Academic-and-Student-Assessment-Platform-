@@ -157,6 +157,37 @@ namespace ASAP_Project
 
             return course_list;
         }
-       
+
+        public static List<string> getGenExcelList()
+        {
+            var credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                    new ClientSecrets { ClientId = "714044421228-cugq90i34shjhu5ifs9lmh06fop801ro.apps.googleusercontent.com", ClientSecret = "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" },
+                    new[] { DriveService.Scope.Drive },
+                    "user",
+                    System.Threading.CancellationToken.None,
+                    tokenStorage).Result;
+
+            // Create the Drive service.
+            var service = new DriveService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = "ASAP Project"
+            });
+            string folderId = "1CISiRSjdUMB8h3v64CNZgc9bCeVfuIKH";
+            var fileListRequest = service.Files.List();
+            fileListRequest.Q = $"'{folderId}' in parents";
+            fileListRequest.PageSize = 10; // Set the number of files to retrieve per page
+            fileListRequest.Fields = "nextPageToken, files(name, id, mimeType)"; // Specify the fields to retrieve
+            var fileList = fileListRequest.Execute();
+
+            foreach (var file in fileList.Files)
+            {
+                course_list.Add(file.Name);
+            }
+
+            return course_list;
+        }
+
+
     }
 }
