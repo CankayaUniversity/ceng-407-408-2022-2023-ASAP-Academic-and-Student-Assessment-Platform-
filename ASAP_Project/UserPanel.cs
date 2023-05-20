@@ -22,8 +22,32 @@ namespace ASAP_Project
     /// </summary>
     public class UserPanel
     {
+        public static String[,] Name_taker(Excel.Workbook wb, ref int Student_Count)
+        {
+            String[,] StuInfo = null;
+            //Now this will be the code we take from admin page to drive and to this snippet of code
+            int totalWorksheets = wb.Worksheets.Count;
 
-        public void Name_giver(Excel.Worksheet worksheet, int Student_no, String[,] info)
+            for (int i = totalWorksheets; i > 0; i--)
+            {
+                Excel.Worksheet worksheet = (Excel.Worksheet)wb.Worksheets[i];
+                if (worksheet.Name == "Students")
+                {
+                    StuInfo = new String[Student_Count, 3];
+                    for (int j = 2; j < Student_Count + 2; j++)
+                    {
+                        for (int k = 2; k < 3 + 2; k++) //to make it more understandable I wrote 3+2 instead of 5
+                        {
+                            StuInfo[j - 2, k - 2] = Convert.ToString(worksheet.Cells[j, k].Value);
+                        }
+                    }
+                    break;
+                }
+            }
+            return StuInfo;
+        }
+
+        public static void Name_giver(Excel.Worksheet worksheet, int Student_no, String[,] info)
         {
             //This is from the name_taker code, but doesn't relies on the other for and if statements
             //And directly writes on the worksheet provided, so no return options needed.
@@ -437,12 +461,14 @@ namespace ASAP_Project
         //Calculator for HW,Midterms and Final
         private static int ExcelCalculator(Excel.Workbook wb, Excel.Worksheet worksheet, int Counter, String name)
         {
+            
             //we have 3 templates in generate excel
             //1- Midterm and Homeworks (and Final, but difference is it is only one so no numbers)
             //(DC Table for each Midterm and Homework, and for the one Final)
             //2- Labs ,Projects and Quizes (we make a DC table for their count)
             if (name == "Midterm-" || name == "Homework-" || name == "Final")
             {
+
                 int Question_no = 0;
                 for (int i = 5; i < worksheet.Cells.Rows.Count; i++)
                 {
@@ -468,6 +494,7 @@ namespace ASAP_Project
                         break;
                     }
                 }
+                String[,] info = Name_taker(wb, ref Student_no);
                 //We create an array to hold Questions of each student
                 int[,] questionScores = new int[Student_no, Question_no];
                 //then we fill this array
@@ -597,6 +624,7 @@ namespace ASAP_Project
                 xlStudentDCSheet.Cells[1, 2] = "Student ID";
                 xlStudentDCSheet.Cells[1, 3] = "Student Name";
                 xlStudentDCSheet.Cells[1, 4] = "Student Surname";
+                Name_giver(xlStudentDCSheet, Student_no, info);
                 for (int x = 5; x < DC_no + 5; x++)
                 {
                     xlStudentDCSheet.Cells[1, x] = "DC" + (x - 4).ToString();
@@ -643,6 +671,7 @@ namespace ASAP_Project
                         break;
                     }
                 }
+                String[,] info = Name_taker(wb, ref Student_no);
                 //We create an array to hold Event(quiz,lab,project) scores of each student
                 double[,] EventScores = new double[Student_no, Event_no];
                 int col = 0;
@@ -749,6 +778,7 @@ namespace ASAP_Project
                 xlStudentDCSheet.Cells[1, 2] = "Student ID";
                 xlStudentDCSheet.Cells[1, 3] = "Student Name";
                 xlStudentDCSheet.Cells[1, 4] = "Student Surname";
+                Name_giver(xlStudentDCSheet, Student_no, info);
                 for (int x = 5; x < DC_no + 5; x++)
                 {
                     xlStudentDCSheet.Cells[1, x] = "DC" + (x - 4).ToString();
