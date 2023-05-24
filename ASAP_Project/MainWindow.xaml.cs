@@ -343,25 +343,24 @@ namespace ASAP_Project
 
         private void button_createreport_Click(object sender, RoutedEventArgs e)
         {
-            //if (grid_createreport.Visibility == Visibility.Visible)
-            //{
-            //    grid_createreport.Visibility = Visibility.Hidden;
-            //}
-            //else
-            //{
-            //    grid_createreport.Visibility = Visibility.Visible;
+            if (grid_createreport.Visibility == Visibility.Visible)
+            {
+                grid_createreport.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                grid_createreport.Visibility = Visibility.Visible;
 
-            //    List<string> list = new List<string>();
-            //    list = GoogleDrive.getGenExcelList();
+                List<string> list = new List<string>();
+                list = GoogleDrive.getGenExcelList();
 
-            //    foreach (var item in list)
-            //    {
-            //        combobox_createreport.Items.Add(item);
-            //    }
+                foreach (var item in list)
+                {
+                    combobox_createreport.Items.Add(item);
+                }
 
-            //}
+            }
 
-            UserPanel.CreateReport();
         }
 
         private void button_downloadexcel_Click(object sender, RoutedEventArgs e)
@@ -376,86 +375,15 @@ namespace ASAP_Project
             // Converts MemoryStream to byte[]
             byte[] excelData = secilenexcel.ToArray();
 
+            // Saves byte[] as a temporary file
+            string tempFilePath = System.IO.Path.GetTempFileName();
+            File.WriteAllBytes(tempFilePath, excelData);
 
-
-
-            /*var openFileDialog = new Microsoft.Win32.OpenFileDialog();
-            openFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
-            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            openFileDialog.ShowDialog();
-            string excelfileloc = openFileDialog.FileName;
-
-            List<string> sheetNames = new List<string>();
-            List<string> columnNames = new List<string>();
-
-
-            int midtermsheetcount = 0;
-            int []midtermqcount = new int[10];
-            bool finalsheet = false;
-            int i = 0;
-            string connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + excelfileloc + "; Extended Properties='Excel 12.0 Xml;HDR=YES'";
-
-            using (OleDbConnection connection = new OleDbConnection(connectionString))
-            {
-                connection.Open();
-
-                // Get list of sheet names
-                System.Data.DataTable schemaTable = connection.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
-                
-                foreach (DataRow row in schemaTable.Rows)
-                {
-                    sheetNames.Add(row["TABLE_NAME"].ToString().Replace("$", ""));
-                }
-
-                // Close connection
-                connection.Close();
-            }
-            foreach (string sheetName in sheetNames)
-            {
-                if (sheetName.Contains("Midterm-"))
-                {
-                    
-                    midtermsheetcount++;
-
-                    using (OleDbConnection connection = new OleDbConnection(connectionString))
-                    {
-                        connection.Open();
-
-                        System.Data.DataTable dataTable = new System.Data.DataTable();
-                        OleDbDataAdapter dataAdapter = new OleDbDataAdapter("SELECT * FROM [" + sheetName + "]", connection);
-                        dataAdapter.Fill(dataTable);
-
-                        foreach (DataRow row in dataTable.Rows)
-                        {
-                            columnNames.Add(row["COLUMN_NAME"].ToString());
-                        }
-
-
-                        connection.Close();
-                    }
-
-                    foreach (string columnName in columnNames)
-                    {
-                        midtermqcount[i]++;
-                    }
-
-                }
-
-
-
-
-                if (sheetName.Contains("Final"))
-                {
-                    finalsheet = true;
-                }
-
-
-                i++;
-            }
-
-
-            MessageBox.Show("a");*/
-
+            // Opens the temporary file with Excel Interop
+            Application excelApp = new Application();
+            Workbook wb = excelApp.Workbooks.Open(tempFilePath);
+            UserPanel userPanel = new UserPanel();
+            userPanel.CreateReport(wb);
         }
 
         private void button_addcourse_Click(object sender, RoutedEventArgs e)

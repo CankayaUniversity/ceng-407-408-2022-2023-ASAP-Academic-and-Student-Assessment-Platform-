@@ -901,13 +901,8 @@ namespace ASAP_Project
         /// - TAN :D
         /// </summary>
         /// 
-        public static void CreateReport()
+        public void CreateReport(Excel.Workbook wb)
         {
-            var openFileDialog = new Microsoft.Win32.OpenFileDialog();
-            openFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
-            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            openFileDialog.ShowDialog();
-
             MidtermDC.SetHeadToNull();
             FinalDC.SetHeadToNull();
             HomeworkDC.SetHeadToNull();
@@ -915,11 +910,6 @@ namespace ASAP_Project
             ProjectDC.SetHeadToNull();
             LabDC.SetHeadToNull();
 
-            //This part takes values from excel 
-            //In the order of midterm-n , midterm-n constraints and midterm-gradeing constraints
-            //does necessary calculations and writes the result
-            Excel.Application application = new Excel.Application();
-            Excel.Workbook wb = application.Workbooks.Open(openFileDialog.FileName);
             int Homework_counter = 0;
             int Midterm_counter = 1;
             int Final_counter = 1;
