@@ -371,7 +371,15 @@ namespace ASAP_Project
 
         private void button_selectexcelfile_Click(object sender, RoutedEventArgs e)
         {
-            var openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            MemoryStream secilenexcel = new MemoryStream();
+            secilenexcel = GoogleDrive.GetFile(combobox_createreport.SelectedItem.ToString());
+            // Converts MemoryStream to byte[]
+            byte[] excelData = secilenexcel.ToArray();
+
+
+
+
+            /*var openFileDialog = new Microsoft.Win32.OpenFileDialog();
             openFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             openFileDialog.ShowDialog();
@@ -446,7 +454,7 @@ namespace ASAP_Project
             }
 
 
-            MessageBox.Show("a");
+            MessageBox.Show("a");*/
 
         }
 

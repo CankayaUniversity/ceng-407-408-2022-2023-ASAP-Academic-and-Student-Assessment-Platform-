@@ -140,7 +140,7 @@
             <Label x:Name="label_course" Content="Course :" HorizontalAlignment="Left" Margin="204,27,0,0" VerticalAlignment="Top" Foreground="White"/>
             <ComboBox x:Name="combobox_course" HorizontalAlignment="Left" Margin="262,29,0,0" VerticalAlignment="Top" Width="120"/>
         </Grid>
-        <Grid x:Name="grid_createreport" Width="630" Height="612.04" Margin="618,41,32,51" Visibility="Hidden">
+        <Grid x:Name="grid_createreport" Width="630" Height="612.04" Margin="618,41,32,51">
             <Border Padding="20" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Opacity="0.8">
                 <Border.Effect>
                     <BlurEffect Radius="3"/>
