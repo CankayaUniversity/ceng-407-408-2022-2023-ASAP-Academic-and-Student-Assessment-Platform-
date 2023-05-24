@@ -383,7 +383,7 @@ namespace ASAP_Project
             Application excelApp = new Application();
             Workbook wb = excelApp.Workbooks.Open(tempFilePath);
             UserPanel userPanel = new UserPanel();
-            userPanel.CreateReport(wb);
+            userPanel.CreateReport(wb, excelApp);
         }
 
         private void button_addcourse_Click(object sender, RoutedEventArgs e)

@@ -901,7 +901,7 @@ namespace ASAP_Project
         /// - TAN :D
         /// </summary>
         /// 
-        public void CreateReport(Excel.Workbook wb)
+        public void CreateReport(Excel.Workbook wb, Excel.Application application)
         {
             MidtermDC.SetHeadToNull();
             FinalDC.SetHeadToNull();
