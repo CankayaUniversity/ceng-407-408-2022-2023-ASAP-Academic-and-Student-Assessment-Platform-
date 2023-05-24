@@ -663,7 +663,7 @@ namespace ASAP_Project
             }
 
             string fileName = textbox_coursecode.Text + "-" + textbox_courseyear.Text;
-            string appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string appDataFolder = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             string filePath = System.IO.Path.Combine(appDataFolder, fileName);
 
             workbook.SaveAs(filePath);
