@@ -515,11 +515,11 @@ namespace ASAP_Project
                             worksheetDC = worksheet2;
                             for (int i = 2; i < worksheet2.Cells.Columns.Count; i++)
                             {
-                                if (worksheet.Cells[i, 1].Value == i - 1)
+                                if (worksheet2.Cells[i, 1].Value == i - 1)
                                 {
                                     DC_no++;
                                 }
-                                else if (worksheet.Cells[i, 1].Value == null)
+                                else if (worksheet2.Cells[i, 1].Value == null)
                                 {
                                     break;
                                 }
@@ -540,13 +540,13 @@ namespace ASAP_Project
                         if (worksheet2.Name == name + " Constraints")
                         {
                             worksheetDC = worksheet2;
-                            for (int i = 2; i < worksheet.Cells.Columns.Count; i++)
+                            for (int i = 2; i < worksheet2.Cells.Columns.Count; i++)
                             {
-                                if (worksheet.Cells[i, 1].Value == i - 1)
+                                if (worksheet2.Cells[i, 1].Value == i - 1)
                                 {
                                     DC_no++;
                                 }
-                                else if (worksheet.Cells[i, 1].Value == null)
+                                else if (worksheet2.Cells[i, 1].Value == null)
                                 {
                                     break;
                                 }
@@ -595,7 +595,14 @@ namespace ASAP_Project
                             }
                         }
 
-                        Student_DC[i, j] = sum / total_DC;
+                        if (total_DC == 0)
+                        {
+                            Student_DC[i, j] = 0; // Assign a specific value or handle the case as needed
+                        }
+                        else
+                        {
+                            Student_DC[i, j] = sum / total_DC;
+                        }
 
                     }
                 }
@@ -650,7 +657,7 @@ namespace ASAP_Project
                 }
                 //We get student_no of this event
                 int Student_no = 0;
-                for (int i = 2; i < worksheet.Cells.Columns.Count; i++)
+                for (int i = 2; i < worksheet.Cells.Rows.Count; i++)
                 {
                     if (worksheet.Cells[i, 1].Value == i - 1)
                     {
@@ -701,13 +708,14 @@ namespace ASAP_Project
                     if (worksheet2.Name == name + " Constraints")
                     {
                         worksheetDC = worksheet2;
-                        for (int i = 2; i < worksheet2.Cells.Columns.Count; i++)
+                        for (int i = 2; i < worksheet2.Cells.Rows.Count; i++)
                         {
-                            if (worksheet.Cells[i, 1].Value == i - 1)
+                            int temp = Convert.ToInt32(worksheet2.Cells[i, 1].Value);
+                            if (worksheet2.Cells[i, 1].Value != null)
                             {
                                 DC_no++;
                             }
-                            else if (worksheet.Cells[i, 1].Value == null)
+                            else
                             {
                                 break;
                             }
@@ -754,7 +762,14 @@ namespace ASAP_Project
                             }
                         }
 
-                        Student_DC[i, j] = sum / total_DC;
+                        if (total_DC == 0)
+                        {
+                            Student_DC[i, j] = 0; // Assign a specific value or handle the case as needed
+                        }
+                        else
+                        {
+                            Student_DC[i, j] = sum / total_DC;
+                        }
 
                     }
                 }
