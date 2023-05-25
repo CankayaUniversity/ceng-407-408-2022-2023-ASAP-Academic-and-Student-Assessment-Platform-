@@ -1035,14 +1035,15 @@ namespace ASAP_Project
                 double[] DCSumHolder = new double[linkedList.returnHeadColumns()];
                 node = linkedList.GetNthNode(counter);
                 int Student_number = node.Array2D.GetLength(0);
-                double sum = 0.0;
+                
                 for (int j = 0; j < node.Columns; j++)
                 {
+                    double sum = 0.0;
                     for (int i = 0; i < node.Rows; i++)
                     {
                         sum = sum + node.Array2D[i, j];
                     }
-                    DCSumHolder[j] = sum / Convert.ToDouble(node.Rows); //total sum of all student contributions to DCj / Student_no
+                    DCSumHolder[j] = sum / Convert.ToDouble(node.Columns); //total sum of all student contributions to DCj / Student_no
                 }
                 if (linkedList.name == "Midterm" || linkedList.name == "Homework")
                 {
