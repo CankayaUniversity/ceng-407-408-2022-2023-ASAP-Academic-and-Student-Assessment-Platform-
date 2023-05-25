@@ -167,7 +167,7 @@ namespace ASAP_Project
             Excel.Worksheet xlQuizzesGrading = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
             //A table to hold grades of all Quizzes
             xlQuizzesGrading.Name = "Quiz Grading";
-            for (int a = 1; a < Quiz_no + 1; a++)
+            for (int a = 1; a < Project_no + 1; a++)
             {
                 xlQuizzesGrading.Cells[1, a] = "Quiz-" + (a).ToString();
             }
@@ -213,12 +213,11 @@ namespace ASAP_Project
             {
                 xlLabsGrading.Cells[1, a] = "Lab-" + (a).ToString();
             }
-            xlWorkBook.Save();
 
             //Final sheet
             if (isFinal == true)
             {
-                Excel.Worksheet FinalSheet = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
+                Excel.Worksheet FinalSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
                 FinalSheet.Columns.AutoFit();
                 FinalSheet.Name = "Final";
                 FinalSheet.Cells[1, 1] = "Id";
@@ -322,7 +321,7 @@ namespace ASAP_Project
                 //which has homework-n Question - full_grade table
                 Excel.Worksheet xlHomeworkGrading = (Excel.Worksheet)xlWorkBook.Worksheets.Add();
                 xlHomeworkGrading.Name = "Homework-" + (i + 1).ToString() + " Grading";
-                for (int a = 1; a < Homework_Q_no[i] + 1; a++)
+                for (int a = 1; a < Midterm_Q_no[i] + 1; a++)
                 {
                     xlHomeworkGrading.Cells[1, a] = "Question-" + (a - 1).ToString();
                     k = a + 1;
@@ -446,8 +445,21 @@ namespace ASAP_Project
         }
 
 
+        // verilerin tutulacağı alan:
+        public class Veriler
+        {
+            public double[,] finalSinavVerileri;
+            public double[,,] vizeSinavVerileri;
+            public double[,,] odevVerileri;
+            public double[,] labVerileri; //birden fazlalar evet ama lablar, quizler ve projeler tek bi DC tabosu kullnıyor.
+            public double[,] projeVerileri;
+            public double[,] quizVerileri;
+        }
+
+        public static Veriler  newVeri = new Veriler();
+
         //Calculator for HW,Midterms and Final
-        private static double[,] ExcelCalculator(Excel.Workbook wb, Excel.Worksheet worksheet, int Counter, String name)
+        private static int ExcelCalculator(Excel.Workbook wb, Excel.Worksheet worksheet, int Counter, String name)
         {
             
             //we have 3 templates in generate excel
@@ -629,9 +641,8 @@ namespace ASAP_Project
                         xlStudentDCSheet.Cells[i, j] = Student_DC[i - 2, j - 5];
                     }
                 }
-
-                //Now here we will store some values for a global operation
-                return Student_DC;
+                Counter = Counter + 1;
+                return Counter;
             }
             else if(name =="Project" || name == "Quiz" || name == "Lab")//Now for labs,quizzes and projects
             {
@@ -717,6 +728,9 @@ namespace ASAP_Project
                     if (worksheet2.Name == name + " Grading")
                     {
                         worksheetGrades = worksheet2;
+                        string a = worksheetGrades.Name;
+                        string b = worksheet2.Name;
+                        int ab;
                     }
                 }//We input DC of that midterm inside our dynamic DC-lesson array
 
@@ -781,117 +795,15 @@ namespace ASAP_Project
                         xlStudentDCSheet.Cells[i, j] = Student_DC[i - 2, j - 5];
                     }
                 }
-                return Student_DC;
+                Counter = Counter + 1;
+                return Counter;
             }
             else
             {
-                return null;
+                return (-1);
             }
         }
 
-        //A Linked list node :D
-        //each node holds an 2D Double type array
-        public class LinkedListNode
-        {
-            //Reminder Note from Tan to Tan
-            //this Array2D is like Array2D[Student_number, DC_number] ([rows, columns])
-            public double[,] Array2D { get; set; }
-            public int Rows => Array2D.GetLength(0);
-            public int Columns => Array2D.GetLength(1);
-            public LinkedListNode Next { get; set; }
-        }
-
-        //This simply has a Linked List Addition.
-        //I haven't added other functions so far since I will not need them
-        //But more functions are likely to come :D
-        public class LinkedList
-        {
-            private LinkedListNode head;
-            //To specify which linkedlist is what type
-            //Will be useful to tell if we have a midterm or a quiz at hand for example
-            public String name;
-
-            public LinkedList(String name)
-            {
-                this.name = name;
-            }
-
-            //returns head DC No
-            public int returnHeadColumns()
-            {
-                return head.Columns;            }
-
-            //Adds a node with a 2D array
-            public void Add(double[,] array2D)
-            {
-                LinkedListNode newNode = new LinkedListNode();
-                newNode.Array2D = array2D;
-
-                if (head == null)
-                {
-                    head = newNode;
-                }
-                else
-                {
-                    LinkedListNode current = head;
-
-                    while (current.Next != null)
-                    {
-                        current = current.Next;
-                    }
-
-                    current.Next = newNode;
-                }
-            }
-
-            //sets head to null
-            //No worries for memory leaks since C# HAS Garbage Collector
-            public void SetHeadToNull()
-            {
-                head = null;
-            }
-            //returns total Node count of the LinkedList
-            public int Length()
-            {
-                int count = 0;
-                LinkedListNode current = head;
-
-                while (current != null)
-                {
-                    count++;
-                    current = current.Next;
-                }
-
-                return count;
-            }
-            //returns contents of its Nth node
-            public LinkedListNode GetNthNode(int n)
-            {
-                if (n < 1)
-                    throw new ArgumentException("Invalid value for 'n'. Must be greater than or equal to 1.");
-
-                LinkedListNode current = head;
-                int count = 1;
-
-                while (current != null)
-                {
-                    if (count == n)
-                        return current;
-
-                    current = current.Next;
-                    count++;
-                }
-
-                throw new ArgumentOutOfRangeException("n", "The linked list does not contain the specified index.");
-            }
-        }
-
-        public static LinkedList MidtermDC = new LinkedList("Midterm");
-        public static LinkedList FinalDC = new LinkedList("Final");
-        public static LinkedList HomeworkDC = new LinkedList("Homework");
-        public static LinkedList QuizDC = new LinkedList("Quiz");
-        public static LinkedList ProjectDC = new LinkedList("Project");
-        public static LinkedList LabDC = new LinkedList("Lab");
 
         /// <summary>
         /// THIS ONE CREATES A REPORT FROM AN EXISING EXCEL
@@ -901,18 +813,20 @@ namespace ASAP_Project
         /// - TAN :D
         /// </summary>
         /// 
-        public void CreateReport(Excel.Workbook wb)
+        public static void CreateReport()
         {
-            MidtermDC.SetHeadToNull();
-            FinalDC.SetHeadToNull();
-            HomeworkDC.SetHeadToNull();
-            QuizDC.SetHeadToNull();
-            ProjectDC.SetHeadToNull();
-            LabDC.SetHeadToNull();
+            var openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            openFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            openFileDialog.ShowDialog();
 
-            int Homework_counter = 0;
+            //This part takes values from excel 
+            //In the order of midterm-n , midterm-n constraints and midterm-gradeing constraints
+            //does necessary calculations and writes the result
+            Excel.Application application = new Excel.Application();
+            Excel.Workbook wb = application.Workbooks.Open(openFileDialog.FileName);
+            int Homework_counter = 1;
             int Midterm_counter = 1;
-            int Final_counter = 1;
             //We check each sheet of the loaded file  statement
             // Get the total number of worksheets
             int totalWorksheets = wb.Worksheets.Count;
@@ -927,111 +841,39 @@ namespace ASAP_Project
 
                 // Check if the worksheet is one of the desired worksheets
                 // Perform calculations and editing inside this if statement
-                if (worksheet.Name == "Midterm" + "-" + Midterm_counter.ToString())
+                if (worksheet.Name == "Midterm-" + Midterm_counter.ToString())
                 {
-                    MidtermDC.Add(ExcelCalculator(wb, worksheet, Midterm_counter, "Midterm-"));
-                    Midterm_counter++;
-                    
+                    Midterm_counter = ExcelCalculator(wb, worksheet, Midterm_counter, "Midterm-");
                 }
-                else if (worksheet.Name == "Final")
+                if (worksheet.Name == "Homework-" + Homework_counter.ToString())
                 {
-
-                    FinalDC.Add(ExcelCalculator(wb, worksheet, Final_counter, "Final"));
+                    Homework_counter = ExcelCalculator(wb, worksheet, Homework_counter, "Homework-");
                 }
-                else if (worksheet.Name == "Homework" + "-" + (Homework_counter + 1).ToString())
+                if (worksheet.Name == "Final")
                 {
-                    Homework_counter = Homework_counter + 1;
-                    HomeworkDC.Add(ExcelCalculator(wb, worksheet, Homework_counter, "Homework-"));
+                    //This variable simply exists here locally
+                    //We do not use this, anywhere :D
+                    int FinalCounter = ExcelCalculator(wb, worksheet, 1, "Final");
                 }
                 //One time only entry for quizzes, labs and projects
-                else if (worksheet.Name == "Quiz-" + 1.ToString() && !quiz)
+                if (worksheet.Name == "Quiz-" + 1.ToString() && !quiz)
                 {
-                    int quizCount = 0;
-                    QuizDC.Add(ExcelCalculator(wb, worksheet, quizCount, "Quiz"));
+                    int quizCount = ExcelCalculator(wb, worksheet, 0, "Quiz");
                     quiz = true;
                 }
-                else if (worksheet.Name == "Lab-" + 1.ToString() && !lab)
+                if (worksheet.Name == "Lab-" + 1.ToString() && !lab)
                 {
-                    int labCount = 0; 
-                    LabDC.Add(ExcelCalculator(wb, worksheet, labCount, "Lab"));
+                    int labCount = ExcelCalculator(wb, worksheet, 0, "Lab");
                     lab = true;
                 }
-                else if (worksheet.Name == "Project-" + 1.ToString() && !project)
+                if (worksheet.Name == "Project-" + 1.ToString() && !project)
                 {
-                    int projectCount = 0;
-                    ProjectDC.Add(ExcelCalculator(wb, worksheet, projectCount, "Project"));
+                    int projectCount = ExcelCalculator(wb, worksheet, 0, "Project");
                     project = true;
                 }
             }
-            wb.Save();
-            ///////CONSTRUCTION/////////////////
-            Excel.Worksheet MainDC = (Excel.Worksheet)wb.Worksheets.Add();
-            int current_column = 1;
-            MainDC.Name = "Total DC Contribution";
-            MainDC.Cells[1, current_column].Value = "Lesson Output";
-            current_column =  current_column + 1;
-            EditMainDCExcel(MainDC, MidtermDC, ref current_column);//We will  declare like this for 6 times for all potential lesson objects
-            EditMainDCExcel(MainDC, HomeworkDC, ref current_column);
-            EditMainDCExcel(MainDC, FinalDC, ref current_column);
-            EditMainDCExcel(MainDC, QuizDC, ref current_column);
-            EditMainDCExcel(MainDC, LabDC, ref current_column);
-            EditMainDCExcel(MainDC, ProjectDC, ref current_column);
-            ///////CONSTRUCTION/////////////////
-            MidtermDC.SetHeadToNull();
-            FinalDC.SetHeadToNull();
-            HomeworkDC.SetHeadToNull();
-            QuizDC.SetHeadToNull();
-            ProjectDC.SetHeadToNull();
-            LabDC.SetHeadToNull();
-
             application.Visible = true;
             wb.Save();
-        }
-
-        public static void EditMainDCExcel(Excel.Worksheet worksheet, LinkedList linkedList, ref int current_column)
-        {
-            /*To fill all nodes I will sure need a nev variable. because these will work for one
-             type of LinkedList type (ex. Midterm, Final, Quiz etc) each time. What if I also keep an account of 
-            the current column I will write to. We can call It here with a reference so we can actually create 
-            a sort of progress of columns.
-            Lets call this integer value "current_column"*/
-            int Lenght = linkedList.Length();
-            LinkedListNode node = new LinkedListNode();
-            
-            for (int counter = 1; counter <= Lenght; counter++)
-            {
-                //Now we will fill the members of this DC array
-                //(Which can be Midterm or HWs)
-                //each array index will represent Dc-1 to Dc-n
-                //Also a reminder Note from Tan to Tan
-                //this Array2D we use is like Array2D[Student_number, DC_number] ([rows, columns])
-                double[] DCSumHolder = new double[linkedList.returnHeadColumns()];
-                node = linkedList.GetNthNode(counter);
-                int Student_number = node.Array2D.GetLength(0);
-                double sum = 0.0;
-                for (int j = 0; j < node.Columns; j++)
-                {
-                    for (int i = 0; i < node.Rows; i++)
-                    {
-                        sum = sum + node.Array2D[i, j];
-                    }
-                    DCSumHolder[j] = sum / Convert.ToDouble(node.Rows); //total sum of all student contributions to DCj / Student_no
-                }
-                if (linkedList.name == "Midterm" || linkedList.name == "Homework")
-                {
-                    worksheet.Cells[1, current_column].Value = linkedList.name + "-" + counter;
-                }
-                else if (linkedList.name == "Final" || linkedList.name == "Quiz" || linkedList.name == "Lab" || linkedList.name == "Project")
-                {
-                    worksheet.Cells[1, current_column].Value = linkedList.name;
-                }
-                for (int i = 2; i < node.Array2D.GetLength(1) + 2; i++)
-                {
-
-                    worksheet.Cells[i, current_column] = DCSumHolder[i - 2];
-                }
-                current_column = current_column + 1;
-            }
         }
     }
 }
