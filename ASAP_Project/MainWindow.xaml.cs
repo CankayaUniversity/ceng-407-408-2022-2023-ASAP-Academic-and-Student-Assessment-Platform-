@@ -343,24 +343,24 @@ namespace ASAP_Project
 
         private void button_createreport_Click(object sender, RoutedEventArgs e)
         {
-            //if (grid_createreport.Visibility == Visibility.Visible)
-            //{
-            //    grid_createreport.Visibility = Visibility.Hidden;
-            //}
-            //else
-            //{
-            //    grid_createreport.Visibility = Visibility.Visible;
+            if (grid_createreport.Visibility == Visibility.Visible)
+            {
+                grid_createreport.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                grid_createreport.Visibility = Visibility.Visible;
 
-            //    List<string> list = new List<string>();
-            //    list = GoogleDrive.getGenExcelList();
+                List<string> list = new List<string>();
+                list = GoogleDrive.getGenExcelList();
 
-            //    foreach (var item in list)
-            //    {
-            //        combobox_createreport.Items.Add(item);
-            //    }
+                foreach (var item in list)
+                {
+                    combobox_createreport.Items.Add(item);
+                }
 
-            //}
-            UserPanel.CreateReport();
+            }
+            //UserPanel.CreateReport();
         }
 
         private void button_downloadexcel_Click(object sender, RoutedEventArgs e)
@@ -370,20 +370,20 @@ namespace ASAP_Project
 
         private void button_selectexcelfile_Click(object sender, RoutedEventArgs e)
         {
-            //MemoryStream secilenexcel = new MemoryStream();
-            //secilenexcel = GoogleDrive.GetFile(combobox_createreport.SelectedItem.ToString());
-            //// Converts MemoryStream to byte[]
-            //byte[] excelData = secilenexcel.ToArray();
+            MemoryStream secilenexcel = new MemoryStream();
+            secilenexcel = GoogleDrive.GetFile(combobox_createreport.SelectedItem.ToString());
+            // Converts MemoryStream to byte[]
+            byte[] excelData = secilenexcel.ToArray();
 
-            //// Saves byte[] as a temporary file
-            //string tempFilePath = System.IO.Path.GetTempFileName();
-            //File.WriteAllBytes(tempFilePath, excelData);
+            // Saves byte[] as a temporary file
+            string tempFilePath = System.IO.Path.GetTempFileName();
+            File.WriteAllBytes(tempFilePath, excelData);
 
-            //// Opens the temporary file with Excel Interop
-            //Application excelApp = new Application();
-            //Workbook wb = excelApp.Workbooks.Open(tempFilePath);
-            //UserPanel userPanel = new UserPanel();
-            //userPanel.CreateReport(wb);
+            // Opens the temporary file with Excel Interop
+            Application excelApp = new Application();
+            Workbook wb = excelApp.Workbooks.Open(tempFilePath);
+            UserPanel userPanel = new UserPanel();
+            userPanel.CreateReport(excelApp, wb);
         }
 
         private void button_addcourse_Click(object sender, RoutedEventArgs e)
@@ -606,6 +606,44 @@ namespace ASAP_Project
             MessageBox.Show("Your excel file saved as this location: " + filePath);
 
             excel.Visible = true;
+        }
+
+        private void button_account_Click(object sender, RoutedEventArgs e)
+        {
+            grid_userpanel.Visibility = Visibility.Hidden;
+            grid_adminpanel.Visibility = Visibility.Hidden;
+            if (grid_accountpanel.Visibility == Visibility.Visible)
+            {
+                grid_accountpanel.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                grid_accountpanel.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void button_adduser_Click(object sender, RoutedEventArgs e)
+        {
+            if (grid_adduser.Visibility == Visibility.Visible)
+            {
+                grid_adduser.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                grid_adduser.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void button_ChangePassword_Click(object sender, RoutedEventArgs e)
+        {
+            if (grid_changepassword.Visibility == Visibility.Visible)
+            {
+                grid_changepassword.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                grid_changepassword.Visibility = Visibility.Visible;
+            }
         }
     } 
 }

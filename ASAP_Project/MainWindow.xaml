@@ -35,7 +35,7 @@
 
             <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_userpanel" Content="User Panel" HorizontalAlignment="Center" Margin="0,305,0,0" VerticalAlignment="Top" Width="246" Click="button_userpanel_Click" Height="30" ClickMode="Press" Background="#27A4CB" Opacity="0.8"/>
             <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_adminpanel" HorizontalAlignment="Center" Margin="0,340,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.505,0.152" Width="246" Content="Admin Panel" Height="30" Background="#27A4CB" Click="button_adminpanel_Click" Opacity="0.8"/>
-            <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_account" Content="Account" HorizontalAlignment="Center" VerticalAlignment="Top" Width="246" Margin="0,375,0,0" Height="30" Background="#27A4CB" Opacity="0.8"/>
+            <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_account" Content="Account" HorizontalAlignment="Center" VerticalAlignment="Top" Width="246" Margin="0,375,0,0" Height="30" Background="#27A4CB" Opacity="0.8" Click="button_account_Click"/>
             <Image x:Name="image_logo" Margin="0,0,0,378" Source="/Images/image_logo.png" Stretch="None" RenderTransformOrigin="0.301,0.479"/>
             <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_exit" Content="Exit" HorizontalAlignment="Center" Margin="0,550,0,0" VerticalAlignment="Top" Width="252" Click="button_exit_Click" Height="30" Background="#27A4CB" Opacity="0.8"/>
         </Grid>
@@ -140,7 +140,7 @@
             <Label x:Name="label_course" Content="Course :" HorizontalAlignment="Left" Margin="204,27,0,0" VerticalAlignment="Top" Foreground="White"/>
             <ComboBox x:Name="combobox_course" HorizontalAlignment="Left" Margin="262,29,0,0" VerticalAlignment="Top" Width="120"/>
         </Grid>
-        <Grid x:Name="grid_createreport" Width="630" Height="612.04" Margin="618,41,32,51">
+        <Grid x:Name="grid_createreport" Width="630" Height="612.04" Margin="618,41,32,51" Visibility="Hidden">
             <Border Padding="20" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Opacity="0.8">
                 <Border.Effect>
                     <BlurEffect Radius="3"/>
@@ -176,6 +176,52 @@
             <TextBox x:Name="textbox_howmanydc" HorizontalAlignment="Left" Margin="131,122,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="textbox_howmanydc_TextChanged"/>
             <DataGrid x:Name="datagrid_addcourse" Margin="10,159,27,248" SelectionUnit="Cell" CanUserAddRows="False"/>
             <Button x:Name="button_addcourseexportexcel" Content="Button" HorizontalAlignment="Left" Margin="563,390,0,0" VerticalAlignment="Top" Click="button_addcourseexportexcel_Click"/>
+        </Grid>
+        <Grid x:Name="grid_accountpanel" Margin="317,41,691,51" RenderTransformOrigin="0.5,0.5" Visibility="Hidden">
+            <Border Padding="20" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Margin="0,0,0,2" Opacity="0.8">
+                <Border.Effect>
+                    <BlurEffect Radius="3"/>
+                </Border.Effect>
+            </Border>
+
+            <Rectangle Fill="Black" Opacity="0.3" Margin="0,0,0,2" RadiusX="20" RadiusY="20">
+                <Rectangle.Effect>
+                    <BlurEffect Radius="2" KernelType="Box" RenderingBias="Quality"/>
+                </Rectangle.Effect>
+            </Rectangle>
+            <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_adduser" Content="Add User" HorizontalAlignment="Center" Margin="0,310,0,0" VerticalAlignment="Top" Width="246" Background="#27A4CB" Height="30" Opacity="0.8" Click="button_adduser_Click"/>
+            <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_ChangePassword" Content="Change Password" HorizontalAlignment="Center" Margin="0,345,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.177,0.403" Width="246" Background="#27A4CB" Height="30" Opacity="0.8" Click="button_ChangePassword_Click"/>
+
+        </Grid>
+        <Grid x:Name="grid_adduser" Width="630" Height="612.04" Margin="618,41,32,51" Visibility="Hidden">
+            <Border Padding="20" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Opacity="0.8">
+                <Border.Effect>
+                    <BlurEffect Radius="3"/>
+                </Border.Effect>
+            </Border>
+            <Rectangle Fill="Black" Opacity="0.3" RadiusX="20" RadiusY="20">
+                <Rectangle.Effect>
+                    <BlurEffect Radius="2" KernelType="Box" RenderingBias="Quality"/>
+                </Rectangle.Effect>
+            </Rectangle>
+            <Label x:Name="label_username" Content="Username :" HorizontalAlignment="Left" Margin="38,25,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <TextBox x:Name="textbox_username" HorizontalAlignment="Left" Margin="131,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        </Grid>
+        <Grid x:Name="grid_changepassword" Width="630" Height="612.04" Margin="618,41,32,51" Visibility="Hidden">
+            <Border Padding="20" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Opacity="0.8">
+                <Border.Effect>
+                    <BlurEffect Radius="3"/>
+                </Border.Effect>
+            </Border>
+            <Rectangle Fill="Black" Opacity="0.3" RadiusX="20" RadiusY="20">
+                <Rectangle.Effect>
+                    <BlurEffect Radius="2" KernelType="Box" RenderingBias="Quality"/>
+                </Rectangle.Effect>
+            </Rectangle>
+            <Label x:Name="label_oldpassword" Content="Old Password :" HorizontalAlignment="Left" Margin="38,25,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <TextBox x:Name="textbox_oldpassword" HorizontalAlignment="Left" Margin="131,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label x:Name="label_newpassword" Content="New Password :" HorizontalAlignment="Left" Margin="33,60,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <TextBox x:Name="textbox_newpassword" HorizontalAlignment="Left" Margin="131,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         </Grid>
 
     </Grid>

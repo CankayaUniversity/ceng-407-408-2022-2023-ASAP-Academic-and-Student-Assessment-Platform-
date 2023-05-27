@@ -63,7 +63,7 @@ namespace ASAP_Project
         /// This one generates an Excel from scratch
         /// - Tan :D
         /// </summary>
-        public void GenerateExcel(String[,] info, int Student_no, int Midterm_no, int Homework_no,
+        public void GenerateExcel(String[,] info , int Student_no, int Midterm_no, int Homework_no,
             int Lab_no, int Quiz_no, int Project_no, int Lesson_output_no, bool isCatalog, bool isFinal,
             int[] Midterm_Q_no, int[] Homework_Q_no,
             int Final_Q_no)
@@ -918,12 +918,12 @@ namespace ASAP_Project
         /// - TAN :D
         /// </summary>
         /// 
-        public static void CreateReport()
+        public void CreateReport(Excel.Application app, Excel.Workbook workbook)
         {
-            var openFileDialog = new Microsoft.Win32.OpenFileDialog();
-            openFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
-            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            openFileDialog.ShowDialog();
+            //var openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            //openFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+            //openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            //openFileDialog.ShowDialog();
 
             MidtermDC.SetHeadToNull();
             FinalDC.SetHeadToNull();
@@ -935,8 +935,8 @@ namespace ASAP_Project
             //This part takes values from excel 
             //In the order of midterm-n , midterm-n constraints and midterm-gradeing constraints
             //does necessary calculations and writes the result
-            Excel.Application application = new Excel.Application();
-            Excel.Workbook wb = application.Workbooks.Open(openFileDialog.FileName);
+            Excel.Application application = app;
+            Excel.Workbook wb = workbook;
             int Homework_counter = 0;
             int Midterm_counter = 1;
             int Final_counter = 1;
