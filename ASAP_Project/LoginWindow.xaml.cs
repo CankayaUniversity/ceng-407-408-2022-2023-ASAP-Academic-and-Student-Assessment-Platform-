@@ -29,7 +29,7 @@ namespace ASAP_Project
         private void button_login_Click(object sender, RoutedEventArgs e)
         {
             
-            MemoryStream userdata = GoogleDrive.GetFile("UserInfo");
+            MemoryStream userdata = GoogleDrive.GetFile("UserInfo.xlsx");
             // Converts MemoryStream to byte[]
             byte[] excelData = userdata.ToArray();
 
@@ -46,10 +46,11 @@ namespace ASAP_Project
                 {
                     for(int i = 2; i < worksheet.Rows.Count; i++)
                     {
-                        if(worksheet.Cells[i,2] == /*Username*/)
+                        if(worksheet.Cells[i,2].Value == textbox_username.Text)
                         {
-                            if(worksheet.Cells[i,3] == /*password*/)
+                            if(worksheet.Cells[i,3].Value == passwordbox_password.ToString())
                             {
+                                
                                 //assigns if the user is a user or an admin
                                 //goes to the main page with username and user type
                                 //in main page we open the specific buttons according to if we have an admin or
