@@ -66,7 +66,7 @@ namespace ASAP_Project
         public void GenerateExcel(String[,] info , int Student_no, int Midterm_no, int Homework_no,
             int Lab_no, int Quiz_no, int Project_no, int Lesson_output_no, bool isCatalog, bool isFinal,
             int[] Midterm_Q_no, int[] Homework_Q_no,
-            int Final_Q_no)
+            int Final_Q_no, Excel.Worksheet DCPCworksheet)
         {
             // Student sayfasına öğrenci bilgileri girilecek, o bilgiler diğer sayfalara otomatik olarak doldurulacak *** :D eheee
             // Student sayfasına, en son öğrencinin altına sınav notlarının ortalamasının gözükmesi (zamanın olursa bak)
