@@ -51,8 +51,15 @@ namespace ASAP_Project
 
         private void button_adminpanel_Click(object sender, RoutedEventArgs e)
         {
-            grid_userpanel.Visibility = Visibility.Hidden;
-            grid_adminpanel.Visibility = Visibility.Visible;
+            if (UserData.role == "admin")
+            {
+                grid_userpanel.Visibility = Visibility.Hidden;
+                grid_adminpanel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                MessageBox.Show("You have not a permission for that");
+            }
             //
         }
 

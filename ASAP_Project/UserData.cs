@@ -8,8 +8,8 @@ namespace ASAP_Project
 {
     public class UserData
     {
-        public string username { get; set; }
-        public string role { get; set; }
+        public static string username { get; set; }
+        public static string role { get; set; }
 
 
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Office.Interop.Excel;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace ASAP_Project
     /// <summary>
     /// LoginWindow.xaml etkileşim mantığı
     /// </summary>
-    public partial class LoginWindow : Window
+    public partial class LoginWindow : System.Windows.Window
     {
         public LoginWindow()
         {
@@ -40,6 +41,7 @@ namespace ASAP_Project
             // Opens the temporary file with Excel Interop
             Excel.Application excelApp = new Excel.Application();
             Excel.Workbook wb = excelApp.Workbooks.Open(tempFilePath);
+           
             foreach (Excel.Worksheet worksheet in wb.Sheets)
             {
                 if (worksheet.Name == "Account")
@@ -48,23 +50,25 @@ namespace ASAP_Project
                     {
                         if(worksheet.Cells[i,2].Value == textbox_username.Text)
                         {
-                            if(worksheet.Cells[i,3].Value == passwordbox_password.ToString())
+                            if(Convert.ToString(worksheet.Cells[i, 3].Value) == passwordbox_password.Password)
                             {
-                                
+                                UserData.username = worksheet.Cells[i,2].Value;
+                                UserData.role = worksheet.Cells[i,4].Value;
                                 //assigns if the user is a user or an admin
                                 //goes to the main page with username and user type
                                 //in main page we open the specific buttons according to if we have an admin or
                                 //a user on board.
                                 //From Tan to Emre :D
+                                MainWindow mainWindow = new MainWindow();
+                                mainWindow.Show();
+                                this.Close();
                             }
                         }
                     }
                 }
             }
 
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Show();
-            this.Close();
+           
         }
 
 
