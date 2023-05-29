@@ -59,12 +59,29 @@ namespace ASAP_Project
                 }
             }
         }
+
+        private static int DC_Counter(Excel.Worksheet worksheet)
+        {
+            int counter = 0;
+            for(int i = 2; i < worksheet.Rows.Count; i++)
+            {
+                if(worksheet.Cells[i,1].Value != null)
+                {
+                    counter++;
+                }
+                else if(worksheet.Cells[i,1].Value == null) 
+                {
+                    break;
+                }
+            }
+            return counter;
+        }
         /// <summary>
         /// This one generates an Excel from scratch
         /// - Tan :D
         /// </summary>
         public void GenerateExcel(String[,] info , int Student_no, int Midterm_no, int Homework_no,
-            int Lab_no, int Quiz_no, int Project_no, int Lesson_output_no, bool isCatalog, bool isFinal,
+            int Lab_no, int Quiz_no, int Project_no, bool isFinal,
             int[] Midterm_Q_no, int[] Homework_Q_no,
             int Final_Q_no, Excel.Worksheet DCPCworksheet)
         {
@@ -79,6 +96,8 @@ namespace ASAP_Project
                 MessageBox.Show("There is No Excel in your system!!");
                 return;
             }
+
+            int Lesson_output_no = DC_Counter(DCPCworksheet);
 
             Excel.Workbook xlWorkBook;
 

@@ -338,7 +338,7 @@ namespace ASAP_Project
             //thanks to the referencing (I guess)
             //-Tan :D
             String[,] info = Name_taker(wb, ref Student_Count);
-            Excel.Worksheet DCPCworksheet= new Excel.Worksheet();
+            Excel.Worksheet DCPCworksheet = null;
             foreach (Excel.Worksheet worksheet in wb.Sheets)
             {
                 if(worksheet.Name == "DC-PC")
@@ -348,7 +348,7 @@ namespace ASAP_Project
                 }
             }
             userPanel.GenerateExcel(info, Student_Count, int.Parse(textbox_midtermcount.Text), int.Parse(textbox_homeworkcount.Text), int.Parse(textbox_labcount.Text),
-                int.Parse(textbox_quizcount.Text), int.Parse(textbox_projectcount.Text), int.Parse(textbox_derscikticount.Text), checkbox_iscatalog.IsChecked ?? false, checkbox_havefinal.IsChecked ?? false, midtermqcount, homeworkqcount, int.Parse(finaltextbox.Text),DCPCworksheet);
+                int.Parse(textbox_quizcount.Text), int.Parse(textbox_projectcount.Text), checkbox_havefinal.IsChecked ?? false, midtermqcount, homeworkqcount, int.Parse(finaltextbox.Text),DCPCworksheet);
         }
 
         private void button_createreport_Click(object sender, RoutedEventArgs e)
