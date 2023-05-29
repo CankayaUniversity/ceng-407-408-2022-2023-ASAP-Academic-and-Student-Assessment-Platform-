@@ -128,8 +128,12 @@ namespace ASAP_Project
         }
 
         public static List<string> course_list = new List<string>();
+
+        public static List<string> gen_excel = new List<string>();
         public static List<string> getCourseList()
         {
+            course_list.Clear();
+
             var credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                     new ClientSecrets { ClientId = "714044421228-cugq90i34shjhu5ifs9lmh06fop801ro.apps.googleusercontent.com", ClientSecret = "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" },
                     new[] { DriveService.Scope.Drive },
@@ -160,6 +164,8 @@ namespace ASAP_Project
 
         public static List<string> getGenExcelList()
         {
+            gen_excel.Clear();
+
             var credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                     new ClientSecrets { ClientId = "714044421228-cugq90i34shjhu5ifs9lmh06fop801ro.apps.googleusercontent.com", ClientSecret = "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" },
                     new[] { DriveService.Scope.Drive },
@@ -185,7 +191,7 @@ namespace ASAP_Project
                 course_list.Add(file.Name);
             }
 
-            return course_list;
+            return gen_excel;
         }
 
 

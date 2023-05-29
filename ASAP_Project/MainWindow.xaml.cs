@@ -60,6 +60,8 @@ namespace ASAP_Project
         
         private void button_generate_excel_Click(object sender, RoutedEventArgs e)
         {
+            combobox_courselist.Items.Clear();
+
             if (grid_generate_excel.Visibility == Visibility.Visible)
             {
                 grid_generate_excel.Visibility = Visibility.Hidden;
@@ -343,6 +345,8 @@ namespace ASAP_Project
 
         private void button_createreport_Click(object sender, RoutedEventArgs e)
         {
+            combobox_createreport.Items.Clear();
+
             if (grid_createreport.Visibility == Visibility.Visible)
             {
                 grid_createreport.Visibility = Visibility.Hidden;
