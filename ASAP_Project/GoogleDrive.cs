@@ -188,7 +188,7 @@ namespace ASAP_Project
 
             foreach (var file in fileList.Files)
             {
-                course_list.Add(file.Name);
+                gen_excel.Add(file.Name);
             }
 
             return gen_excel;
