@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,9 +27,17 @@ namespace ASAP_Project
 
         private void button_login_Click(object sender, RoutedEventArgs e)
         {
+            
+            MemoryStream userdata = GoogleDrive.GetFile("UserInfo");
+
+
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();
             this.Close();
         }
+
+
+
+
     }
 }
