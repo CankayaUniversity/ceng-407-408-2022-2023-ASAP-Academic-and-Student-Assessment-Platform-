@@ -36,6 +36,7 @@ namespace ASAP_Project
         public MainWindow()
         {
             InitializeComponent();
+            
         }
 
         private void button_userpanel_Click(object sender, RoutedEventArgs e)
