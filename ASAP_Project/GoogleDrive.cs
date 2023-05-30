@@ -16,7 +16,7 @@ namespace ASAP_Project
     public class GoogleDrive
     {
         //Solution Explorerda bulunan credentials dosyaları ile adlarını değiştirin    
-        static IDataStore tokenStorage = new FileDataStore("C:\\Users\\emreh\\Desktop\\ASAP P\\ASAP_Project\\SendedAccountCredential\\", false);
+        static IDataStore tokenStorage = new FileDataStore(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SendedAccountCredential"), false);
 
         public static async void UploadFile()
         {
