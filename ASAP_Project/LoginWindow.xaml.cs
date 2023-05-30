@@ -41,7 +41,7 @@ namespace ASAP_Project
             // Opens the temporary file with Excel Interop
             Excel.Application excelApp = new Excel.Application();
             Excel.Workbook wb = excelApp.Workbooks.Open(tempFilePath);
-           
+            int choice = 0;
             foreach (Excel.Worksheet worksheet in wb.Sheets)
             {
                 if (worksheet.Name == "Account")
@@ -59,15 +59,19 @@ namespace ASAP_Project
                                 //in main page we open the specific buttons according to if we have an admin or
                                 //a user on board.
                                 //From Tan to Emre :D
-                                MainWindow mainWindow = new MainWindow();
-                                mainWindow.Show();
-                                this.Close();
+                                choice = 1;
+                                break;
                             }
                         }
                     }
                 }
             }
-
+            if(choice == 1)
+            {
+                MainWindow mainWindow = new MainWindow();
+                mainWindow.Show();
+                this.Close();
+            }
            
         }
 
