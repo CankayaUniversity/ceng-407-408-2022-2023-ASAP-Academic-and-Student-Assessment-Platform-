@@ -62,7 +62,12 @@ namespace ASAP_Project
                                 choice = 1;
                                 break;
                             }
-                        }
+                            else
+                            {
+                                MessageBox.Show("Your username or password is wrong");
+                                break;
+                            }                           
+                        }                       
                     }
                 }
             }

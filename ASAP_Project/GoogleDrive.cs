@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.MemoryMappedFiles;
 using System.Reflection.Metadata;
+using System.Runtime.CompilerServices;
 using System.Windows;
 
 namespace ASAP_Project
@@ -17,6 +18,52 @@ namespace ASAP_Project
     {
         //Solution Explorerda bulunan credentials dosyaları ile adlarını değiştirin    
         static IDataStore tokenStorage = new FileDataStore(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SendedAccountCredential"), false);
+
+        public static async void UploadCourse(string filepath)
+        {
+            try
+            {
+
+                string folderid = "1yaDOAB2U008ohDirn03H8-RB1r6LJoFc";
+                string filePath = filepath;
+
+                var credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                    new ClientSecrets { ClientId = "714044421228-cugq90i34shjhu5ifs9lmh06fop801ro.apps.googleusercontent.com", ClientSecret = "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" },
+                    new[] { DriveService.Scope.Drive },
+                    "user",
+                    System.Threading.CancellationToken.None,
+                    tokenStorage).Result;
+
+                // Create the Drive service.
+                var service = new DriveService(new BaseClientService.Initializer()
+                {
+                    HttpClientInitializer = credential,
+                    ApplicationName = "ASAP Project"
+                });
+
+                //Upload the selected file to Google Drive.
+                var fileMetadata = new Google.Apis.Drive.v3.Data.File()
+                {
+                    Name = Path.GetFileName(filePath),
+                    Parents = new[] { folderid }
+                };
+                FilesResource.CreateMediaUpload request;
+                using (var stream = new System.IO.FileStream(filePath, System.IO.FileMode.Open))
+                {
+                    request = service.Files.Create(fileMetadata, stream, "application/vnd.ms-excel");
+                    request.Fields = "id";
+                    request.Upload();
+                }
+                var file = request.ResponseBody;
+            }
+
+
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error uploading file to Google Drive: {ex.Message}");
+            }
+        }
+
 
         public static async void UploadFile()
         {

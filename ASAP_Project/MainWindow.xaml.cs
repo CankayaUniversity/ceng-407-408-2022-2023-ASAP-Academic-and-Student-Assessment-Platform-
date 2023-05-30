@@ -644,13 +644,20 @@ namespace ASAP_Project
 
         private void button_adduser_Click(object sender, RoutedEventArgs e)
         {
-            if (grid_adduser.Visibility == Visibility.Visible)
+            if (UserData.role == "Admin")
             {
-                grid_adduser.Visibility = Visibility.Hidden;
+                if (grid_adduser.Visibility == Visibility.Visible)
+                {
+                    grid_adduser.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    grid_adduser.Visibility = Visibility.Visible;
+                }
             }
             else
             {
-                grid_adduser.Visibility = Visibility.Visible;
+                MessageBox.Show("You have not permission for that");
             }
         }
 
@@ -664,6 +671,16 @@ namespace ASAP_Project
             {
                 grid_changepassword.Visibility = Visibility.Visible;
             }
+        }
+
+        private void button_addcourseupload_Click(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            openFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            openFileDialog.ShowDialog();
+
+            GoogleDrive.UploadCourse(openFileDialog.FileName);
         }
     } 
 }

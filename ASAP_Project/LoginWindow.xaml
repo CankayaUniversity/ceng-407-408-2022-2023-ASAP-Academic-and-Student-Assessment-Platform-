@@ -7,12 +7,20 @@
         mc:Ignorable="d"
         Title="LoginWindow" Height="450" Width="300
         ">
-    <Grid>
-        <Label x:Name="label_username" Content="Username :" HorizontalAlignment="Left" Margin="37,240,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="label_password" Content="Password :" HorizontalAlignment="Left" Margin="41,271,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="textbox_username" HorizontalAlignment="Left" Margin="111,244,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <PasswordBox x:Name="passwordbox_password" HorizontalAlignment="Left" Margin="111,275,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="button_login" Content="Login" HorizontalAlignment="Center" Margin="0,313,0,0" VerticalAlignment="Top" Click="button_login_Click"/>
+    <Grid Background="#FF4A4A4A">
+        <Label x:Name="label_username" Content="Username :" HorizontalAlignment="Left" Margin="37,185,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <Label x:Name="label_password" Content="Password :" HorizontalAlignment="Left" Margin="41,215,0,0" VerticalAlignment="Top" Foreground="White"/>
+        <TextBox x:Name="textbox_username" HorizontalAlignment="Left" Margin="111,189,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <PasswordBox x:Name="passwordbox_password" HorizontalAlignment="Left" Margin="111,219,0,0" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="button_login" Content="Login" HorizontalAlignment="Center" Margin="0,258,0,0" VerticalAlignment="Top" Click="button_login_Click"/>
+        <Label x:Name="label_logincomment" HorizontalAlignment="Center" Margin="0,283,0,0" VerticalAlignment="Top" Foreground="White" Height="31" Content="If this application opens your internet browser,"/>
+        <Image x:Name="login_logo" HorizontalAlignment="Center" Height="155" Margin="0,14,0,0" VerticalAlignment="Top" Width="168" Source="/Images/image_logo.png"/>
+        <Label x:Name="label_logincomment_Copy" HorizontalAlignment="Center" Margin="0,298,0,0" VerticalAlignment="Top" Foreground="White" Height="32" Content=" in order to connect an account, "/>
+        <Label x:Name="label_logincomment_Copy1" HorizontalAlignment="Left" Margin="22,312,0,0" VerticalAlignment="Top" Foreground="White" Height="31" Content=" please use these email and password below."/>
+        <Label x:Name="label_logincomment_Copy2" HorizontalAlignment="Center" Margin="0,328,0,0" VerticalAlignment="Top" Foreground="White" Height="30" Content="Thank you for using ASAP version 1.0.0"/>
+        <Label x:Name="label_logincomment_Copy3" HorizontalAlignment="Center" Margin="0,358,0,0" VerticalAlignment="Top" Foreground="White" Height="30" Content="Google e-mail: asaproject2023@gmail.com" Background="{x:Null}"/>
+        <Label x:Name="label_logincomment_Copy4" HorizontalAlignment="Center" Margin="0,373,0,0" VerticalAlignment="Top" Foreground="White" Height="30" Content="Google password: Asap1234_"/>
+        <Border BorderBrush="Red" BorderThickness="1" Margin="10,283,10,10"/>
 
     </Grid>
 </Window>
