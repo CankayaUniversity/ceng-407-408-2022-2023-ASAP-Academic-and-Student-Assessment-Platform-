@@ -42,6 +42,10 @@ namespace ASAP_Project
         private void button_userpanel_Click(object sender, RoutedEventArgs e)
         {
             grid_adminpanel.Visibility = Visibility.Hidden;
+            grid_addcourse.Visibility = Visibility.Collapsed;
+            grid_changepassword.Visibility = Visibility.Collapsed;
+            grid_accountpanel.Visibility = Visibility.Collapsed;
+
             grid_userpanel.Visibility = Visibility.Visible;
         }
 
@@ -54,7 +58,13 @@ namespace ASAP_Project
         {
             if (UserData.role == "admin")
             {
-                grid_userpanel.Visibility = Visibility.Hidden;
+                grid_userpanel.Visibility = Visibility.Collapsed;
+                grid_accountpanel.Visibility = Visibility.Collapsed;
+                grid_generate_excel.Visibility = Visibility.Collapsed;
+                grid_createreport.Visibility = Visibility.Collapsed;
+                grid_reviewcourse.Visibility = Visibility.Collapsed;
+                grid_changepassword.Visibility = Visibility.Collapsed;
+
                 grid_adminpanel.Visibility = Visibility.Visible;
             }
             else
@@ -68,6 +78,10 @@ namespace ASAP_Project
         
         private void button_generate_excel_Click(object sender, RoutedEventArgs e)
         {
+            grid_createreport.Visibility = Visibility.Collapsed;
+            grid_reviewcourse.Visibility = Visibility.Collapsed;
+            grid_changepassword.Visibility = Visibility.Collapsed;
+
             combobox_courselist.Items.Clear();
 
             if (grid_generate_excel.Visibility == Visibility.Visible)
@@ -274,6 +288,9 @@ namespace ASAP_Project
         
         private void button_reviewcourse_Click(object sender, RoutedEventArgs e)
         {
+            grid_generate_excel.Visibility = Visibility.Collapsed;
+            grid_createreport.Visibility = Visibility.Collapsed;
+            grid_changepassword.Visibility = Visibility.Collapsed;
             if (grid_reviewcourse.Visibility == Visibility.Visible)
             {
                 grid_reviewcourse.Visibility = Visibility.Hidden;
@@ -431,6 +448,9 @@ namespace ASAP_Project
 
         private void button_createreport_Click(object sender, RoutedEventArgs e)
         {
+            grid_generate_excel.Visibility = Visibility.Collapsed;
+            grid_reviewcourse.Visibility = Visibility.Collapsed;
+            grid_changepassword.Visibility = Visibility.Collapsed;
             combobox_createreport.Items.Clear();
 
             if (grid_createreport.Visibility == Visibility.Visible)
@@ -700,8 +720,13 @@ namespace ASAP_Project
 
         private void button_account_Click(object sender, RoutedEventArgs e)
         {
-            grid_userpanel.Visibility = Visibility.Hidden;
-            grid_adminpanel.Visibility = Visibility.Hidden;
+
+            grid_userpanel.Visibility = Visibility.Collapsed;
+            grid_adminpanel.Visibility = Visibility.Collapsed;
+            grid_generate_excel.Visibility = Visibility.Collapsed;
+            grid_createreport.Visibility = Visibility.Collapsed;
+            grid_reviewcourse.Visibility = Visibility.Collapsed;
+            grid_addcourse.Visibility = Visibility.Collapsed;
             if (grid_accountpanel.Visibility == Visibility.Visible)
             {
                 grid_accountpanel.Visibility = Visibility.Hidden;
