@@ -11,24 +11,24 @@ ASAP (Academic and Student Assessment Platform)
  * Windows Forms or WPF: Technologies used to interface our desktop application. <br>
 
 ## Project Stucture
-ASAP
-├── ASAP_project.sln
-├── ASAP_project.Core
-│   ├── Properties
-│   ├── Models
-│   ├── Services
-│   ├── DataAccess
-│   └── ...
-├── ASAP_project.UI
-│   ├── Properties
-│   ├── Forms
-│   ├── ViewModels
-│   ├── Helpers
-│   └── ...
-├── ASAP_project.ExternalServices
-│   ├── GoogleDrive
-│   ├── ...
-└── README.md
+ASAP <br>
+├── ASAP_project.sln <br> 
+├── ASAP_project.Core <br>
+│   ├── Properties <br>
+│   ├── Models <br>
+│   ├── Services <br>
+│   ├── DataAccess <br>
+│   └── ... <br>
+├── ASAP_project.UI <br>
+│   ├── Properties <br>
+│   ├── Forms <br>
+│   ├── ViewModels <br>
+│   ├── Helpers <br>
+│   └── ... <br>
+├── ASAP_project.ExternalServices <br>
+│   ├── GoogleDrive <br>
+│   ├── ... <br>
+└── README.md <br>
 
 <h2>TEAM MEMBERS</h2>
 
