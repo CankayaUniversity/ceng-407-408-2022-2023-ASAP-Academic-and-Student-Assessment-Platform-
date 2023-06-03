@@ -5,22 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ASAP_Project"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="450" Width="300
+        Title="LoginWindow" Height="416" Width="300
         ">
-    <Grid Background="#FF4A4A4A">
-        <Label x:Name="label_username" Content="Username :" HorizontalAlignment="Left" Margin="37,185,0,0" VerticalAlignment="Top" Foreground="White"/>
-        <Label x:Name="label_password" Content="Password :" HorizontalAlignment="Left" Margin="41,215,0,0" VerticalAlignment="Top" Foreground="White"/>
-        <TextBox x:Name="textbox_username" HorizontalAlignment="Left" Margin="111,189,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <PasswordBox x:Name="passwordbox_password" HorizontalAlignment="Left" Margin="111,219,0,0" VerticalAlignment="Top" Width="120"/>
-        <Button x:Name="button_login" Content="Login" HorizontalAlignment="Center" Margin="0,258,0,0" VerticalAlignment="Top" Click="button_login_Click"/>
-        <Label x:Name="label_logincomment" HorizontalAlignment="Center" Margin="0,283,0,0" VerticalAlignment="Top" Foreground="White" Height="31" Content="If this application opens your internet browser,"/>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="Images\background.jpg"/>
+        </Grid.Background>
+        <TextBox x:Name="textbox_username" Padding="30,0,0,0" HorizontalAlignment="Left" Margin="31,246,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="226" Height="24" Text="Username" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
+        <PasswordBox x:Name="passwordbox_password" Padding="30,0,0,0" HorizontalAlignment="Left" Margin="31,288,0,0" VerticalAlignment="Top" Width="226" Height="24" Password="Password" GotFocus="PasswordBox_GotFocus" LostFocus="PasswordBox_LostFocus"/>
+        <Button x:Name="button_login" Content="Login" HorizontalAlignment="Center" Margin="0,338,0,0" VerticalAlignment="Top" Click="button_login_Click" Width="76" Height="24" Background="#FF007BA2"/>
         <Image x:Name="login_logo" HorizontalAlignment="Center" Height="155" Margin="0,14,0,0" VerticalAlignment="Top" Width="168" Source="/Images/image_logo.png"/>
-        <Label x:Name="label_logincomment_Copy" HorizontalAlignment="Center" Margin="0,298,0,0" VerticalAlignment="Top" Foreground="White" Height="32" Content=" in order to connect an account, "/>
-        <Label x:Name="label_logincomment_Copy1" HorizontalAlignment="Left" Margin="22,312,0,0" VerticalAlignment="Top" Foreground="White" Height="31" Content=" please use these email and password below."/>
-        <Label x:Name="label_logincomment_Copy2" HorizontalAlignment="Center" Margin="0,328,0,0" VerticalAlignment="Top" Foreground="White" Height="30" Content="Thank you for using ASAP version 1.0.0"/>
-        <Label x:Name="label_logincomment_Copy3" HorizontalAlignment="Center" Margin="0,358,0,0" VerticalAlignment="Top" Foreground="White" Height="30" Content="Google e-mail: asaproject2023@gmail.com" Background="{x:Null}"/>
-        <Label x:Name="label_logincomment_Copy4" HorizontalAlignment="Center" Margin="0,373,0,0" VerticalAlignment="Top" Foreground="White" Height="30" Content="Google password: Asap1234_"/>
-        <Border BorderBrush="Red" BorderThickness="1" Margin="10,283,10,10"/>
+        <Image x:Name="password_" HorizontalAlignment="Left" Height="24" Margin="32,289,0,0" VerticalAlignment="Top" Width="24" Source="Images/password.jpg"/>
+        <Label Content="ASAP" Margin="78,161,72,154" HorizontalContentAlignment="Center" FontSize="40" RenderTransformOrigin="0.319,0.268" FontFamily="Stencil" FontWeight="Bold" Foreground="#FF007BA2"/>
+        <Image x:Name="usarname2" HorizontalAlignment="Left" Height="20" Margin="34,249,0,0" VerticalAlignment="Top" Width="20" Source="Images\usarname.png"/>
 
     </Grid>
 </Window>
