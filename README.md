@@ -4,11 +4,11 @@ ASAP (Academic and Student Assessment Platform)
 # Getting Started
 ## Technology
 
-> * C# Programming Language: The programming language that forms the basis of our desktop application.    <br>
-> * .NET Framework: The framework used to compile and run our C# application. <br>
-> * Google Drive API: API used to integrate Google Drive into our application. <br>
-> * Google OAuth 2.0: Protocol that allows users to authenticate with their Google account. <br>
-> * Windows Forms or WPF: Technologies used to interface our desktop application. <br>
+ * C# Programming Language: The programming language that forms the basis of our desktop application.    <br>
+ * .NET Framework: The framework used to compile and run our C# application. <br>
+ * Google Drive API: API used to integrate Google Drive into our application. <br>
+ * Google OAuth 2.0: Protocol that allows users to authenticate with their Google account. <br>
+ * Windows Forms or WPF: Technologies used to interface our desktop application. <br>
 <h2>TEAM MEMBERS</h2>
 
 > -> <a href = "https://github.com/EsatYener">Esat Yener </a> - 201811065 <br>
