@@ -9,6 +9,27 @@ ASAP (Academic and Student Assessment Platform)
  * Google Drive API: API used to integrate Google Drive into our application. <br>
  * Google OAuth 2.0: Protocol that allows users to authenticate with their Google account. <br>
  * Windows Forms or WPF: Technologies used to interface our desktop application. <br>
+
+## Project Stucture
+ASAP
+├── ASAP_project.sln
+├── ASAP_project.Core
+│   ├── Properties
+│   ├── Models
+│   ├── Services
+│   ├── DataAccess
+│   └── ...
+├── ASAP_project.UI
+│   ├── Properties
+│   ├── Forms
+│   ├── ViewModels
+│   ├── Helpers
+│   └── ...
+├── ASAP_project.ExternalServices
+│   ├── GoogleDrive
+│   ├── ...
+└── README.md
+
 <h2>TEAM MEMBERS</h2>
 
 > -> <a href = "https://github.com/EsatYener">Esat Yener </a> - 201811065 <br>
