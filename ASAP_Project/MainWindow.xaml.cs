@@ -42,6 +42,10 @@ namespace ASAP_Project
         private void button_userpanel_Click(object sender, RoutedEventArgs e)
         {
             grid_adminpanel.Visibility = Visibility.Hidden;
+            grid_addcourse.Visibility = Visibility.Collapsed;
+            grid_changepassword.Visibility = Visibility.Collapsed;
+            grid_accountpanel.Visibility = Visibility.Collapsed;
+
             grid_userpanel.Visibility = Visibility.Visible;
         }
 
@@ -54,7 +58,13 @@ namespace ASAP_Project
         {
             if (UserData.role == "admin")
             {
-                grid_userpanel.Visibility = Visibility.Hidden;
+                grid_userpanel.Visibility = Visibility.Collapsed;
+                grid_accountpanel.Visibility = Visibility.Collapsed;
+                grid_generate_excel.Visibility = Visibility.Collapsed;
+                grid_createreport.Visibility = Visibility.Collapsed;
+                grid_reviewcourse.Visibility = Visibility.Collapsed;
+                grid_changepassword.Visibility = Visibility.Collapsed;
+
                 grid_adminpanel.Visibility = Visibility.Visible;
             }
             else
@@ -68,6 +78,10 @@ namespace ASAP_Project
         
         private void button_generate_excel_Click(object sender, RoutedEventArgs e)
         {
+            grid_createreport.Visibility = Visibility.Collapsed;
+            grid_reviewcourse.Visibility = Visibility.Collapsed;
+            grid_changepassword.Visibility = Visibility.Collapsed;
+
             combobox_courselist.Items.Clear();
 
             if (grid_generate_excel.Visibility == Visibility.Visible)
@@ -91,79 +105,149 @@ namespace ASAP_Project
         }
 
         System.Windows.Controls.TextBox[] midtermtextbox = new System.Windows.Controls.TextBox[10];
-        
+
+        //Textboxtaki verilerin değişikliğini kontrol etmek için
+
+        private List<System.Windows.Controls.Label> midtermlabelList = new List<System.Windows.Controls.Label>();
+        private List<System.Windows.Controls.TextBox> midtermtextboxList = new List<System.Windows.Controls.TextBox>();
+
+        private bool programmaticChange = false;
+
         private void textbox_midtermcount_TextChanged(object sender, TextChangedEventArgs e)
         {
+
+            if (string.IsNullOrWhiteSpace(textbox_midtermcount.Text))
+            {
+                return; 
+            }
+
             
-
-            System.Windows.Controls.Label[] midtermlabel = new System.Windows.Controls.Label[int.Parse(textbox_midtermcount.Text)];
-            for (int i = 0; i < int.Parse(textbox_midtermcount.Text); i++)
+            foreach (var label in midtermlabelList)
             {
-                midtermlabel[i] = new System.Windows.Controls.Label();
-                midtermlabel[i].Name = "qCountmt" + (i + 1);
-                midtermlabel[i].HorizontalAlignment = HorizontalAlignment.Left;
-                midtermlabel[i].VerticalAlignment = VerticalAlignment.Top;
-                midtermlabel[i].Width = 160;
-                midtermlabel[i].Height = 30;
-                midtermlabel[i].Opacity = 0.8;
-                midtermlabel[i].Content = "Question Count Midterm " + (i + 1) + " :";
-                midtermlabel[i].Margin = new Thickness(272, (i * 30) + 29, 0, 0);
-                midtermlabel[i].Foreground = Brushes.White;
-                midtermlabel[i].Visibility = Visibility.Visible;
-                grid_generate_excel.Children.Add(midtermlabel[i]);
+                grid_generate_excel.Children.Remove(label);
+            }
+            foreach (var textbox in midtermtextboxList)
+            {
+                grid_generate_excel.Children.Remove(textbox);
+            }
+            foreach (var label in homeworklabelList)
+            {
+                grid_generate_excel.Children.Remove(label);
+            }
+            foreach (var textbox in homeworktextboxList)
+            {
+                grid_generate_excel.Children.Remove(textbox);
             }
 
-            for (int i = 0; i < int.Parse(textbox_midtermcount.Text); i++)
-            {
-                midtermtextbox[i] = new System.Windows.Controls.TextBox();
-                midtermtextbox[i].Name = "qTextboxmidterm" + (i + 1);
-                midtermtextbox[i].HorizontalAlignment = HorizontalAlignment.Left;
-                midtermtextbox[i].VerticalAlignment = VerticalAlignment.Top;
-                midtermtextbox[i].Width = 70;
-                midtermtextbox[i].Height = 15;
-                midtermtextbox[i].Margin = new Thickness(440, (i * 30) + 35, 0, 0);
-                grid_generate_excel.Children.Add(midtermtextbox[i]);
-            }
+            midtermlabelList.Clear();
+            midtermtextboxList.Clear();
+            homeworklabelList.Clear();
+            homeworktextboxList.Clear();
 
+            int midtermCount = int.Parse(textbox_midtermcount.Text);
+
+            for (int i = 0; i < midtermCount; i++)
+            {
+                System.Windows.Controls.Label midtermlabel = new System.Windows.Controls.Label();
+                midtermlabel.Name = "qCountmt" + (i + 1);
+                midtermlabel.HorizontalAlignment = HorizontalAlignment.Left;
+                midtermlabel.VerticalAlignment = VerticalAlignment.Top;
+                midtermlabel.Width = 160;
+                midtermlabel.Height = 30;
+                midtermlabel.Opacity = 0.8;
+                midtermlabel.Content = "Question Count Midterm " + (i + 1) + " :";
+                midtermlabel.Margin = new Thickness(272, (i * 30) + 29, 0, 0);
+                midtermlabel.Foreground = Brushes.White;
+                midtermlabel.Visibility = Visibility.Visible;
+
+                grid_generate_excel.Children.Add(midtermlabel);
+                midtermlabelList.Add(midtermlabel); // add to the list
+
+                System.Windows.Controls.TextBox midtermtextbox = new System.Windows.Controls.TextBox();
+                midtermtextbox.Name = "qTextboxmidterm" + (i + 1);
+                midtermtextbox.HorizontalAlignment = HorizontalAlignment.Left;
+                midtermtextbox.VerticalAlignment = VerticalAlignment.Top;
+                midtermtextbox.Width = 70;
+                midtermtextbox.Height = 15;
+                midtermtextbox.Margin = new Thickness(440, (i * 30) + 35, 0, 0);
+
+                grid_generate_excel.Children.Add(midtermtextbox);
+                midtermtextboxList.Add(midtermtextbox); // add to the list
+            }
+            programmaticChange = true;
+            textbox_homeworkcount.Text = "0";
+            programmaticChange = false;
         }
+
         System.Windows.Controls.TextBox[] homeworktextbox = new System.Windows.Controls.TextBox[10];
-        
+
+        //for bugs
+        private List<System.Windows.Controls.Label> homeworklabelList = new List<System.Windows.Controls.Label>();
+        private List<System.Windows.Controls.TextBox> homeworktextboxList = new List<System.Windows.Controls.TextBox>();
+
+
+
         private void textbox_homeworkcount_TextChanged(object sender, TextChangedEventArgs e)
         {
-            
+            if (string.IsNullOrWhiteSpace(textbox_homeworkcount.Text))
+            {
+                return;  // Exit the method
+            }
+
+            // Clear the grid and the lists first
+            foreach (var label in homeworklabelList)
+            {
+                grid_generate_excel.Children.Remove(label);
+            }
+            foreach (var textbox in homeworktextboxList)
+            {
+                grid_generate_excel.Children.Remove(textbox);
+            }
+
+            checkbox_havefinal.IsChecked = false;
+            grid_generate_excel.Children.Remove(final_label);
+            grid_generate_excel.Children.Remove(finaltextbox);
+            homeworklabelList.Clear();
+            homeworktextboxList.Clear();
 
             int lastps = int.Parse(textbox_midtermcount.Text);
             int last = lastps * 30;
 
-            System.Windows.Controls.Label[] homeworklabel = new System.Windows.Controls.Label[int.Parse(textbox_homeworkcount.Text)];
-            for (int i = 0; i < int.Parse(textbox_homeworkcount.Text); i++)
-            {
-                homeworklabel[i] = new System.Windows.Controls.Label();
-                homeworklabel[i].Name = "qCountmt" + (i + 1);
-                homeworklabel[i].HorizontalAlignment = HorizontalAlignment.Left;
-                homeworklabel[i].VerticalAlignment = VerticalAlignment.Top;
-                homeworklabel[i].Width = 170;
-                homeworklabel[i].Height = 30;
-                homeworklabel[i].Opacity = 0.8;
-                homeworklabel[i].Content = "Question Count Homework " + (i + 1) + " :";
-                homeworklabel[i].Margin = new Thickness(272, (i * 30) + last + 29, 0, 0);
-                homeworklabel[i].Foreground = Brushes.White;
-                homeworklabel[i].Visibility = Visibility.Visible;
-                grid_generate_excel.Children.Add(homeworklabel[i]);
-            }
+            int homeworkCount = int.Parse(textbox_homeworkcount.Text);
 
-            for (int i = 0; i < int.Parse(textbox_homeworkcount.Text); i++)
+            for (int i = 0; i < homeworkCount; i++)
             {
-                homeworktextbox[i] = new System.Windows.Controls.TextBox();
-                homeworktextbox[i].Name = "qTextboxhomework" + (i + 1);
-                homeworktextbox[i].HorizontalAlignment = HorizontalAlignment.Left;
-                homeworktextbox[i].VerticalAlignment = VerticalAlignment.Top;
-                homeworktextbox[i].Width = 70;
-                homeworktextbox[i].Height = 15;
-                homeworktextbox[i].Margin = new Thickness(440, (i * 30) + last + 35, 0, 0);
-                grid_generate_excel.Children.Add(homeworktextbox[i]);
+                System.Windows.Controls.Label homeworklabel = new System.Windows.Controls.Label();
+                homeworklabel.Name = "qCountmt" + (i + 1);
+                homeworklabel.HorizontalAlignment = HorizontalAlignment.Left;
+                homeworklabel.VerticalAlignment = VerticalAlignment.Top;
+                homeworklabel.Width = 170;
+                homeworklabel.Height = 30;
+                homeworklabel.Opacity = 0.8;
+                homeworklabel.Content = "Question Count Homework " + (i + 1) + " :";
+                homeworklabel.Margin = new Thickness(272, (i * 30) + last + 29, 0, 0);
+                homeworklabel.Foreground = Brushes.White;
+                homeworklabel.Visibility = Visibility.Visible;
+
+                grid_generate_excel.Children.Add(homeworklabel);
+                homeworklabelList.Add(homeworklabel); // add to the list
+
+                System.Windows.Controls.TextBox homeworktextbox = new System.Windows.Controls.TextBox();
+                homeworktextbox.Name = "qTextboxhomework" + (i + 1);
+                homeworktextbox.HorizontalAlignment = HorizontalAlignment.Left;
+                homeworktextbox.VerticalAlignment = VerticalAlignment.Top;
+                homeworktextbox.Width = 70;
+                homeworktextbox.Height = 15;
+                homeworktextbox.Margin = new Thickness(440, (i * 30) + last + 35, 0, 0);
+
+                grid_generate_excel.Children.Add(homeworktextbox);
+                homeworktextboxList.Add(homeworktextbox); // add to the list
             }
+           
+
         }
+
+
 
         private void button_transferdata_Click(object sender, RoutedEventArgs e)
         {
@@ -204,6 +288,9 @@ namespace ASAP_Project
         
         private void button_reviewcourse_Click(object sender, RoutedEventArgs e)
         {
+            grid_generate_excel.Visibility = Visibility.Collapsed;
+            grid_createreport.Visibility = Visibility.Collapsed;
+            grid_changepassword.Visibility = Visibility.Collapsed;
             if (grid_reviewcourse.Visibility == Visibility.Visible)
             {
                 grid_reviewcourse.Visibility = Visibility.Hidden;
@@ -214,14 +301,14 @@ namespace ASAP_Project
             }
         }
         System.Windows.Controls.TextBox finaltextbox = new System.Windows.Controls.TextBox();
+
+        System.Windows.Controls.Label final_label = new System.Windows.Controls.Label();
+        
+
         private void checkbox_havefinal_Checked(object sender, RoutedEventArgs e)
         {
             int lastps = int.Parse(textbox_homeworkcount.Text);
             int last = lastps * 30 + 30;
-
-            System.Windows.Controls.Label final_label = new System.Windows.Controls.Label();
-
-
             final_label = new System.Windows.Controls.Label();
             final_label.Name = "qCountfinal";
             final_label.HorizontalAlignment = HorizontalAlignment.Left;
@@ -361,6 +448,9 @@ namespace ASAP_Project
 
         private void button_createreport_Click(object sender, RoutedEventArgs e)
         {
+            grid_generate_excel.Visibility = Visibility.Collapsed;
+            grid_reviewcourse.Visibility = Visibility.Collapsed;
+            grid_changepassword.Visibility = Visibility.Collapsed;
             combobox_createreport.Items.Clear();
 
             if (grid_createreport.Visibility == Visibility.Visible)
@@ -630,8 +720,13 @@ namespace ASAP_Project
 
         private void button_account_Click(object sender, RoutedEventArgs e)
         {
-            grid_userpanel.Visibility = Visibility.Hidden;
-            grid_adminpanel.Visibility = Visibility.Hidden;
+
+            grid_userpanel.Visibility = Visibility.Collapsed;
+            grid_adminpanel.Visibility = Visibility.Collapsed;
+            grid_generate_excel.Visibility = Visibility.Collapsed;
+            grid_createreport.Visibility = Visibility.Collapsed;
+            grid_reviewcourse.Visibility = Visibility.Collapsed;
+            grid_addcourse.Visibility = Visibility.Collapsed;
             if (grid_accountpanel.Visibility == Visibility.Visible)
             {
                 grid_accountpanel.Visibility = Visibility.Hidden;

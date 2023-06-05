@@ -26,6 +26,37 @@ namespace ASAP_Project
         {
             InitializeComponent();
         }
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (textbox_username.Text == "Username")
+            {
+                textbox_username.Text = "";
+            }
+        }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(textbox_username.Text))
+            {
+                textbox_username.Text = "Username";
+            }
+        }
+
+        private void PasswordBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (passwordbox_password.Password == "Password")
+            {
+                passwordbox_password.Password = "";
+            }
+        }
+
+        private void PasswordBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(passwordbox_password.Password))
+            {
+                passwordbox_password.Password = "Password";
+            }
+        }
 
         private void button_login_Click(object sender, RoutedEventArgs e)
         {
@@ -80,8 +111,6 @@ namespace ASAP_Project
            
         }
 
-
-
-
+        
     }
 }
