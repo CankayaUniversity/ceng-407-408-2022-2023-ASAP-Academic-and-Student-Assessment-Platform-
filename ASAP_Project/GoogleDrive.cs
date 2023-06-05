@@ -241,5 +241,33 @@ namespace ASAP_Project
             return gen_excel;
         }
 
+        public static void DeleteFile(string filepath)
+        {
+            string folderId = "1yaDOAB2U008ohDirn03H8-RB1r6LJoFc";
+            string filePath = filepath;
+
+            var credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
+                    new ClientSecrets { ClientId = "714044421228-cugq90i34shjhu5ifs9lmh06fop801ro.apps.googleusercontent.com", ClientSecret = "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" },
+                    new[] { DriveService.Scope.Drive },
+                    "user",
+                    System.Threading.CancellationToken.None,
+                    tokenStorage).Result;
+
+            // Create the Drive service.
+            var service = new DriveService(new BaseClientService.Initializer()
+            {
+                HttpClientInitializer = credential,
+                ApplicationName = "ASAP Project"
+            });
+
+            var request = service.Files.List();
+            request.Q = $"name = '{filepath}'";
+            var result = request.Execute();
+
+            service.Files.Delete(result.Files[0].Id).Execute();
+
+
+        }
+
     }
 }

@@ -682,5 +682,45 @@ namespace ASAP_Project
 
             GoogleDrive.UploadCourse(openFileDialog.FileName);
         }
+
+        private void button_deletecourse_Click(object sender, RoutedEventArgs e)
+        {
+            combobox_deletecourse.Items.Clear();
+
+            if (grid_deletecourse.Visibility == Visibility.Visible)
+            {
+                grid_deletecourse.Visibility = Visibility.Hidden;
+            }
+            else
+            {
+                grid_deletecourse.Visibility = Visibility.Visible;
+
+                List<string> list = new List<string>();
+                list = GoogleDrive.getCourseList();
+
+                foreach (var item in list)
+                {
+                    combobox_deletecourse.Items.Add(item);
+                }
+
+            }
+        }
+
+        private void button_deletecoursebtn_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string filepath = combobox_deletecourse.SelectedItem.ToString();
+                GoogleDrive.DeleteFile(filepath);
+
+                MessageBox.Show("File :" + filepath + " deleted from google drive.");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"Error deleting file to Google Drive: {ex.Message}");
+            }
+
+            
+        }
     } 
 }

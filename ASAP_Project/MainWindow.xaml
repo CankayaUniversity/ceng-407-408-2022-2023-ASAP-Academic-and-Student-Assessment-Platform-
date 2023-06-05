@@ -41,7 +41,7 @@
             <Label x:Name="label_driveaccountuser" Content="Google Drive e-mail : asaproject2023@gmail.com" HorizontalAlignment="Left" Margin="1,441,0,0" VerticalAlignment="Top" Foreground="White" FontSize="11"/>
             <Label x:Name="label_driveaccountpassword" Content="Google Drive password : Asap1234_" HorizontalAlignment="Left" Margin="0,466,0,0" VerticalAlignment="Top" Foreground="White" FontSize="11"/>
         </Grid>
-        <Grid x:Name="grid_userpanel" Margin="317,41,691,51" RenderTransformOrigin="0.5,0.5">
+        <Grid x:Name="grid_userpanel" Margin="317,41,691,51" RenderTransformOrigin="0.5,0.5" Visibility="Hidden">
             <Border Padding="20" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Margin="0,0,0,2" Opacity="0.8">
                 <Border.Effect>
                     <BlurEffect Radius="3"/>
@@ -70,9 +70,8 @@
                     <BlurEffect Radius="2" KernelType="Box" RenderingBias="Quality"/>
                 </Rectangle.Effect>
             </Rectangle>
-            <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_addcourse" Content="Add Course" HorizontalAlignment="Center" Margin="0,170,0,0" VerticalAlignment="Top" Background="#27A4CB" Width="246" Height="30" Opacity="0.8" Click="button_addcourse_Click"/>
-            <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_updatecourse" Content="Update Course" HorizontalAlignment="Center" Margin="0,205,0,0" VerticalAlignment="Top" Background="#27A4CB" Width="246" Height="30" Opacity="0.8"/>
-            <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_deletecourse" Content="Delete Course" HorizontalAlignment="Center" Margin="0,240,0,0" VerticalAlignment="Top" Background="#27A4CB" Width="246" Height="30" Opacity="0.8"/>
+            <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_addcourse" Content="Add Course" HorizontalAlignment="Center" Margin="0,205,0,0" VerticalAlignment="Top" Background="#27A4CB" Width="246" Height="30" Opacity="0.8" Click="button_addcourse_Click"/>
+            <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_deletecourse" Content="Delete Course" HorizontalAlignment="Center" Margin="0,240,0,0" VerticalAlignment="Top" Background="#27A4CB" Width="246" Height="30" Opacity="0.8" Click="button_deletecourse_Click"/>
 
 
 
@@ -219,6 +218,21 @@
             <TextBox x:Name="textbox_oldpassword" HorizontalAlignment="Left" Margin="131,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <Label x:Name="label_newpassword" Content="New Password :" HorizontalAlignment="Left" Margin="33,60,0,0" VerticalAlignment="Top" Foreground="White"/>
             <TextBox x:Name="textbox_newpassword" HorizontalAlignment="Left" Margin="131,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        </Grid>
+        <Grid x:Name="grid_deletecourse" Width="630" Height="612.04" Margin="618,41,32,51" Visibility="Hidden">
+            <Border Padding="20" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Opacity="0.8">
+                <Border.Effect>
+                    <BlurEffect Radius="3"/>
+                </Border.Effect>
+            </Border>
+            <Rectangle Fill="Black" Opacity="0.3" RadiusX="20" RadiusY="20">
+                <Rectangle.Effect>
+                    <BlurEffect Radius="2" KernelType="Box" RenderingBias="Quality"/>
+                </Rectangle.Effect>
+            </Rectangle>
+            <Label x:Name="label_coursenamedelete" Content="Select Course :" HorizontalAlignment="Left" Margin="38,25,0,0" VerticalAlignment="Top" Foreground="White"/>
+            <ComboBox x:Name="combobox_deletecourse" HorizontalAlignment="Left" Margin="130,25,0,0" VerticalAlignment="Top" Width="120"/>
+            <Button x:Name="button_deletecoursebtn" Content="Delete" HorizontalAlignment="Left" Margin="555,556,0,0" VerticalAlignment="Top" Click="button_deletecoursebtn_Click"/>
         </Grid>
 
     </Grid>
