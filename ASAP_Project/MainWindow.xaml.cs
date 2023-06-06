@@ -175,7 +175,7 @@ namespace ASAP_Project
                 midtermtextboxList.Add(midtermtextbox); // add to the list
             }
             programmaticChange = true;
-            textbox_homeworkcount.Text = "0";
+            textbox_homeworkcount.Text = " ";
             programmaticChange = false;
         }
 
@@ -387,27 +387,27 @@ namespace ASAP_Project
         private void button_generate_excel_btnr_Click(object sender, RoutedEventArgs e)
         {
             int[] midtermqcount = new int[10];
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < midtermtextboxList.Count; i++)
             {
-                if (midtermtextbox[i] == null || int.Parse(midtermtextbox[i].Text) == 0)
+                if (midtermtextboxList[i] == null || int.Parse(midtermtextboxList[i].Text) == 0)
                 {
                     break;
                 }
                 else
                 {
-                    midtermqcount[i] = int.Parse(midtermtextbox[i].Text);
+                    midtermqcount[i] = int.Parse(midtermtextboxList[i].Text);
                 }
             }
             int[] homeworkqcount = new int[10];
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < homeworktextboxList.Count; i++)
             {
-                if (homeworktextbox[i] == null || int.Parse(homeworktextbox[i].Text) == 0)
+                if (homeworktextboxList[i] == null || int.Parse(homeworktextboxList[i].Text) == 0)
                 {
                     break;
                 }
                 else
                 {
-                    homeworkqcount[i] = int.Parse(homeworktextbox[i].Text);
+                    homeworkqcount[i] = int.Parse(homeworktextboxList[i].Text);
                 }
             }
 
