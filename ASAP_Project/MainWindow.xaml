@@ -185,7 +185,6 @@
                     <BlurEffect Radius="2" KernelType="Box" RenderingBias="Quality"/>
                 </Rectangle.Effect>
             </Rectangle>
-            <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_adduser" Content="Add User" HorizontalAlignment="Center" Margin="0,310,0,0" VerticalAlignment="Top" Width="246" Background="#27A4CB" Height="30" Opacity="0.8" Click="button_adduser_Click"/>
             <Button Style="{StaticResource RoundedButtonStyle}" x:Name="button_ChangePassword" Content="Change Password" HorizontalAlignment="Center" Margin="0,345,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.177,0.403" Width="246" Background="#27A4CB" Height="30" Opacity="0.8" Click="button_ChangePassword_Click"/>
 
         </Grid>
@@ -203,7 +202,7 @@
             <Label x:Name="label_username" Content="Username :" HorizontalAlignment="Left" Margin="38,25,0,0" VerticalAlignment="Top" Foreground="White"/>
             <TextBox x:Name="textbox_username" HorizontalAlignment="Left" Margin="131,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         </Grid>
-        <Grid x:Name="grid_changepassword" Width="630" Height="612.04" Margin="618,41,32,51">
+        <Grid x:Name="grid_changepassword" Width="630" Height="612.04" Margin="618,41,32,51" Visibility="Hidden">
             <Border Padding="20" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Opacity="0.8">
                 <Border.Effect>
                     <BlurEffect Radius="3"/>

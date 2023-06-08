@@ -740,25 +740,6 @@ namespace ASAP_Project
             }
         }
 
-        private void button_adduser_Click(object sender, RoutedEventArgs e)
-        {
-            if (UserData.role == "Admin")
-            {
-                if (grid_adduser.Visibility == Visibility.Visible)
-                {
-                    grid_adduser.Visibility = Visibility.Hidden;
-                }
-                else
-                {
-                    grid_adduser.Visibility = Visibility.Visible;
-                }
-            }
-            else
-            {
-                MessageBox.Show("You have not permission for that");
-            }
-        }
-
         private void button_ChangePassword_Click(object sender, RoutedEventArgs e)
         {
             if (grid_changepassword.Visibility == Visibility.Visible)
