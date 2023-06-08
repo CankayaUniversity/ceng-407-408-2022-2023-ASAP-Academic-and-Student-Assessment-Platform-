@@ -827,7 +827,7 @@ namespace ASAP_Project
 
 
 
-    private void Button_Click(object sender, RoutedEventArgs e)
+    private void Update_Password_Click(object sender, RoutedEventArgs e)
     {
             string oldPassword = textbox_oldpassword.Text;
             string newPassword = textbox_newpassword.Text;

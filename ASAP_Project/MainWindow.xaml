@@ -218,6 +218,7 @@
             <TextBox x:Name="textbox_oldpassword" HorizontalAlignment="Left" Margin="131,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
             <Label x:Name="label_newpassword" Content="New Password :" HorizontalAlignment="Left" Margin="33,60,0,0" VerticalAlignment="Top" Foreground="White"/>
             <TextBox x:Name="textbox_newpassword" HorizontalAlignment="Left" Margin="131,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Button x:Name="Update_Password" Content="Update Password" Margin="38,91,379,493" Click="Update_Password_Click" FontSize="11" RenderTransformOrigin="0.503,1.466" Height="28"/>
         </Grid>
         <Grid x:Name="grid_deletecourse" Width="630" Height="612.04" Margin="618,41,32,51" Visibility="Hidden">
             <Border Padding="20" BorderBrush="Black" BorderThickness="2" CornerRadius="20" Opacity="0.8">
@@ -234,7 +235,6 @@
             <ComboBox x:Name="combobox_deletecourse" HorizontalAlignment="Left" Margin="130,25,0,0" VerticalAlignment="Top" Width="120"/>
             <Button x:Name="button_deletecoursebtn" Content="Delete" HorizontalAlignment="Left" Margin="555,556,0,0" VerticalAlignment="Top" Click="button_deletecoursebtn_Click"/>
         </Grid>
-        <Button x:Name="Update_Password" Content="Update Password" Margin="657,133,410,543" Click="Button_Click" FontSize="11" RenderTransformOrigin="0.503,1.466" Height="28"/>
 
     </Grid>
 </Window>
