@@ -24,7 +24,10 @@ using System.ComponentModel;
 using System.Collections.ObjectModel;
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Drive.v3;
-using Google.Apis.Services;  
+using Google.Apis.Services;
+using Google.Apis.Util.Store;
+using Microsoft.Office.Interop.Word;
+using System.Threading;
 
 namespace ASAP_Project
 {
@@ -816,6 +819,113 @@ namespace ASAP_Project
             }
 
             
+        }
+
+
+
+
+
+
+
+    private void Button_Click(object sender, RoutedEventArgs e)
+    {
+            string oldPassword = textbox_oldpassword.Text;
+            string newPassword = textbox_newpassword.Text;
+
+
+            MemoryStream userdata = GoogleDrive.GetFile("UserInfo.xlsx");
+            byte[] excelData = userdata.ToArray();
+            string tempFilePath = System.IO.Path.GetTempFileName();
+
+            File.WriteAllBytes(tempFilePath, excelData);
+
+
+            try
+            {
+                // Excel dosyasını güncelle
+                UpdateExcelFile(tempFilePath, oldPassword, newPassword);
+
+
+                var fileMetadata = new Google.Apis.Drive.v3.Data.File()
+                {
+                    Name = "UserInfo.xlsx",
+                    
+                };
+                GoogleDrive.DeleteUserInfo("UserInfo.xlsx");
+                GoogleDrive.UploadUserInfo(tempFilePath);
+
+
+                MessageBox.Show("Parola başarıyla güncellendi.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Excel dosyasını indirme/güncelleme hatası: " + ex.Message);
+            }
+        }
+
+        private void UpdateExcelFile(string tempFilePath, string oldPassword, string newPassword)
+        {
+
+            Application excelApp = new Application();
+            Workbook wb = excelApp.Workbooks.Open(tempFilePath);
+            
+            var worksheet = wb.Sheets[1];
+            var range = worksheet.UsedRange;
+            try
+            {
+                // foreach (Excel.Worksheet worksheet in wb.Sheets)
+                // {
+                //     if (worksheet.Name == oldPassword)
+                //     {
+                //         newPassword = oldPassword;
+                //         break;
+                //     }
+                // }
+                for (int row = 2; row <= range.Rows.Count; row++) // İlk satırı başlık kabul ediyoruz, bu yüzden 2'den başlıyoruz
+                {
+                    string password = Convert.ToString((range.Cells[row, 3] as Excel.Range).Value2);
+
+                    if (password == oldPassword)
+                    {
+                        // Parola bulundu, güncelle
+                        (range.Cells[row, 3] as Excel.Range).Value2 = newPassword;
+                        break;
+                    }
+                }
+            }
+
+            catch (Exception ex)
+            {
+                throw new Exception("Parola güncelleme hatası: " + ex.Message);
+            }
+
+            finally
+            {
+                // Excel işlemlerini temizle ve kaynakları serbest bırak
+                wb.Save();
+                wb.Close();
+                excelApp.Quit();
+                ReleaseObject(wb);
+                ReleaseObject(excelApp);
+            }
+        }
+
+        private void ReleaseObject(object obj)
+        {
+            try
+            {
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
+                obj = null;
+            }
+            catch (Exception ex)
+            {
+                obj = null;
+                MessageBox.Show("COM nesnesi serbest bırakma hatası: " + ex.ToString());
+            }
+            finally
+            {
+                GC.Collect();
+            }
         }
     } 
 }
